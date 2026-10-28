@@ -70,6 +70,24 @@ const DEFAULT_SAMPLE_BOOKINGS: BookingDemo[] = [
 export default function PlayerDashboard() {
   const [bookings, setBookings] = useState<BookingDemo[]>([]);
   const [selectedReceipt, setSelectedReceipt] = useState<BookingDemo | null>(null);
+  const router = useRouter();
+const [loggingOut, setLoggingOut] = useState(false);
+
+const handleLogout = async () => {
+  setLoggingOut(true);
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.error("Logout failed:", error.message);
+    alert("Logout failed. Please try again.");
+    setLoggingOut(false);
+    return;
+  }
+
+  router.replace("/login");
+  router.refresh();
+};
 
   useEffect(() => {
     try {
