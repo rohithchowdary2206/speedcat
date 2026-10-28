@@ -153,7 +153,7 @@ const handleLogout = async () => {
             >
               {loggingOut ? "Logging out..." : "Log out"}
             </button>
-          </div>
+          
           </div>
         </div>
 
