@@ -79,7 +79,11 @@ const handleLogout = async () => {
     setLoggingOut(true);
 
     const { error } = await supabase.auth.signOut({ scope: "local" });
-
+console.log("Sign-out result:", error);
+console.log(
+  "Session after logout:",
+  (await supabase.auth.getSession()).data.session
+);
     if (error) {
       console.error("Logout failed:", error.message);
       alert(`Logout failed: ${error.message}`);
