@@ -88,6 +88,19 @@ const handleLogout = async () => {
   router.replace("/login");
   router.refresh();
 };
+  
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error || !data.session) {
+        router.replace("/login");
+      }
+    };
+
+    checkSession();
+  }, [router]);
+
 
   useEffect(() => {
     try {
