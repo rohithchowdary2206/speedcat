@@ -74,6 +74,7 @@ const DEFAULT_SAMPLE_BOOKINGS: BookingDemo[] = [
   const [loggingOut, setLoggingOut] = useState(false);
   
   const handleLogout = async () => {
+    console.log("Logout button clicked");
     setLoggingOut(true);
   
     const { error } = await supabase.auth.signOut();
