@@ -136,7 +136,8 @@ const handleLogout = async () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 self-start md:self-auto">
+         
+          <div className="flex items-center gap-3 self-start md:self-auto flex-wrap">
             <Link
               href="/explore"
               className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-bold text-xs px-4 py-2.5 rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
@@ -144,6 +145,15 @@ const handleLogout = async () => {
               <Sparkles className="w-3.5 h-3.5 fill-current" />
               <span>Book Another Court</span>
             </Link>
+
+            <button
+              onClick={handleLogout}
+              disabled={loggingOut}
+              className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors disabled:opacity-50"
+            >
+              {loggingOut ? "Logging out..." : "Log out"}
+            </button>
+          </div>
           </div>
         </div>
 
