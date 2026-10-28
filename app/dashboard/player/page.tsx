@@ -73,22 +73,28 @@ const DEFAULT_SAMPLE_BOOKINGS: BookingDemo[] = [
     const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
   
-  const handleLogout = async () => {
-    console.log("Logout button clicked");
+  
+const handleLogout = async () => {
+  try {
     setLoggingOut(true);
-  
-    const { error } = await supabase.auth.signOut();
-  
+
+    const { error } = await supabase.auth.signOut({ scope: "local" });
+
     if (error) {
       console.error("Logout failed:", error.message);
-      alert("Logout failed. Please try again.");
+      alert(`Logout failed: ${error.message}`);
       setLoggingOut(false);
       return;
     }
-  
-    router.replace("/login");
-    router.refresh();
-  };
+
+    window.location.replace("/login");
+  } catch (err) {
+    console.error("Unexpected logout error:", err);
+    alert("Something went wrong while logging out. Please try again.");
+    setLoggingOut(false);
+  }
+};
+
     
   
   useEffect(() => {
