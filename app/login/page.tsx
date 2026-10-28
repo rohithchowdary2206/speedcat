@@ -12,7 +12,7 @@ import {
   User,
   Loader2,
 } from "lucide-react";
-import { supabase } from "@/lib/client";
+import { supabase } from "../../lib/supabase/client";
 
 export default function LoginPage() {
   const router = useRouter();
