@@ -19,6 +19,8 @@ import {
 } from "lucide-react";
 import { BOOKINGS_STORAGE_KEY } from "@/lib/venues";
 import { BookingDemo } from "@/types/venue";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/lib/supabase/client";
 
 const DEFAULT_SAMPLE_BOOKINGS: BookingDemo[] = [
   {
