@@ -67,54 +67,74 @@ const DEFAULT_SAMPLE_BOOKINGS: BookingDemo[] = [
   },
 ];
 
-export default function PlayerDashboard() {
-  const [bookings, setBookings] = useState<BookingDemo[]>([]);
-  const [selectedReceipt, setSelectedReceipt] = useState<BookingDemo | null>(null);
-  const router = useRouter();
-const [loggingOut, setLoggingOut] = useState(false);
-
-const handleLogout = async () => {
-  setLoggingOut(true);
-
-  const { error } = await supabase.auth.signOut();
-
-  if (error) {
-    console.error("Logout failed:", error.message);
-    alert("Logout failed. Please try again.");
-    setLoggingOut(false);
-    return;
-  }
-
-  router.replace("/login");
-  router.refresh();
-};
+  export default function PlayerDashboard() {
+    const [bookings, setBookings] = useState<BookingDemo[]>([]);
+    const [selectedReceipt, setSelectedReceipt] = useState<BookingDemo | null>(null);
+    const router = useRouter();
+  const [loggingOut, setLoggingOut] = useState(false);
+  
+  const handleLogout = async () => {
+    setLoggingOut(true);
+  
+    const { error } = await supabase.auth.signOut();
+  
+    if (error) {
+      console.error("Logout failed:", error.message);
+      alert("Logout failed. Please try again.");
+      setLoggingOut(false);
+      return;
+    }
+  
+    router.replace("/login");
+    router.refresh();
+  };
+    
   
   useEffect(() => {
+    let active = true;
+
     const checkSession = async () => {
       const { data, error } = await supabase.auth.getSession();
 
+      if (!active) return;
+
       if (error || !data.session) {
         router.replace("/login");
+        router.refresh();
       }
     };
 
     checkSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (active && !session) {
+        router.replace("/login");
+        router.refresh();
+      }
+    });
+
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+    };
   }, [router]);
 
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(BOOKINGS_STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setBookings(parsed);
-          return;
+  
+    useEffect(() => {
+      try {
+        const stored = localStorage.getItem(BOOKINGS_STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setBookings(parsed);
+            return;
+          }
         }
-      }
-    } catch {}
-    setBookings(DEFAULT_SAMPLE_BOOKINGS);
-  }, []);
+      } catch {}
+      setBookings(DEFAULT_SAMPLE_BOOKINGS);
+    }, []);
 
   const handleCancelBooking = (bookingId: string) => {
     const updated = bookings.filter((b) => b.id !== bookingId);
