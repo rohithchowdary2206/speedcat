@@ -36,7 +36,7 @@ export default function RequireAuth({
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="text-sm font-semibold text-slate-500">Checking your Speedcat account...</div>
+        <div className="text-sm font-semibold text-slate-500">Checking your ATHLETIQ account...</div>
       </div>
     );
   }

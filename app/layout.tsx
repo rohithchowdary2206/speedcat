@@ -6,11 +6,11 @@ import PreviewBanner from "@/components/PreviewBanner";
 import Providers from "@/components/Providers";
 
 export const metadata: Metadata = {
-  title: "Speedcat | Sports Booking, Clubs & Hyderabad Community — Find Your Game. Book Your Court.",
+  title: "ATHLETIQ | Sports Booking, Clubs & Hyderabad Community — Your Game. Our Community.",
   description:
-    "Explore and preview sports venue bookings and active clubs in Hyderabad. Discover badminton courts, football turfs, cricket pitches, running clubs, and sports communities across Gachibowli, Madhapur, Kondapur, and beyond.",
+    "ATHLETIQ: PLAY • BOOK • CONNECT. Discover sports venues, find players, join active clubs, and book courts across Hyderabad with instant real-time availability.",
   keywords: [
-    "Speedcat",
+    "ATHLETIQ",
     "Sports Booking Hyderabad",
     "Hyderabad Running Clubs",
     "Badminton courts Hyderabad",
@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col bg-white text-speedcat-navy antialiased selection:bg-speedcat-green selection:text-white">
+      <body className="min-h-screen flex flex-col bg-[#0B1020] text-[#F8FAFC] antialiased selection:bg-[#2563EB] selection:text-white">
         <Providers>
           <PreviewBanner />
           <Navbar />

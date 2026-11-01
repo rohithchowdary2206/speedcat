@@ -381,7 +381,7 @@ function OrganizerDashboardContent() {
             }`}
           >
             <TrendingUp className="w-4 h-4 text-speedcat-green" />
-            Revenue & Speedcat Platform Fees
+            Revenue & ATHLETIQ Platform Fees
           </button>
         </div>
 
@@ -688,9 +688,9 @@ function OrganizerDashboardContent() {
                     <TrendingUp className="w-4 h-4" />
                     Revenue Model & Platform Commission
                   </div>
-                  <h3 className="text-xl font-extrabold">Configurable Speedcat Platform Fee</h3>
+                  <h3 className="text-xl font-extrabold">Configurable ATHLETIQ Platform Fee</h3>
                   <p className="text-xs text-slate-300 max-w-xl mt-1">
-                    Speedcat platform fee is dynamically configurable rather than fixed. Modify the fee percentage below to inspect how it impacts estimated platform fees versus net organiser payout.
+                    ATHLETIQ platform fee is dynamically configurable rather than fixed. Modify the fee percentage below to inspect how it impacts estimated platform fees versus net organiser payout.
                   </p>
                 </div>
 
@@ -721,7 +721,7 @@ function OrganizerDashboardContent() {
             {/* Financial Distinction Cards */}
             <div>
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
-                Financial Breakdown (Distinguishing Gross Sales from Speedcat Revenue)
+                Financial Breakdown (Distinguishing Gross Sales from ATHLETIQ Revenue)
               </h4>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -738,10 +738,10 @@ function OrganizerDashboardContent() {
                   </p>
                 </div>
 
-                {/* Speedcat Platform Fees */}
+                {/* ATHLETIQ Platform Fees */}
                 <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 shadow-sm relative overflow-hidden">
                   <div className="text-xs font-bold text-amber-800 uppercase tracking-wider flex items-center justify-between">
-                    <span>Speedcat Platform Fee</span>
+                    <span>ATHLETIQ Platform Fee</span>
                     <span className="px-2 py-0.5 rounded-full bg-amber-200 text-amber-900 text-[10px]">
                       {feePercentage}% Cut
                     </span>
@@ -750,7 +750,7 @@ function OrganizerDashboardContent() {
                     ₹{analytics.speedcatPlatformFees.toLocaleString("en-IN")}
                   </div>
                   <p className="text-[11px] text-amber-800 mt-2">
-                    Estimated Speedcat platform share calculated dynamically at {feePercentage}% per ticket booking.
+                    Estimated ATHLETIQ platform share calculated dynamically at {feePercentage}% per ticket booking.
                   </p>
                 </div>
 
@@ -763,7 +763,7 @@ function OrganizerDashboardContent() {
                     ₹{analytics.netOrganizerEarnings.toLocaleString("en-IN")}
                   </div>
                   <p className="text-[11px] text-emerald-800 mt-2">
-                    Net revenue retained by the club after deducting Speedcat's platform fees.
+                    Net revenue retained by the club after deducting ATHLETIQ's platform fees.
                   </p>
                 </div>
               </div>
@@ -820,7 +820,7 @@ function OrganizerDashboardContent() {
               <div>
                 <span className="font-bold text-slate-900 block">Transparent Fee Calculation Formula:</span>
                 <p className="mt-0.5">
-                  Gross Ticket Price (₹) × Platform Fee Rate ({feePercentage}%) = Speedcat Platform Fee. For instance, on a ₹300 ticket at {feePercentage}%, Speedcat retains ₹{(300 * (feePercentage / 100)).toFixed(0)}, leaving ₹{(300 - (300 * (feePercentage / 100))).toFixed(0)} for the club organizer.
+                  Gross Ticket Price (₹) × Platform Fee Rate ({feePercentage}%) = ATHLETIQ Platform Fee. For instance, on a ₹300 ticket at {feePercentage}%, ATHLETIQ retains ₹{(300 * (feePercentage / 100)).toFixed(0)}, leaving ₹{(300 - (300 * (feePercentage / 100))).toFixed(0)} for the club organizer.
                 </p>
               </div>
             </div>

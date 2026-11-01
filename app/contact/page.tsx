@@ -13,23 +13,23 @@ export default function ContactPage() {
 
   const faqs = [
     {
-      q: "What is Speedcat?",
-      a: "Speedcat is a modern sports venue discovery, clubs, and booking preview platform built for Hyderabad, Telangana. It allows sports enthusiasts to explore verified badminton courts, football turfs, cricket pitches, and tennis facilities, as well as join active local clubs with transparent pricing in Indian Rupees (₹).",
+      q: "What is ATHLETIQ?",
+      a: "ATHLETIQ is a modern sports venue discovery, clubs, and booking preview platform built for Hyderabad, Telangana. It allows sports enthusiasts to explore verified badminton courts, football turfs, cricket pitches, and tennis facilities, as well as join active local clubs with transparent pricing in Indian Rupees (₹).",
     },
     {
       q: "Are the bookings on this preview website real?",
       a: "No. This current website is a prototype demonstration. All booking flows, court availability, event tickets, and confirmations are simulated demo previews. No live financial payments are charged and physical courts are not booked without real-world confirmation.",
     },
     {
-      q: "What sports and activities are featured on Speedcat?",
-      a: "Speedcat covers Badminton, Football and football turfs (5v5 and 7v7), Cricket and box cricket, Tennis (clay & hard court), Pickleball, Basketball, Table tennis, Swimming, Running clubs, Cycling groups, and Multi-sport facilities.",
+      q: "What sports and activities are featured on ATHLETIQ?",
+      a: "ATHLETIQ covers Badminton, Football and football turfs (5v5 and 7v7), Cricket and box cricket, Tennis (clay & hard court), Pickleball, Basketball, Table tennis, Swimming, Running clubs, Cycling groups, and Multi-sport facilities.",
     },
     {
       q: "Which Hyderabad localities are included?",
       a: "The directory covers Gachibowli, Kondapur, Madhapur, Hitech City, Kukatpally, Miyapur, Manikonda, Jubilee Hills, Banjara Hills, Secunderabad, Uppal, LB Nagar, and Financial District.",
     },
     {
-      q: "How can I add my club or venue to Speedcat?",
+      q: "How can I add my club or venue to ATHLETIQ?",
       a: "Organisers and venue managers can preview adding venues and clubs through the Admin Dashboard, the Organiser Hub, or import multiple listings using the CSV import tool.",
     },
   ];
@@ -44,7 +44,7 @@ export default function ContactPage() {
             Contact & FAQs
           </h1>
           <p className="text-sm text-slate-500 max-w-lg mx-auto">
-            Frequently asked questions about the Speedcat Hyderabad sports & clubs platform preview
+            Frequently asked questions about the ATHLETIQ Hyderabad sports & clubs platform preview
           </p>
         </div>
 
@@ -82,7 +82,7 @@ export default function ContactPage() {
               Get in Touch
             </h3>
             <p className="text-xs text-slate-500 leading-relaxed">
-              Have questions regarding demo venue additions, club setups, or feedback on the Speedcat platform prototype? Send us a message.
+              Have questions regarding demo venue additions, club setups, or feedback on the ATHLETIQ platform prototype? Send us a message.
             </p>
 
             <div className="space-y-3 pt-2 text-xs text-slate-600">
@@ -119,7 +119,7 @@ export default function ContactPage() {
                   Message Sent (Demo Mode)
                 </h4>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                  Thank you for trying out Speedcat. Your sample enquiry has been acknowledged in local prototype mode.
+                  Thank you for trying out ATHLETIQ. Your sample enquiry has been acknowledged in local prototype mode.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
@@ -175,7 +175,7 @@ export default function ContactPage() {
                   <textarea
                     rows={4}
                     required
-                    placeholder="Type your feedback or question regarding Speedcat..."
+                    placeholder="Type your feedback or question regarding ATHLETIQ..."
                     className="w-full text-xs px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-speedcat-navy"
                   />
                 </div>

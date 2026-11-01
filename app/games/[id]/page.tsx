@@ -78,7 +78,7 @@ export default function GameDetailPage() {
     if (profile) return profile;
     if (user) {
       const meta = user.user_metadata || {};
-      const fullName = meta.full_name || user.email?.split("@")[0] || "Speedcat Player";
+      const fullName = meta.full_name || user.email?.split("@")[0] || "ATHLETIQ Player";
       return {
         id: user.id,
         name: fullName,
@@ -235,7 +235,7 @@ export default function GameDetailPage() {
       await markGameCompleted(game.id, currentUser.id, selectedAttendees);
       setShowCompletionModal(false);
       loadData();
-      alert("Game finalized! Confirmed participants are now automatically added to your Speedcat Friends list!");
+      alert("Game finalized! Confirmed participants are now automatically added to your ATHLETIQ Friends list!");
     } catch (err: any) {
       alert(err.message || "Failed to complete game");
     }
@@ -821,7 +821,7 @@ export default function GameDetailPage() {
               </p>
 
               <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-emerald-900 leading-snug font-medium">
-                🤝 <strong>Automatic Friends Feature:</strong> Confirmed attendees will automatically be added to each other's Speedcat Friends list and prompted to rate each other!
+                🤝 <strong>Automatic Friends Feature:</strong> Confirmed attendees will automatically be added to each other's ATHLETIQ Friends list and prompted to rate each other!
               </div>
 
               <div className="space-y-2 max-h-60 overflow-y-auto">

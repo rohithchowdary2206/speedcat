@@ -131,7 +131,7 @@ function AdminDashboardContent() {
       const updated = [...parsed, ...venues];
       setVenues(updated);
       saveVenues(updated);
-      setImportNotice(`Successfully imported ${parsed.length} venues to Speedcat!`);
+      setImportNotice(`Successfully imported ${parsed.length} venues to ATHLETIQ!`);
       setTimeout(() => {
         setShowCsvModal(false);
         setImportNotice(null);
@@ -182,7 +182,7 @@ function AdminDashboardContent() {
         { id: "c1", name: "Court 1", type: "Standard Court", surface: "Synthetic", pricePerHour: priceNum },
         { id: "c2", name: "Court 2", type: "Standard Court", surface: "Synthetic", pricePerHour: priceNum },
       ],
-      description: `Sports facility located in ${newVenueLocality}, Hyderabad. Added via Speedcat preview admin tools.`,
+      description: `Sports facility located in ${newVenueLocality}, Hyderabad. Added via ATHLETIQ preview admin tools.`,
       rules: ["Proper sports footwear required", "Follow court etiquette"],
       verificationBadge: "Preview Listing",
     };
@@ -257,7 +257,7 @@ function AdminDashboardContent() {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl sm:text-2xl font-black">
-                  Speedcat Central Administration
+                  ATHLETIQ Central Administration
                 </h1>
                 <span className="bg-purple-900/80 border border-purple-400/40 text-purple-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
                   Super Admin
@@ -702,7 +702,7 @@ function AdminDashboardContent() {
                 onClick={handleImportCsv}
                 className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-xl"
               >
-                Import to Speedcat
+                Import to ATHLETIQ
               </button>
             </div>
           </div>

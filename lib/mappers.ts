@@ -14,7 +14,7 @@ import { SportType } from "@/types/venue";
 export function mapProfile(row: any): PlayerProfile {
   return {
     id: row.id,
-    name: row.full_name || "Speedcat Player",
+    name: row.full_name || "ATHLETIQ Player",
     avatar:
       row.avatar_url ||
       `https://ui-avatars.com/api/?name=${encodeURIComponent(row.full_name || "Player")}&background=0f172a&color=10b981`,

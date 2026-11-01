@@ -31,7 +31,7 @@ import {
   markAllNotificationsAsRead,
   signOut
 } from "@/lib/community";
-import { SpeecatNotification } from "@/types/community";
+import { ATHLETIQNotification } from "@/types/community";
 import { useAuth } from "@/components/AuthProvider";
 
 export default function Navbar() {
@@ -39,7 +39,7 @@ export default function Navbar() {
   const router = useRouter();
 
   const { profile: currentUser, loading: authLoading } = useAuth();
-  const [notifications, setNotifications] = useState<SpeecatNotification[]>([]);
+  const [notifications, setNotifications] = useState<ATHLETIQNotification[]>([]);
   const [notifOpen, setNotifOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -90,7 +90,7 @@ export default function Navbar() {
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
-  const handleNotificationClick = (notif: SpeecatNotification) => {
+  const handleNotificationClick = (notif: ATHLETIQNotification) => {
     markNotificationAsRead(notif.id);
     setNotifications(getNotificationsForPlayer(currentUser?.id || ""));
     setNotifOpen(false);
@@ -113,24 +113,24 @@ export default function Navbar() {
       : "/dashboard/player";
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all">
+    <header className="sticky top-0 z-40 bg-[#0B1020]/95 backdrop-blur-md border-b border-[#1F2937] transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Logo & City Badge */}
           <div className="flex items-center gap-4 sm:gap-6 shrink-0">
             <NextLink href="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-xl bg-speecat-navy flex items-center justify-center text-speecat-green shadow-md group-hover:scale-105 transition-transform">
-                <Zap className="w-6 h-6 fill-speecat-green text-speecat-green" />
+              <div className="w-10 h-10 rounded-xl bg-[#2563EB] flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                <Zap className="w-6 h-6 fill-white text-white" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-2xl font-black tracking-tight text-speecat-navy">
-                    SPEED<span className="text-speecat-green">CAT</span>
+                    ATHLET<span className="text-[#FF7139]">IQ</span>
                   </span>
                 </div>
                 <p className="text-[10px] uppercase tracking-wider font-semibold text-slate-500 hidden sm:block">
-                  Sports, Clubs & Community
+                  Your Game. Our Community.
                 </p>
               </div>
             </NextLink>
@@ -390,7 +390,7 @@ export default function Navbar() {
                             className="flex items-center gap-2.5 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-speecat-green"
                           >
                             <ShieldCheck className="w-4 h-4 text-purple-600" />
-                            <span>Speedcat Admin Dashboard</span>
+                            <span>ATHLETIQ Admin Dashboard</span>
                           </NextLink>
                         )}
                       </div>

@@ -117,7 +117,7 @@ function PlayerDashboardContent() {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl sm:text-2xl font-black">
-                  {profile?.name || "Speedcat Player"}
+                  {profile?.name || "ATHLETIQ Player"}
                 </h1>
                 <span className="bg-emerald-900/80 border border-emerald-400/40 text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
                   {profile?.role || "Player"}

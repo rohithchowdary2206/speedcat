@@ -113,7 +113,7 @@ function ClubsContent() {
             <div className="space-y-3 max-w-2xl">
               <div className="inline-flex items-center gap-1.5 bg-speecat-green/20 text-speecat-green px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider">
                 <Compass className="w-4 h-4" />
-                <span>Speedcat Clubs & Events</span>
+                <span>ATHLETIQ Clubs & Events</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
@@ -310,7 +310,7 @@ function ClubsContent() {
 
 export default function ClubsPage() {
   return (
-    <Suspense fallback={<div className="p-10 text-center text-sm">Loading Speedcat clubs directory...</div>}>
+    <Suspense fallback={<div className="p-10 text-center text-sm">Loading ATHLETIQ clubs directory...</div>}>
       <ClubsContent />
     </Suspense>
   );

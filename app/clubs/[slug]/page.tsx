@@ -42,7 +42,7 @@ export default function ClubDetailPage() {
   const [actionNotice, setActionNotice] = useState<string | null>(null);
 
   const currentUserId = profile?.id || user?.id || "";
-  const currentUserName = profile?.name || user?.email?.split("@")[0] || "Speedcat Member";
+  const currentUserName = profile?.name || user?.email?.split("@")[0] || "ATHLETIQ Member";
   const currentUserAvatar = profile?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80";
 
   const loadClubData = () => {
@@ -405,7 +405,7 @@ export default function ClubDetailPage() {
                 <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
                   <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
                     <ShieldCheck className="w-5 h-5 text-emerald-600" />
-                    Speedcat Community Standards
+                    ATHLETIQ Community Standards
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {club.communityGuidelines.map((item, idx) => (

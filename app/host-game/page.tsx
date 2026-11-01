@@ -289,7 +289,7 @@ function HostGameContent() {
                     venueChoiceType === "directory" ? "bg-white text-speecat-navy shadow-xs" : "text-slate-500"
                   }`}
                 >
-                  Select from Speedcat Directory
+                  Select from ATHLETIQ Directory
                 </button>
                 <button
                   type="button"

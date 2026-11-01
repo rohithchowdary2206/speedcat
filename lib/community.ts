@@ -206,7 +206,7 @@ export async function loadProfileById(userId: string): Promise<PlayerProfile | n
       if (authData?.user && authData.user.id === userId) {
         const u = authData.user;
         const meta = u.user_metadata || {};
-        const fullName = meta.full_name || u.email?.split("@")[0] || "Speedcat Player";
+        const fullName = meta.full_name || u.email?.split("@")[0] || "ATHLETIQ Player";
         const role = meta.role || "player";
         const locality = meta.locality || "Gachibowli";
         const avatarUrl = meta.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=0f172a&color=10b981`;
@@ -326,7 +326,7 @@ export async function createGame(
   await supabase.from("game_messages").insert({
     game_id: data.id,
     sender_id: "system",
-    sender_name: "Speedcat",
+    sender_name: "ATHLETIQ",
     sender_avatar: "",
     content: `Game "${data.title}" created by ${data.host_name}. Confirmed players can chat here.`,
     is_system: true,

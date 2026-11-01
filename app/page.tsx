@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 import PopularSports from "@/components/PopularSports";
 import FeaturedVenues from "@/components/FeaturedVenues";
 import LocalityBrowser from "@/components/LocalityBrowser";
-import WhySpeecat from "@/components/WhySpeecat";
+import WhyATHLETIQ from "@/components/WhyATHLETIQ";
 import HyderabadMap from "@/components/HyderabadMap";
 import VenueCard from "@/components/VenueCard";
 import GameCard from "@/components/GameCard";
@@ -144,7 +144,7 @@ export default function HomePage() {
               </div>
               <h3 className="font-extrabold text-base text-speecat-navy">Automatic Friends</h3>
               <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                After the game, verified attendees are automatically added to your Speedcat Friends list and can anonymously rate peer skills.
+                After the game, verified attendees are automatically added to your ATHLETIQ Friends list and can anonymously rate peer skills.
               </p>
             </div>
 
@@ -202,7 +202,7 @@ export default function HomePage() {
                 <span>Fresh Additions</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-speecat-navy">
-                Recently Added to Speedcat
+                Recently Added to ATHLETIQ
               </h2>
               <p className="text-sm text-slate-500 mt-1">
                 New turf stadiums, community sports arenas, and fitness centers in Telangana
@@ -226,8 +226,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. Why Speecat Section */}
-      <WhySpeecat />
+      {/* 9. Why ATHLETIQ Section */}
+      <WhyATHLETIQ />
 
       {/* 10. Call To Action Banner */}
       <section className="py-14 bg-gradient-to-r from-speecat-navy via-slate-900 to-speecat-navy text-white relative overflow-hidden">

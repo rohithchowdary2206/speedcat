@@ -60,7 +60,7 @@ export default function FriendsPage() {
     if (profile) return profile;
     if (user) {
       const meta = user.user_metadata || {};
-      const fullName = meta.full_name || user.email?.split("@")[0] || "Speedcat Player";
+      const fullName = meta.full_name || user.email?.split("@")[0] || "ATHLETIQ Player";
       return {
         id: user.id,
         name: fullName,
@@ -223,7 +223,7 @@ export default function FriendsPage() {
                 </div>
 
                 <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
-                  My Speedcat Sports Friends
+                  My ATHLETIQ Sports Friends
                 </h1>
 
                 <p className="text-sm text-slate-300 leading-relaxed font-normal">

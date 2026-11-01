@@ -208,3 +208,6 @@ export interface SpeecatNotification {
   read: boolean;
   createdAt: string;
 }
+
+export type ATHLETIQNotification = SpeecatNotification;
+export type AthletiqNotification = SpeecatNotification;

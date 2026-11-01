@@ -92,36 +92,36 @@ function LoginForm() {
 
   if (authLoading || user) {
     return (
-      <div className="min-h-[70vh] flex items-center justify-center text-sm font-semibold text-slate-500">
-        {user ? "Taking you into Speedcat..." : "Loading account..."}
+      <div className="min-h-[70vh] flex items-center justify-center text-sm font-semibold text-[#A7B0C0]">
+        {user ? "Taking you into ATHLETIQ..." : "Loading account..."}
       </div>
     );
   }
 
   return (
-    <div className="bg-slate-50 min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-[#0B1020] min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-6">
         <div className="text-center space-y-2">
           <Link href="/" className="inline-flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-speecat-navy flex items-center justify-center text-speecat-green shadow-md">
-              <Zap className="w-6 h-6 fill-speecat-green text-speecat-green" />
+            <div className="w-10 h-10 rounded-xl bg-speecat-navy flex items-center justify-center text-[#FF7139] shadow-md">
+              <Zap className="w-6 h-6 fill-speecat-green text-[#FF7139]" />
             </div>
-            <span className="text-2xl font-black tracking-tight text-speedcat-navy">
-              SPEED<span className="text-speedcat-green">CAT</span>
+            <span className="text-2xl font-black tracking-tight text-[#F8FAFC]">
+              ATHLET<span className="text-[#FF7139]">IQ</span>
             </span>
           </Link>
 
-          <h2 className="text-xl font-black text-speedcat-navy">
-            {tab === "login" ? "Sign in to Speedcat" : "Create your Speedcat account"}
+          <h2 className="text-xl font-black text-[#F8FAFC]">
+            {tab === "login" ? "Sign in to ATHLETIQ" : "Create your ATHLETIQ account"}
           </h2>
 
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-[#A7B0C0]">
             Book courts, host games, and join the Hyderabad sports community
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-5">
-          <div className="flex border-b border-slate-200 pb-2">
+        <div className="bg-[#1F2937] rounded-2xl border border-[#374151] p-6 shadow-sm space-y-5">
+          <div className="flex border-b border-[#374151] pb-2">
             <button
               type="button"
               onClick={() => {
@@ -131,8 +131,8 @@ function LoginForm() {
               }}
               className={`flex-1 pb-3 text-xs font-bold border-b-2 ${
                 tab === "login"
-                  ? "border-speecat-green text-speedcat-navy"
-                  : "border-transparent text-slate-400"
+                  ? "border-[#2563EB] text-[#F8FAFC]"
+                  : "border-transparent text-[#A7B0C0]"
               }`}
             >
               Sign In
@@ -147,8 +147,8 @@ function LoginForm() {
               }}
               className={`flex-1 pb-3 text-xs font-bold border-b-2 ${
                 tab === "register"
-                  ? "border-speecat-green text-speedcat-navy"
-                  : "border-transparent text-slate-400"
+                  ? "border-[#2563EB] text-[#F8FAFC]"
+                  : "border-transparent text-[#A7B0C0]"
               }`}
             >
               Register
@@ -176,13 +176,13 @@ function LoginForm() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {tab === "register" && (
               <div>
-                <label className="block text-xs font-bold text-speecat-navy mb-1">Full Name</label>
+                <label className="block text-xs font-bold text-[#F8FAFC] mb-1">Full Name</label>
                 <input
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   required
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-speecat-navy"
+                  className="w-full bg-[#0B1020] border border-[#374151] rounded-xl px-3 py-2 text-xs text-[#F8FAFC]"
                 />
               </div>
             )}
@@ -190,12 +190,12 @@ function LoginForm() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-xs font-bold text-speecat-navy mb-1"
+                className="block text-xs font-bold text-[#F8FAFC] mb-1"
               >
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                <Mail className="absolute left-3 top-3 w-4 h-4 text-[#A7B0C0]" />
                 <input
                   id="email"
                   type="email"
@@ -203,7 +203,7 @@ function LoginForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-xs text-speedcat-navy"
+                  className="w-full bg-[#0B1020] border border-[#374151] rounded-xl pl-9 pr-3 py-2.5 text-xs text-[#F8FAFC]"
                   placeholder="you@example.com"
                 />
               </div>
@@ -212,7 +212,7 @@ function LoginForm() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-xs font-bold text-speecat-navy mb-1"
+                className="block text-xs font-bold text-[#F8FAFC] mb-1"
               >
                 Password
               </label>
@@ -222,34 +222,34 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                className="w-full bg-[#0B1020] border border-[#374151] rounded-xl px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-speecat-green"
               />
             </div>
 
             {tab === "register" && (
               <div>
-                <label className="block text-xs font-bold text-speecat-navy mb-1">Account Role</label>
+                <label className="block text-xs font-bold text-[#F8FAFC] mb-1">Account Role</label>
                 <select
                   value={selectedRole}
                   onChange={(e) => setSelectedRole(e.target.value as "player" | "host" | "admin")}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-speecat-navy"
+                  className="w-full bg-[#0B1020] border border-[#374151] rounded-xl px-3 py-2 text-xs font-semibold text-[#F8FAFC]"
                 >
                   <option value="player">Player</option>
                   <option value="host">Venue Host</option>
                   <option value="admin">Admin</option>
                 </select>
                 <div className="grid grid-cols-3 gap-2 pt-2">
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-2 text-center">
-                    <User className="w-4 h-4 text-speecat-green mx-auto mb-1" />
-                    <div className="text-[10px] font-bold text-speecat-navy">Book & join</div>
+                  <div className="bg-[#0B1020] border border-[#374151] rounded-xl p-2 text-center">
+                    <User className="w-4 h-4 text-[#FF7139] mx-auto mb-1" />
+                    <div className="text-[10px] font-bold text-[#F8FAFC]">Book & join</div>
                   </div>
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-2 text-center">
+                  <div className="bg-[#0B1020] border border-[#374151] rounded-xl p-2 text-center">
                     <Building2 className="w-4 h-4 text-blue-600 mx-auto mb-1" />
-                    <div className="text-[10px] font-bold text-speecat-navy">Manage courts</div>
+                    <div className="text-[10px] font-bold text-[#F8FAFC]">Manage courts</div>
                   </div>
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-2 text-center">
+                  <div className="bg-[#0B1020] border border-[#374151] rounded-xl p-2 text-center">
                     <ShieldCheck className="w-4 h-4 text-purple-600 mx-auto mb-1" />
-                    <div className="text-[10px] font-bold text-speecat-navy">Directory</div>
+                    <div className="text-[10px] font-bold text-[#F8FAFC]">Directory</div>
                   </div>
                 </div>
               </div>
@@ -267,10 +267,10 @@ function LoginForm() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-speecat-navy hover:bg-slate-800 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-60"
+              className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white shadow-lg shadow-blue-600/30 font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-60"
             >
               <span>{submitting ? "Please wait..." : tab === "login" ? "Sign In" : "Create Account"}</span>
-              <ArrowRight className="w-4 h-4 text-speecat-green" />
+              <ArrowRight className="w-4 h-4 text-[#FF7139]" />
             </button>
           </form>
         </div>

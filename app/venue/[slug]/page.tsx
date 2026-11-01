@@ -170,7 +170,7 @@ export default function VenueDetailPage() {
         startSlot: selectedSlot,
         durationHours,
         courtPrice: hourlyRate,
-        playerName: playerName || profile?.name || "Speedcat Player",
+        playerName: playerName || profile?.name || "ATHLETIQ Player",
         playerPhone: playerPhone || profile?.phone || "",
         playerEmail: user.email || "",
       });
@@ -579,7 +579,7 @@ export default function VenueDetailPage() {
                     <span className="font-semibold text-speecat-navy">₹{courtTotal}</span>
                   </div>
                   <div className="flex justify-between text-slate-600">
-                    <span>Speedcat Platform Fee</span>
+                    <span>ATHLETIQ Platform Fee</span>
                     <span className="text-emerald-700 font-semibold">FREE</span>
                   </div>
                   <div className="flex justify-between text-slate-600">
@@ -617,7 +617,7 @@ export default function VenueDetailPage() {
                 </button>
 
                 <p className="text-[10px] text-center text-slate-400">
-                  Instant live reservation saved to your Speedcat account.
+                  Instant live reservation saved to your ATHLETIQ account.
                 </p>
               </form>
             </div>
