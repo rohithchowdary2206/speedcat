@@ -74,7 +74,7 @@ export default function ClubCard({ club, onMembershipChange }: ClubCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-slate-200/90 hover:border-slate-300 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
+    <div className="bg-[#292D32] rounded-3xl border border-[#373C42]/90 hover:border-slate-300 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
       
       {/* Cover Image */}
       <div className="relative h-48 w-full overflow-hidden bg-slate-900">
@@ -105,12 +105,12 @@ export default function ClubCard({ club, onMembershipChange }: ClubCardProps) {
         {/* Bottom Locality Tag */}
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs">
           <div className="flex items-center gap-1 font-semibold drop-shadow">
-            <MapPin className="w-3.5 h-3.5 text-speecat-green" />
+            <MapPin className="w-3.5 h-3.5 text-[#B7F34A]" />
             <span>{club.locality}, Hyderabad</span>
           </div>
 
           <div className="flex items-center gap-1 text-[11px] font-bold bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-sm">
-            <Calendar className="w-3 h-3 text-speecat-green" />
+            <Calendar className="w-3 h-3 text-[#B7F34A]" />
             <span>{club.upcomingEventsCount} Upcoming</span>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function ClubCard({ club, onMembershipChange }: ClubCardProps) {
       <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
         <div>
           <Link href={`/clubs/${club.slug}`}>
-            <h3 className="text-lg font-black text-speecat-navy group-hover:text-speecat-green transition-colors line-clamp-1">
+            <h3 className="text-lg font-black text-[#F5F5F2] group-hover:text-[#B7F34A] transition-colors line-clamp-1">
               {club.name}
             </h3>
           </Link>
@@ -142,7 +142,7 @@ export default function ClubCard({ club, onMembershipChange }: ClubCardProps) {
                   />
                 ))}
               </div>
-              <span className="font-bold text-speecat-navy text-xs">
+              <span className="font-bold text-[#F5F5F2] text-xs">
                 {memberCount} members
               </span>
             </div>
@@ -157,7 +157,7 @@ export default function ClubCard({ club, onMembershipChange }: ClubCardProps) {
         <div className="pt-2 flex items-center justify-between gap-3 border-t border-slate-100">
           <Link
             href={`/clubs/${club.slug}`}
-            className="text-xs font-bold text-slate-600 hover:text-speecat-navy flex items-center gap-1 transition-colors"
+            className="text-xs font-bold text-slate-600 hover:text-[#F5F5F2] flex items-center gap-1 transition-colors"
           >
             <span>View Events</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -169,7 +169,7 @@ export default function ClubCard({ club, onMembershipChange }: ClubCardProps) {
             className={`text-xs font-black px-4 py-2 rounded-xl transition-all shadow-xs flex items-center gap-1.5 ${
               isJoined
                 ? "bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-rose-50 hover:text-rose-700 hover:border-rose-200"
-                : "bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy"
+                : "bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2]"
             }`}
           >
             {isJoined ? (

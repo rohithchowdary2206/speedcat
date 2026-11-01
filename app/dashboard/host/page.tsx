@@ -70,7 +70,7 @@ function HostDashboardContent() {
   const venueRevenue = confirmedBookings.reduce((acc, b) => acc + (b.totalPrice || 0), 0);
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
+    <div className="bg-[#17191C] min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Banner */}
@@ -89,7 +89,7 @@ function HostDashboardContent() {
                 </span>
               </div>
               <p className="text-xs text-slate-300 mt-1 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-speecat-green" />
+                <MapPin className="w-3.5 h-3.5 text-[#B7F34A]" />
                 <span>Managing: <strong className="text-white">{selectedVenue?.name}</strong> • {selectedVenue?.locality}, Hyderabad</span>
               </p>
             </div>
@@ -113,27 +113,27 @@ function HostDashboardContent() {
 
         {/* Host Metrics */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="bg-white rounded-2xl border border-slate-200 p-4">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4">
             <div className="text-xs font-semibold text-slate-500">Confirmed Reservations</div>
-            <div className="text-2xl font-black text-speecat-navy mt-1">{confirmedBookings.length}</div>
-            <div className="text-[11px] text-speecat-green font-medium mt-1">Live in Supabase</div>
+            <div className="text-2xl font-black text-[#F5F5F2] mt-1">{confirmedBookings.length}</div>
+            <div className="text-[11px] text-[#B7F34A] font-medium mt-1">Live in Supabase</div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 p-4">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4">
             <div className="text-xs font-semibold text-slate-500">Gross Venue Revenue</div>
-            <div className="text-2xl font-black text-speecat-green mt-1">
+            <div className="text-2xl font-black text-[#B7F34A] mt-1">
               ₹{venueRevenue.toLocaleString("en-IN")}
             </div>
             <div className="text-[11px] text-slate-400 font-medium mt-1">Collected Bookings</div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 p-4">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4">
             <div className="text-xs font-semibold text-slate-500">Active Inventory</div>
             <div className="text-2xl font-black text-blue-600 mt-1">{courts.length} Courts</div>
             <div className="text-[11px] text-slate-400 font-medium mt-1">{selectedVenue?.sport}</div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 p-4">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4">
             <div className="text-xs font-semibold text-slate-500">Host Profile</div>
             <div className="text-2xl font-black text-purple-600 mt-1">
               {profile?.name || "Host Partner"}
@@ -146,9 +146,9 @@ function HostDashboardContent() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Courts List Column */}
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-5 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-sm font-black text-speecat-navy uppercase tracking-wider">
+              <h2 className="text-sm font-black text-[#F5F5F2] uppercase tracking-wider">
                 Court Inventory ({courts.length})
               </h2>
               <span className="text-[11px] text-slate-400">Click to toggle status</span>
@@ -163,7 +163,7 @@ function HostDashboardContent() {
                     className="bg-slate-50 border border-slate-200 p-3.5 rounded-xl space-y-2"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-xs text-speecat-navy">{court.name}</span>
+                      <span className="font-bold text-xs text-[#F5F5F2]">{court.name}</span>
                       <button
                         onClick={() => toggleCourtStatus(court.id)}
                         className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition-colors ${
@@ -178,7 +178,7 @@ function HostDashboardContent() {
 
                     <div className="flex items-center justify-between text-xs text-slate-500">
                       <span>Surface: {court.surface || "Synthetic PVC"}</span>
-                      <span className="font-bold text-speecat-navy">₹{court.pricePerHour}/hr</span>
+                      <span className="font-bold text-[#F5F5F2]">₹{court.pricePerHour}/hr</span>
                     </div>
                   </div>
                 );
@@ -187,11 +187,11 @@ function HostDashboardContent() {
           </div>
 
           {/* Schedule / Slots Column (2 Cols) */}
-          <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+          <div className="lg:col-span-2 bg-[#292D32] rounded-2xl border border-[#373C42] p-5 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-speecat-green" />
-                <h2 className="text-sm font-black text-speecat-navy uppercase tracking-wider">
+                <Calendar className="w-4 h-4 text-[#B7F34A]" />
+                <h2 className="text-sm font-black text-[#F5F5F2] uppercase tracking-wider">
                   Live Court Schedule & Player Bookings
                 </h2>
               </div>
@@ -212,24 +212,24 @@ function HostDashboardContent() {
                     className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-slate-50/80 px-2 rounded-lg transition-colors"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-50 text-speecat-green flex items-center justify-center font-bold text-xs shrink-0">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#B7F34A] flex items-center justify-center font-bold text-xs shrink-0">
                         {idx + 1}
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-speecat-navy flex items-center gap-2">
+                        <div className="text-xs font-bold text-[#F5F5F2] flex items-center gap-2">
                           <span>{booking.timeSlot}</span>
                           <span className="text-[11px] text-slate-400 font-normal">
                             ({booking.courtName})
                           </span>
                         </div>
                         <div className="text-[11px] text-slate-500 mt-0.5">
-                          Player: <span className="font-medium text-speecat-navy">{booking.playerName}</span> • Ref: {booking.referenceCode}
+                          Player: <span className="font-medium text-[#F5F5F2]">{booking.playerName}</span> • Ref: {booking.referenceCode}
                         </div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-2.5 self-start sm:self-auto">
-                      <span className="text-xs font-bold text-speecat-green">
+                      <span className="text-xs font-bold text-[#B7F34A]">
                         ₹{booking.totalPrice}
                       </span>
                       <span className="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800">
@@ -250,7 +250,7 @@ function HostDashboardContent() {
             <div className="pt-2 text-center">
               <Link
                 href={`/venue/${selectedVenue?.slug}`}
-                className="text-xs text-speecat-green font-bold hover:underline"
+                className="text-xs text-[#B7F34A] font-bold hover:underline"
               >
                 Browse Public View of This Venue →
               </Link>

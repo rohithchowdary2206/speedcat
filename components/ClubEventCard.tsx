@@ -65,7 +65,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-slate-200/90 hover:border-slate-300 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4 group">
+    <div className="bg-[#292D32] rounded-3xl border border-[#373C42]/90 hover:border-slate-300 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4 group">
       
       {/* Top Banner & Date */}
       <div className="space-y-3">
@@ -73,7 +73,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
           {showClubName && (
             <Link
               href={`/clubs/${event.clubSlug}`}
-              className="text-xs font-black text-speecat-green hover:underline truncate"
+              className="text-xs font-black text-[#B7F34A] hover:underline truncate"
             >
               {event.clubName}
             </Link>
@@ -100,13 +100,13 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
         </div>
 
         {/* Title */}
-        <h3 className="text-base sm:text-lg font-black text-speecat-navy group-hover:text-speecat-green transition-colors line-clamp-1">
+        <h3 className="text-base sm:text-lg font-black text-[#F5F5F2] group-hover:text-[#B7F34A] transition-colors line-clamp-1">
           {event.title}
         </h3>
 
         {/* Locality & Address */}
         <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-          <MapPin className="w-3.5 h-3.5 text-speecat-green shrink-0" />
+          <MapPin className="w-3.5 h-3.5 text-[#B7F34A] shrink-0" />
           <span className="truncate">{event.venueName} • {event.locality}, Hyd</span>
         </div>
       </div>
@@ -115,12 +115,12 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
       <div className="space-y-2.5 pt-2 border-t border-slate-100 text-xs">
         <div className="flex flex-wrap items-center gap-3 text-slate-700 font-semibold">
           <div className="flex items-center gap-1">
-            <Calendar className="w-3.5 h-3.5 text-speecat-green" />
+            <Calendar className="w-3.5 h-3.5 text-[#B7F34A]" />
             <span>{event.date}</span>
           </div>
           <span>•</span>
           <div className="flex items-center gap-1">
-            <Clock className="w-3.5 h-3.5 text-speecat-green" />
+            <Clock className="w-3.5 h-3.5 text-[#B7F34A]" />
             <span>{event.time}</span>
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
         <div className="flex items-center justify-between text-xs pt-1">
           <div className="flex items-center gap-1.5">
             <Users className="w-4 h-4 text-slate-400" />
-            <span className="font-bold text-speecat-navy">
+            <span className="font-bold text-[#F5F5F2]">
               {event.registeredCount}/{event.capacity} Registered
             </span>
           </div>
@@ -149,7 +149,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
         {isUserRegistered ? (
           <div className="flex items-center justify-between w-full">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-xl">
-              <CheckCircle2 className="w-4 h-4 text-speecat-green" />
+              <CheckCircle2 className="w-4 h-4 text-[#B7F34A]" />
               <span>Registered (QR Confirmed)</span>
             </span>
 
@@ -157,9 +157,9 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
               <button
                 type="button"
                 onClick={() => setJustRegistered(userRegistration)}
-                className="text-xs text-speecat-navy font-bold hover:underline flex items-center gap-1"
+                className="text-xs text-[#F5F5F2] font-bold hover:underline flex items-center gap-1"
               >
-                <QrCode className="w-3.5 h-3.5 text-speecat-green" />
+                <QrCode className="w-3.5 h-3.5 text-[#B7F34A]" />
                 <span>View Ticket</span>
               </button>
             )}
@@ -172,7 +172,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
           <button
             type="button"
             onClick={() => setShowCheckoutModal(true)}
-            className="w-full bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-black text-xs py-2.5 rounded-xl transition-all shadow-xs flex items-center justify-center gap-1.5"
+            className="w-full bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] font-black text-xs py-2.5 rounded-xl transition-all shadow-xs flex items-center justify-center gap-1.5"
           >
             <Sparkles className="w-3.5 h-3.5 fill-current" />
             <span>{event.price === 0 ? "Register Free" : `Reserve Ticket (₹${event.price})`}</span>
@@ -183,9 +183,9 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
       {/* CHECKOUT / REGISTRATION MODAL */}
       {showCheckoutModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-md w-full p-6 space-y-4 shadow-2xl">
+          <div className="bg-[#292D32] rounded-3xl border border-[#373C42] max-w-md w-full p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-              <h3 className="font-black text-base text-speecat-navy">
+              <h3 className="font-black text-base text-[#F5F5F2]">
                 Event Registration (Demo)
               </h3>
               <button
@@ -198,7 +198,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
 
             <div className="space-y-3 text-xs">
               <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200 space-y-1">
-                <div className="font-extrabold text-sm text-speecat-navy">{event.title}</div>
+                <div className="font-extrabold text-sm text-[#F5F5F2]">{event.title}</div>
                 <div className="text-slate-500 font-medium">
                   {event.clubName} • {event.date} • {event.time}
                 </div>
@@ -209,7 +209,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
               <div className="p-3 bg-emerald-50/50 rounded-2xl border border-emerald-100 space-y-1.5">
                 <div className="flex justify-between text-slate-600">
                   <span>Ticket Price:</span>
-                  <span className="font-bold text-speecat-navy">
+                  <span className="font-bold text-[#F5F5F2]">
                     {event.price === 0 ? "FREE (₹0)" : `₹${event.price}`}
                   </span>
                 </div>
@@ -221,9 +221,9 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
                   </div>
                 )}
 
-                <div className="pt-2 border-t border-emerald-200/60 flex justify-between font-black text-sm text-speecat-navy">
+                <div className="pt-2 border-t border-emerald-200/60 flex justify-between font-black text-sm text-[#F5F5F2]">
                   <span>Total Due (INR):</span>
-                  <span className="text-speecat-green text-base">
+                  <span className="text-[#B7F34A] text-base">
                     {event.price === 0 ? "₹0.00" : `₹${event.price}`}
                   </span>
                 </div>
@@ -249,7 +249,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
                   setShowCheckoutModal(false);
                   handleRegister(e);
                 }}
-                className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy text-xs font-black px-5 py-2.5 rounded-xl shadow-xs"
+                className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] text-xs font-black px-5 py-2.5 rounded-xl shadow-xs"
               >
                 Confirm Registration
               </button>
@@ -261,21 +261,21 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
       {/* QR TICKET VIEW MODAL */}
       {justRegistered && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 space-y-4 shadow-2xl text-center">
+          <div className="bg-[#292D32] rounded-3xl border border-[#373C42] max-w-sm w-full p-6 space-y-4 shadow-2xl text-center">
             <span className="text-[10px] bg-emerald-100 text-emerald-800 font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
               ATHLETIQ Event Pass
             </span>
 
             <div className="space-y-1">
-              <h3 className="text-base font-black text-speecat-navy">{event.title}</h3>
+              <h3 className="text-base font-black text-[#F5F5F2]">{event.title}</h3>
               <p className="text-xs text-slate-500">{event.date} • {event.time}</p>
             </div>
 
             <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
               <div className="w-28 h-28 bg-white border border-slate-300 rounded-xl mx-auto flex items-center justify-center p-2 shadow-xs">
-                <QrCode className="w-20 h-20 text-speecat-navy" />
+                <QrCode className="w-20 h-20 text-[#F5F5F2]" />
               </div>
-              <p className="font-mono text-xs font-bold text-speecat-navy">{justRegistered.qrCode}</p>
+              <p className="font-mono text-xs font-bold text-[#F5F5F2]">{justRegistered.qrCode}</p>
               <p className="text-[10px] text-slate-400">
                 Present this QR code to the club organiser for session check-in
               </p>
@@ -284,7 +284,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
             <div className="text-left text-xs space-y-1 bg-slate-50 p-3 rounded-xl text-slate-600">
               <div className="flex justify-between">
                 <span>Attendee:</span>
-                <span className="font-bold text-speecat-navy">{justRegistered.playerName}</span>
+                <span className="font-bold text-[#F5F5F2]">{justRegistered.playerName}</span>
               </div>
               <div className="flex justify-between">
                 <span>Status:</span>
@@ -292,7 +292,7 @@ export default function ClubEventCard({ event, onRegistered, showClubName = true
               </div>
               <div className="flex justify-between">
                 <span>Pass Price:</span>
-                <span className="font-bold text-speecat-navy">
+                <span className="font-bold text-[#F5F5F2]">
                   {justRegistered.ticketPrice === 0 ? "FREE" : `₹${justRegistered.ticketPrice}`}
                 </span>
               </div>

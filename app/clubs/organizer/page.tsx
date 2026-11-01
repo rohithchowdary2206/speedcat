@@ -274,7 +274,7 @@ function OrganizerDashboardContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2 text-xs font-bold text-speedcat-green uppercase tracking-wider mb-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#B7F34A] uppercase tracking-wider mb-2">
                 <ShieldCheck className="w-4 h-4" />
                 Verified Organiser Portal
               </div>
@@ -310,7 +310,7 @@ function OrganizerDashboardContent() {
               <span>•</span>
               <span>{selectedClub.locality}, Hyderabad</span>
               <span>•</span>
-              <span className="text-speedcat-green font-bold">{selectedClub.memberCount} Members</span>
+              <span className="text-[#B7F34A] font-bold">{selectedClub.memberCount} Members</span>
             </div>
 
             <div className="flex items-center gap-3">
@@ -324,7 +324,7 @@ function OrganizerDashboardContent() {
 
               <button
                 onClick={() => setShowCreateModal(true)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-speedcat-green hover:bg-speedcat-green-light text-speedcat-navy font-bold rounded-xl shadow-lg transition"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#B7F34A] hover:bg-[#B7F34A]-light text-[#F5F5F2] font-bold rounded-xl shadow-lg transition"
               >
                 <PlusCircle className="w-4 h-4" />
                 Schedule New Event
@@ -352,11 +352,11 @@ function OrganizerDashboardContent() {
             onClick={() => setActiveTab("events")}
             className={`pb-4 font-bold text-sm border-b-2 transition flex items-center gap-2 ${
               activeTab === "events"
-                ? "border-speedcat-navy text-speedcat-navy"
+                ? "border-speedcat-navy text-[#F5F5F2]"
                 : "border-transparent text-slate-500 hover:text-slate-800"
             }`}
           >
-            <Calendar className="w-4 h-4 text-speedcat-green" />
+            <Calendar className="w-4 h-4 text-[#B7F34A]" />
             Events & Recurring Sessions ({clubEvents.length})
           </button>
 
@@ -364,11 +364,11 @@ function OrganizerDashboardContent() {
             onClick={() => setActiveTab("attendees")}
             className={`pb-4 font-bold text-sm border-b-2 transition flex items-center gap-2 ${
               activeTab === "attendees"
-                ? "border-speedcat-navy text-speedcat-navy"
+                ? "border-speedcat-navy text-[#F5F5F2]"
                 : "border-transparent text-slate-500 hover:text-slate-800"
             }`}
           >
-            <Users className="w-4 h-4 text-speedcat-green" />
+            <Users className="w-4 h-4 text-[#B7F34A]" />
             Attendee List & QR Check-in ({clubRegistrations.length})
           </button>
 
@@ -376,11 +376,11 @@ function OrganizerDashboardContent() {
             onClick={() => setActiveTab("revenue")}
             className={`pb-4 font-bold text-sm border-b-2 transition flex items-center gap-2 ${
               activeTab === "revenue"
-                ? "border-speedcat-navy text-speedcat-navy"
+                ? "border-speedcat-navy text-[#F5F5F2]"
                 : "border-transparent text-slate-500 hover:text-slate-800"
             }`}
           >
-            <TrendingUp className="w-4 h-4 text-speedcat-green" />
+            <TrendingUp className="w-4 h-4 text-[#B7F34A]" />
             Revenue & ATHLETIQ Platform Fees
           </button>
         </div>
@@ -402,7 +402,7 @@ function OrganizerDashboardContent() {
                 onClick={() => setShowCreateModal(true)}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-speedcat-navy hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition shadow"
               >
-                <PlusCircle className="w-4 h-4 text-speedcat-green" />
+                <PlusCircle className="w-4 h-4 text-[#B7F34A]" />
                 Schedule Event
               </button>
             </div>
@@ -469,14 +469,14 @@ function OrganizerDashboardContent() {
 
                         <div className="space-y-1 text-xs text-slate-600">
                           <div className="flex items-center gap-1.5">
-                            <Calendar className="w-3.5 h-3.5 text-speedcat-green shrink-0" />
+                            <Calendar className="w-3.5 h-3.5 text-[#B7F34A] shrink-0" />
                             <span>{new Date(evt.date).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short" })}</span>
                             <span>•</span>
                             <span>{evt.time}</span>
                           </div>
 
                           <div className="flex items-center gap-1.5">
-                            <MapPin className="w-3.5 h-3.5 text-speedcat-green shrink-0" />
+                            <MapPin className="w-3.5 h-3.5 text-[#B7F34A] shrink-0" />
                             <span className="truncate">{evt.venueName}, {evt.locality}</span>
                           </div>
 
@@ -498,7 +498,7 @@ function OrganizerDashboardContent() {
                           </div>
                           <div>
                             <span className="text-slate-500">Price: </span>
-                            <span className="font-extrabold text-speedcat-navy">
+                            <span className="font-extrabold text-[#F5F5F2]">
                               {evt.price === 0 ? "FREE" : `₹${evt.price}`}
                             </span>
                           </div>
@@ -513,9 +513,9 @@ function OrganizerDashboardContent() {
                           setAttendeeEventFilter(evt.id);
                           setActiveTab("attendees");
                         }}
-                        className="text-xs font-bold text-speedcat-navy hover:underline flex items-center gap-1"
+                        className="text-xs font-bold text-[#F5F5F2] hover:underline flex items-center gap-1"
                       >
-                        <Users className="w-3.5 h-3.5 text-speedcat-green" />
+                        <Users className="w-3.5 h-3.5 text-[#B7F34A]" />
                         View Attendees ({evt.registeredCount})
                       </button>
 
@@ -613,7 +613,7 @@ function OrganizerDashboardContent() {
                         </td>
                         <td className="px-4 py-3 font-mono text-[11px] font-bold text-slate-800">
                           <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-slate-100 rounded border border-slate-200">
-                            <QrCode className="w-3.5 h-3.5 text-speedcat-navy" />
+                            <QrCode className="w-3.5 h-3.5 text-[#F5F5F2]" />
                             {reg.qrCode}
                           </div>
                         </td>
@@ -652,7 +652,7 @@ function OrganizerDashboardContent() {
                               className={`px-3 py-1 rounded-lg font-bold text-[11px] transition ${
                                 reg.status === "checked_in"
                                   ? "bg-slate-100 hover:bg-slate-200 text-slate-700"
-                                  : "bg-speedcat-green hover:bg-speedcat-green-light text-speedcat-navy shadow-sm"
+                                  : "bg-[#B7F34A] hover:bg-[#B7F34A]-light text-[#F5F5F2] shadow-sm"
                               }`}
                             >
                               {reg.status === "checked_in" ? "Undo Check-in" : "Check-in Pass"}
@@ -684,7 +684,7 @@ function OrganizerDashboardContent() {
             <div className="p-6 bg-gradient-to-r from-slate-900 to-speedcat-navy rounded-2xl text-white shadow-md">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-bold text-speedcat-green uppercase tracking-wider mb-1">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#B7F34A] uppercase tracking-wider mb-1">
                     <TrendingUp className="w-4 h-4" />
                     Revenue Model & Platform Commission
                   </div>
@@ -698,7 +698,7 @@ function OrganizerDashboardContent() {
                 <div className="bg-white/10 p-4 rounded-xl border border-white/20 min-w-[280px]">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-semibold text-slate-200">Fee Rate:</span>
-                    <span className="text-xl font-black text-speedcat-green">{feePercentage}%</span>
+                    <span className="text-xl font-black text-[#B7F34A]">{feePercentage}%</span>
                   </div>
                   <input
                     type="range"
@@ -816,7 +816,7 @@ function OrganizerDashboardContent() {
 
             {/* Platform Fee Example Banner */}
             <div className="p-4 bg-slate-100 rounded-2xl border border-slate-200 text-xs text-slate-700 flex items-start gap-3">
-              <FileText className="w-5 h-5 text-speedcat-navy shrink-0 mt-0.5" />
+              <FileText className="w-5 h-5 text-[#F5F5F2] shrink-0 mt-0.5" />
               <div>
                 <span className="font-bold text-slate-900 block">Transparent Fee Calculation Formula:</span>
                 <p className="mt-0.5">

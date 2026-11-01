@@ -163,16 +163,16 @@ function FindGamesContent() {
     (searchTerm ? 1 : 0);
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
+    <div className="bg-[#17191C] min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Top Banner */}
         <div className="bg-speecat-navy rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-speecat-green/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#B7F34A]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
             <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-1.5 bg-speecat-green/20 text-speecat-green px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-1.5 bg-[#B7F34A]/20 text-[#B7F34A] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                 <Users className="w-4 h-4" />
                 <span>Hyderabad Player Community</span>
               </div>
@@ -189,7 +189,7 @@ function FindGamesContent() {
             <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <Link
                 href="/host-game"
-                className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-black text-sm px-6 py-3.5 rounded-2xl shadow-lg transition-transform hover:scale-105 flex items-center justify-center gap-2"
+                className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] font-black text-sm px-6 py-3.5 rounded-2xl shadow-lg transition-transform hover:scale-105 flex items-center justify-center gap-2"
               >
                 <PlusCircle className="w-5 h-5" />
                 <span>Host a Game</span>
@@ -199,7 +199,7 @@ function FindGamesContent() {
         </div>
 
         {/* Quick Search & Filter Header */}
-        <div className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-sm space-y-4">
+        <div className="bg-[#292D32] rounded-2xl border border-[#373C42]/90 p-4 sm:p-5 shadow-sm space-y-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
             <div className="relative flex-1">
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -208,19 +208,19 @@ function FindGamesContent() {
                 placeholder="Search by game title, sport, venue, or locality (e.g. Gachibowli, Badminton)..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
               />
             </div>
 
             {/* Sort & Quick options */}
             <div className="flex items-center gap-2 shrink-0">
-              <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-speecat-navy">
-                <ArrowUpDown className="w-3.5 h-3.5 text-speecat-green" />
+              <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-[#F5F5F2]">
+                <ArrowUpDown className="w-3.5 h-3.5 text-[#B7F34A]" />
                 <span>Sort:</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-transparent text-speecat-navy focus:outline-none cursor-pointer"
+                  className="bg-transparent text-[#F5F5F2] focus:outline-none cursor-pointer"
                 >
                   <option value="soonest">Soonest Match</option>
                   <option value="spots">Most Spots Left</option>
@@ -230,9 +230,9 @@ function FindGamesContent() {
 
               <button
                 onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-                className="lg:hidden bg-slate-100 hover:bg-slate-200 text-speecat-navy font-bold text-xs p-2.5 rounded-xl flex items-center gap-1"
+                className="lg:hidden bg-slate-100 hover:bg-slate-200 text-[#F5F5F2] font-bold text-xs p-2.5 rounded-xl flex items-center gap-1"
               >
-                <SlidersHorizontal className="w-4 h-4 text-speecat-green" />
+                <SlidersHorizontal className="w-4 h-4 text-[#B7F34A]" />
                 <span>Filters ({activeFiltersCount})</span>
               </button>
             </div>
@@ -277,8 +277,8 @@ function FindGamesContent() {
           >
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <SlidersHorizontal className="w-4 h-4 text-speecat-green" />
-                <h3 className="text-xs font-black uppercase tracking-wider text-speecat-navy">
+                <SlidersHorizontal className="w-4 h-4 text-[#B7F34A]" />
+                <h3 className="text-xs font-black uppercase tracking-wider text-[#F5F5F2]">
                   Filter Community Games
                 </h3>
               </div>
@@ -295,14 +295,14 @@ function FindGamesContent() {
 
             {/* Hyderabad Locality */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-speecat-navy flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-speecat-green" />
+              <label className="text-xs font-bold text-[#F5F5F2] flex items-center gap-1">
+                <MapPin className="w-3.5 h-3.5 text-[#B7F34A]" />
                 <span>Hyderabad Area</span>
               </label>
               <select
                 value={selectedLocality}
                 onChange={(e) => setSelectedLocality(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
               >
                 <option value="All">All Localities</option>
                 {HYDERABAD_LOCALITIES.map((loc) => (
@@ -315,14 +315,14 @@ function FindGamesContent() {
 
             {/* Skill Level Filter */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-speecat-navy flex items-center gap-1">
-                <Trophy className="w-3.5 h-3.5 text-speecat-green" />
+              <label className="text-xs font-bold text-[#F5F5F2] flex items-center gap-1">
+                <Trophy className="w-3.5 h-3.5 text-[#B7F34A]" />
                 <span>Required Skill Level</span>
               </label>
               <select
                 value={selectedSkillLevel}
                 onChange={(e) => setSelectedSkillLevel(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
               >
                 <option value="All">Any Skill Level</option>
                 {ALL_SKILL_LEVELS.map((lvl) => (
@@ -335,36 +335,36 @@ function FindGamesContent() {
 
             {/* Date Filter */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-speecat-navy flex items-center gap-1">
-                <Calendar className="w-3.5 h-3.5 text-speecat-green" />
+              <label className="text-xs font-bold text-[#F5F5F2] flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5 text-[#B7F34A]" />
                 <span>Date</span>
               </label>
               <input
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
               />
             </div>
 
             {/* Toggles */}
             <div className="space-y-2.5 pt-2 border-t border-slate-100">
-              <label className="flex items-center gap-2 text-xs text-speecat-navy cursor-pointer">
+              <label className="flex items-center gap-2 text-xs text-[#F5F5F2] cursor-pointer">
                 <input
                   type="checkbox"
                   checked={onlyOpenSpots}
                   onChange={(e) => setOnlyOpenSpots(e.target.checked)}
-                  className="rounded text-speecat-green focus:ring-speecat-green w-4 h-4 accent-speecat-green"
+                  className="rounded text-[#B7F34A] focus:ring-speecat-green w-4 h-4 accent-speecat-green"
                 />
                 <span className="font-semibold">Only games with open spots</span>
               </label>
 
-              <label className="flex items-center gap-2 text-xs text-speecat-navy cursor-pointer">
+              <label className="flex items-center gap-2 text-xs text-[#F5F5F2] cursor-pointer">
                 <input
                   type="checkbox"
                   checked={onlyPublic}
                   onChange={(e) => setOnlyPublic(e.target.checked)}
-                  className="rounded text-speecat-green focus:ring-speecat-green w-4 h-4 accent-speecat-green"
+                  className="rounded text-[#B7F34A] focus:ring-speecat-green w-4 h-4 accent-speecat-green"
                 />
                 <span className="font-semibold">Public community matches</span>
               </label>
@@ -392,12 +392,12 @@ function FindGamesContent() {
             {/* Results Counter */}
             <div className="bg-white rounded-xl border border-slate-200/80 px-4 py-3 flex items-center justify-between text-xs text-slate-500 font-medium">
               <div>
-                Showing <span className="font-bold text-speecat-navy">{filteredGames.length}</span> active games in Hyderabad
+                Showing <span className="font-bold text-[#F5F5F2]">{filteredGames.length}</span> active games in Hyderabad
               </div>
 
               {currentUser && (
                 <div className="text-[11px] text-slate-600 hidden sm:block">
-                  Browsing as: <span className="font-bold text-speecat-navy">{currentUser.name}</span>
+                  Browsing as: <span className="font-bold text-[#F5F5F2]">{currentUser.name}</span>
                 </div>
               )}
             </div>
@@ -410,12 +410,12 @@ function FindGamesContent() {
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center space-y-4 shadow-sm">
+              <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-12 text-center space-y-4 shadow-sm">
                 <div className="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto">
                   <Users className="w-8 h-8" />
                 </div>
                 <div className="space-y-1">
-                  <h3 className="text-lg font-bold text-speecat-navy">
+                  <h3 className="text-lg font-bold text-[#F5F5F2]">
                     No games found in your area
                   </h3>
                   <p className="text-xs text-slate-500 max-w-sm mx-auto">
@@ -431,7 +431,7 @@ function FindGamesContent() {
                   </button>
                   <Link
                     href="/host-game"
-                    className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy text-xs font-black px-5 py-2 rounded-xl shadow-xs transition-colors"
+                    className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] text-xs font-black px-5 py-2 rounded-xl shadow-xs transition-colors"
                   >
                     Host a Game
                   </Link>

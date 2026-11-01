@@ -35,12 +35,12 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="bg-slate-50 min-h-screen py-12">
+    <div className="bg-[#17191C] min-h-screen py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Header */}
         <div className="text-center space-y-2">
-          <h1 className="text-3xl sm:text-4xl font-black text-speedcat-navy">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#F5F5F2]">
             Contact & FAQs
           </h1>
           <p className="text-sm text-slate-500 max-w-lg mx-auto">
@@ -49,10 +49,10 @@ export default function ContactPage() {
         </div>
 
         {/* FAQs */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm space-y-6">
+        <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-8 shadow-sm space-y-6">
           <div className="flex items-center gap-2 pb-3 border-b border-slate-100">
-            <HelpCircle className="w-5 h-5 text-speedcat-green" />
-            <h2 className="text-xl font-bold text-speedcat-navy">
+            <HelpCircle className="w-5 h-5 text-[#B7F34A]" />
+            <h2 className="text-xl font-bold text-[#F5F5F2]">
               Frequently Asked Questions
             </h2>
           </div>
@@ -60,7 +60,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {faqs.map((faq, idx) => (
               <div key={idx} className="space-y-1.5 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                <h3 className="font-bold text-sm text-speedcat-navy flex items-start gap-2">
+                <h3 className="font-bold text-sm text-[#F5F5F2] flex items-start gap-2">
                   <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
                     Q
                   </span>
@@ -78,7 +78,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <div className="md:col-span-1 space-y-4">
-            <h3 className="text-lg font-bold text-speedcat-navy">
+            <h3 className="text-lg font-bold text-[#F5F5F2]">
               Get in Touch
             </h3>
             <p className="text-xs text-slate-500 leading-relaxed">
@@ -87,21 +87,21 @@ export default function ContactPage() {
 
             <div className="space-y-3 pt-2 text-xs text-slate-600">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-speedcat-green flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#B7F34A] flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4" />
                 </div>
                 <span>hello@speedcat.hyd (Demo)</span>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-speedcat-green flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#B7F34A] flex items-center justify-center shrink-0">
                   <Phone className="w-4 h-4" />
                 </div>
                 <span>+91 40 2300 0000 (Preview)</span>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-speedcat-green flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#B7F34A] flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <span>Hitech City, Hyderabad 500081</span>
@@ -109,13 +109,13 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="md:col-span-2 bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
+          <div className="md:col-span-2 bg-[#292D32] rounded-3xl border border-[#373C42] p-8 shadow-sm">
             {submitted ? (
               <div className="text-center py-10 space-y-3">
                 <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h4 className="text-lg font-bold text-speedcat-navy">
+                <h4 className="text-lg font-bold text-[#F5F5F2]">
                   Message Sent (Demo Mode)
                 </h4>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto">
@@ -123,7 +123,7 @@ export default function ContactPage() {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="text-xs text-speedcat-navy font-bold underline"
+                  className="text-xs text-[#F5F5F2] font-bold underline"
                 >
                   Send another message
                 </button>

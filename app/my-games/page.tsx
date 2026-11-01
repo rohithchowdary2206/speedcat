@@ -53,9 +53,9 @@ export default function MyGamesPage() {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center space-y-4">
         <Calendar className="w-12 h-12 text-slate-300 mx-auto" />
-        <h2 className="text-xl font-bold text-speecat-navy">Log In to View Your Games</h2>
+        <h2 className="text-xl font-bold text-[#F5F5F2]">Log In to View Your Games</h2>
         <p className="text-xs text-slate-500">Access your scheduled matches, group chats, and hosted games.</p>
-        <Link href="/login" className="bg-speecat-green text-speecat-navy font-bold text-xs px-4 py-2 rounded-xl">
+        <Link href="/login" className="bg-[#B7F34A] text-[#F5F5F2] font-bold text-xs px-4 py-2 rounded-xl">
           Log In Demo
         </Link>
       </div>
@@ -101,7 +101,7 @@ export default function MyGamesPage() {
   });
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
+    <div className="bg-[#17191C] min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Banner */}
@@ -122,7 +122,7 @@ export default function MyGamesPage() {
 
             <Link
               href="/host-game"
-              className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-black text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 self-start md:self-auto"
+              className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] font-black text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 self-start md:self-auto"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Host a New Game</span>
@@ -177,7 +177,7 @@ export default function MyGamesPage() {
           >
             <span>Hosted Games ({hostedGames.length})</span>
             {pendingRequestsTotal > 0 && (
-              <span className="bg-amber-400 text-speecat-navy text-[10px] font-black px-1.5 py-0.2 rounded-full">
+              <span className="bg-amber-400 text-[#F5F5F2] text-[10px] font-black px-1.5 py-0.2 rounded-full">
                 {pendingRequestsTotal} new
               </span>
             )}
@@ -216,9 +216,9 @@ export default function MyGamesPage() {
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center space-y-4">
+              <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-12 text-center space-y-4">
                 <Calendar className="w-10 h-10 text-slate-300 mx-auto" />
-                <h3 className="font-bold text-sm text-speecat-navy">No upcoming games scheduled</h3>
+                <h3 className="font-bold text-sm text-[#F5F5F2]">No upcoming games scheduled</h3>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto">
                   Find an open game matching your sport and skill level or host one in your neighborhood!
                 </p>
@@ -231,7 +231,7 @@ export default function MyGamesPage() {
                   </Link>
                   <Link
                     href="/host-game"
-                    className="bg-speecat-green text-speecat-navy font-bold text-xs px-4 py-2 rounded-xl"
+                    className="bg-[#B7F34A] text-[#F5F5F2] font-bold text-xs px-4 py-2 rounded-xl"
                   >
                     Host a Game
                   </Link>
@@ -250,15 +250,15 @@ export default function MyGamesPage() {
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center space-y-4">
+              <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-12 text-center space-y-4">
                 <Trophy className="w-10 h-10 text-slate-300 mx-auto" />
-                <h3 className="font-bold text-sm text-speecat-navy">You haven't hosted any games yet</h3>
+                <h3 className="font-bold text-sm text-[#F5F5F2]">You haven't hosted any games yet</h3>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto">
                   Take the lead and host a match at any Hyderabad court or turf.
                 </p>
                 <Link
                   href="/host-game"
-                  className="inline-block bg-speecat-green text-speecat-navy font-bold text-xs px-5 py-2.5 rounded-xl shadow-xs"
+                  className="inline-block bg-[#B7F34A] text-[#F5F5F2] font-bold text-xs px-5 py-2.5 rounded-xl shadow-xs"
                 >
                   Host Your First Game
                 </Link>
@@ -276,7 +276,7 @@ export default function MyGamesPage() {
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center text-xs text-slate-400">
+              <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-12 text-center text-xs text-slate-400">
                 No past completed games yet.
               </div>
             )}
@@ -292,7 +292,7 @@ export default function MyGamesPage() {
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center text-xs text-slate-400">
+              <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-12 text-center text-xs text-slate-400">
                 No new open games match your sports right now. Check back soon or host one!
               </div>
             )}

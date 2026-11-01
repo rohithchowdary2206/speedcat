@@ -137,11 +137,11 @@ export default function ClubDetailPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-2 text-slate-500 overflow-hidden">
-              <Link href="/" className="hover:text-speedcat-navy transition font-medium">
+              <Link href="/" className="hover:text-[#F5F5F2] transition font-medium">
                 Home
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-              <Link href="/clubs" className="hover:text-speedcat-navy transition font-medium">
+              <Link href="/clubs" className="hover:text-[#F5F5F2] transition font-medium">
                 Clubs
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
@@ -192,7 +192,7 @@ export default function ClubDetailPage() {
 
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide bg-speedcat-green text-speedcat-navy">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide bg-[#B7F34A] text-[#F5F5F2]">
                     {club.category}
                   </span>
                   {club.verified && (
@@ -202,7 +202,7 @@ export default function ClubDetailPage() {
                     </span>
                   )}
                   <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-slate-200">
-                    <MapPin className="w-3 h-3 text-speedcat-green" />
+                    <MapPin className="w-3 h-3 text-[#B7F34A]" />
                     {club.locality}, Hyderabad
                   </span>
                 </div>
@@ -223,7 +223,7 @@ export default function ClubDetailPage() {
                 className={`px-6 py-3 rounded-xl font-bold text-sm transition shadow-lg flex items-center gap-2 ${
                   isJoined
                     ? "bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 hover:bg-red-500/20 hover:text-red-300 hover:border-red-400/30"
-                    : "bg-speedcat-green hover:bg-speedcat-green-light text-speedcat-navy shadow-speedcat-green/20"
+                    : "bg-[#B7F34A] hover:bg-[#B7F34A]-light text-[#F5F5F2] shadow-speedcat-green/20"
                 }`}
               >
                 {isJoined ? (
@@ -244,7 +244,7 @@ export default function ClubDetailPage() {
                   href="/clubs/organizer"
                   className="px-5 py-3 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/20 text-white transition flex items-center gap-2 border border-white/20"
                 >
-                  <PlusCircle className="w-4 h-4 text-speedcat-green" />
+                  <PlusCircle className="w-4 h-4 text-[#B7F34A]" />
                   Organiser Hub
                 </Link>
               )}
@@ -256,14 +256,14 @@ export default function ClubDetailPage() {
             <div>
               <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Members</div>
               <div className="text-2xl font-extrabold text-white mt-0.5 flex items-center gap-1.5">
-                <Users className="w-5 h-5 text-speedcat-green" />
+                <Users className="w-5 h-5 text-[#B7F34A]" />
                 {club.memberCount}
               </div>
             </div>
             <div>
               <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Upcoming Sessions</div>
               <div className="text-2xl font-extrabold text-white mt-0.5 flex items-center gap-1.5">
-                <Calendar className="w-5 h-5 text-speedcat-green" />
+                <Calendar className="w-5 h-5 text-[#B7F34A]" />
                 {events.length}
               </div>
             </div>
@@ -279,7 +279,7 @@ export default function ClubDetailPage() {
                 <img
                   src={club.organizerAvatar}
                   alt={club.organizerName}
-                  className="w-6 h-6 rounded-full border border-speedcat-green"
+                  className="w-6 h-6 rounded-full border border-[#B7F34A]"
                 />
                 <span className="text-sm font-semibold text-white truncate">{club.organizerName}</span>
               </div>
@@ -309,33 +309,33 @@ export default function ClubDetailPage() {
                 onClick={() => setActiveTab("events")}
                 className={`pb-3 font-bold text-sm border-b-2 transition flex items-center gap-2 ${
                   activeTab === "events"
-                    ? "border-speedcat-navy text-speedcat-navy"
+                    ? "border-speedcat-navy text-[#F5F5F2]"
                     : "border-transparent text-slate-500 hover:text-slate-800"
                 }`}
               >
-                <Calendar className="w-4 h-4 text-speedcat-green" />
+                <Calendar className="w-4 h-4 text-[#B7F34A]" />
                 Upcoming Events ({events.length})
               </button>
               <button
                 onClick={() => setActiveTab("about")}
                 className={`pb-3 font-bold text-sm border-b-2 transition flex items-center gap-2 ${
                   activeTab === "about"
-                    ? "border-speedcat-navy text-speedcat-navy"
+                    ? "border-speedcat-navy text-[#F5F5F2]"
                     : "border-transparent text-slate-500 hover:text-slate-800"
                 }`}
               >
-                <FileText className="w-4 h-4 text-speedcat-green" />
+                <FileText className="w-4 h-4 text-[#B7F34A]" />
                 About & Guidelines
               </button>
               <button
                 onClick={() => setActiveTab("members")}
                 className={`pb-3 font-bold text-sm border-b-2 transition flex items-center gap-2 ${
                   activeTab === "members"
-                    ? "border-speedcat-navy text-speedcat-navy"
+                    ? "border-speedcat-navy text-[#F5F5F2]"
                     : "border-transparent text-slate-500 hover:text-slate-800"
                 }`}
               >
-                <Users className="w-4 h-4 text-speedcat-green" />
+                <Users className="w-4 h-4 text-[#B7F34A]" />
                 Members ({club.members.length})
               </button>
             </div>
@@ -355,7 +355,7 @@ export default function ClubDetailPage() {
                         href="/clubs/organizer"
                         className="inline-flex items-center gap-2 px-4 py-2 bg-speedcat-navy text-white text-xs font-semibold rounded-lg hover:bg-slate-800"
                       >
-                        <PlusCircle className="w-4 h-4 text-speedcat-green" />
+                        <PlusCircle className="w-4 h-4 text-[#B7F34A]" />
                         Schedule Club Event
                       </Link>
                     )}
@@ -375,7 +375,7 @@ export default function ClubDetailPage() {
               <div className="space-y-6">
                 <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
                   <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-speedcat-green" />
+                    <Sparkles className="w-5 h-5 text-[#B7F34A]" />
                     About {club.name}
                   </h3>
                   <p className="text-slate-700 leading-relaxed text-sm whitespace-pre-line">
@@ -386,7 +386,7 @@ export default function ClubDetailPage() {
                 {/* Club Rules */}
                 <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
                   <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-speedcat-navy" />
+                    <FileText className="w-5 h-5 text-[#F5F5F2]" />
                     Club Rules & Expectations
                   </h3>
                   <ul className="space-y-2.5">
@@ -424,7 +424,7 @@ export default function ClubDetailPage() {
               <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <Users className="w-5 h-5 text-speedcat-green" />
+                    <Users className="w-5 h-5 text-[#B7F34A]" />
                     Club Roster ({club.members.length})
                   </h3>
                   <span className="text-xs text-slate-500 font-medium">
@@ -482,7 +482,7 @@ export default function ClubDetailPage() {
                 <img
                   src={club.organizerAvatar}
                   alt={club.organizerName}
-                  className="w-14 h-14 rounded-full object-cover border-2 border-speedcat-green"
+                  className="w-14 h-14 rounded-full object-cover border-2 border-[#B7F34A]"
                 />
                 <div>
                   <h4 className="text-base font-extrabold text-slate-900">
@@ -524,7 +524,7 @@ export default function ClubDetailPage() {
 
               <div className="space-y-3 text-xs">
                 <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-speedcat-green shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#B7F34A] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-slate-900 block">Location</span>
                     <span className="text-slate-600">{club.meetingPoint}, {club.locality}</span>
@@ -532,7 +532,7 @@ export default function ClubDetailPage() {
                 </div>
 
                 <div className="flex items-start gap-2.5">
-                  <Compass className="w-4 h-4 text-speedcat-green shrink-0 mt-0.5" />
+                  <Compass className="w-4 h-4 text-[#B7F34A] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-slate-900 block">Activity</span>
                     <span className="text-slate-600">{club.category} (Beginners to Advanced)</span>
@@ -540,7 +540,7 @@ export default function ClubDetailPage() {
                 </div>
 
                 <div className="flex items-start gap-2.5">
-                  <Clock className="w-4 h-4 text-speedcat-green shrink-0 mt-0.5" />
+                  <Clock className="w-4 h-4 text-[#B7F34A] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-slate-900 block">Founded</span>
                     <span className="text-slate-600">

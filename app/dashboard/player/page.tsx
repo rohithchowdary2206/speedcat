@@ -97,7 +97,7 @@ function PlayerDashboardContent() {
     : "SP";
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
+    <div className="bg-[#17191C] min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Profile Banner */}
@@ -110,7 +110,7 @@ function PlayerDashboardContent() {
                 className="w-16 h-16 rounded-2xl object-cover border-2 border-emerald-400/40 shadow-md shrink-0"
               />
             ) : (
-              <div className="w-16 h-16 rounded-2xl bg-speecat-green text-speecat-navy flex items-center justify-center font-black text-xl shadow-md shrink-0">
+              <div className="w-16 h-16 rounded-2xl bg-[#B7F34A] text-[#F5F5F2] flex items-center justify-center font-black text-xl shadow-md shrink-0">
                 {initials}
               </div>
             )}
@@ -124,7 +124,7 @@ function PlayerDashboardContent() {
                 </span>
               </div>
               <p className="text-xs text-slate-300 mt-1 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-speecat-green" />
+                <MapPin className="w-3.5 h-3.5 text-[#B7F34A]" />
                 <span>{profile?.locality || "Hyderabad"}, Telangana • {user?.email}</span>
               </p>
             </div>
@@ -134,7 +134,7 @@ function PlayerDashboardContent() {
           <div className="flex items-center gap-3 self-start md:self-auto flex-wrap">
             <Link
               href="/explore"
-              className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-bold text-xs px-4 py-2.5 rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
+              className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] font-bold text-xs px-4 py-2.5 rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
             >
               <Sparkles className="w-3.5 h-3.5 fill-current" />
               <span>Book A Court</span>
@@ -166,15 +166,15 @@ function PlayerDashboardContent() {
 
         {/* Quick Stats Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="bg-white rounded-2xl border border-slate-200 p-4">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4">
             <div className="text-xs font-semibold text-slate-500">Confirmed Bookings</div>
-            <div className="text-2xl font-black text-speecat-navy mt-1">{activeBookings.length}</div>
-            <div className="text-[11px] text-speecat-green font-medium mt-1">Live in Supabase</div>
+            <div className="text-2xl font-black text-[#F5F5F2] mt-1">{activeBookings.length}</div>
+            <div className="text-[11px] text-[#B7F34A] font-medium mt-1">Live in Supabase</div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 p-4">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4">
             <div className="text-xs font-semibold text-slate-500">Favorite Sport</div>
-            <div className="text-2xl font-black text-speecat-navy mt-1">
+            <div className="text-2xl font-black text-[#F5F5F2] mt-1">
               {profile?.favoriteSports?.[0] || "Badminton"}
             </div>
             <div className="text-[11px] text-slate-400 font-medium mt-1">
@@ -182,15 +182,15 @@ function PlayerDashboardContent() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 p-4">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4">
             <div className="text-xs font-semibold text-slate-500">Total Court Spend</div>
-            <div className="text-2xl font-black text-speecat-green mt-1">
+            <div className="text-2xl font-black text-[#B7F34A] mt-1">
               ₹{totalSpent.toLocaleString("en-IN")}
             </div>
             <div className="text-[11px] text-slate-400 font-medium mt-1">Confirmed Value</div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 p-4">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4">
             <div className="text-xs font-semibold text-slate-500">Sportsmanship Rating</div>
             <div className="text-2xl font-black text-purple-600 mt-1">
               ★ {profile?.sportsmanship?.overallScore ? profile.sportsmanship.overallScore.toFixed(1) : "5.0"}
@@ -200,11 +200,11 @@ function PlayerDashboardContent() {
         </div>
 
         {/* Bookings List Section */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+        <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 shadow-sm space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-speecat-green" />
-              <h2 className="text-lg font-black text-speecat-navy">
+              <Calendar className="w-5 h-5 text-[#B7F34A]" />
+              <h2 className="text-lg font-black text-[#F5F5F2]">
                 My Court Reservations ({bookings.length})
               </h2>
             </div>
@@ -243,29 +243,29 @@ function PlayerDashboardContent() {
                         </span>
                       </div>
 
-                      <h3 className="text-base font-extrabold text-speecat-navy">
+                      <h3 className="text-base font-extrabold text-[#F5F5F2]">
                         {booking.venueName}
                       </h3>
 
                       <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
                         <span className="flex items-center gap-1">
-                          <MapPin className="w-3.5 h-3.5 text-speecat-green" />
+                          <MapPin className="w-3.5 h-3.5 text-[#B7F34A]" />
                           {booking.locality}, Hyderabad
                         </span>
                         <span>•</span>
-                        <span className="flex items-center gap-1 font-semibold text-speecat-navy">
-                          <Calendar className="w-3.5 h-3.5 text-speecat-green" />
+                        <span className="flex items-center gap-1 font-semibold text-[#F5F5F2]">
+                          <Calendar className="w-3.5 h-3.5 text-[#B7F34A]" />
                           {booking.date}
                         </span>
                         <span>•</span>
                         <span className="flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5 text-speecat-green" />
+                          <Clock className="w-3.5 h-3.5 text-[#B7F34A]" />
                           {booking.timeSlot} ({booking.durationHours} hr{booking.durationHours > 1 ? "s" : ""})
                         </span>
                       </div>
 
                       <div className="text-xs text-slate-500">
-                        Court: <span className="font-semibold text-speecat-navy">{booking.courtName}</span>
+                        Court: <span className="font-semibold text-[#F5F5F2]">{booking.courtName}</span>
                       </div>
                     </div>
 
@@ -273,7 +273,7 @@ function PlayerDashboardContent() {
                     <div className="flex items-center justify-between md:justify-end gap-4 border-t md:border-t-0 pt-3 md:pt-0 border-slate-200">
                       <div className="text-left md:text-right">
                         <div className="text-[10px] uppercase font-bold text-slate-400">Total Amount</div>
-                        <div className="text-base font-black text-speecat-green">
+                        <div className="text-base font-black text-[#B7F34A]">
                           ₹{booking.totalPrice?.toLocaleString("en-IN")}
                         </div>
                       </div>
@@ -281,9 +281,9 @@ function PlayerDashboardContent() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => setSelectedReceipt(booking)}
-                          className="bg-white hover:bg-slate-100 text-speecat-navy border border-slate-300 text-xs font-bold px-3 py-2 rounded-xl transition-colors flex items-center gap-1"
+                          className="bg-white hover:bg-slate-100 text-[#F5F5F2] border border-slate-300 text-xs font-bold px-3 py-2 rounded-xl transition-colors flex items-center gap-1"
                         >
-                          <QrCode className="w-3.5 h-3.5 text-speecat-green" />
+                          <QrCode className="w-3.5 h-3.5 text-[#B7F34A]" />
                           <span>Receipt</span>
                         </button>
 
@@ -309,7 +309,7 @@ function PlayerDashboardContent() {
               <p className="text-sm font-semibold text-slate-500">You don't have any court bookings yet</p>
               <Link
                 href="/explore"
-                className="inline-flex items-center gap-1.5 bg-speecat-green text-speecat-navy font-bold text-xs px-4 py-2 rounded-xl shadow-sm"
+                className="inline-flex items-center gap-1.5 bg-[#B7F34A] text-[#F5F5F2] font-bold text-xs px-4 py-2 rounded-xl shadow-sm"
               >
                 <span>Browse Hyderabad Sports Venues</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -323,19 +323,19 @@ function PlayerDashboardContent() {
       {/* Real Receipt Modal */}
       {selectedReceipt && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 space-y-4 shadow-2xl">
+          <div className="bg-[#292D32] rounded-3xl border border-[#373C42] max-w-sm w-full p-6 space-y-4 shadow-2xl">
             <div className="text-center space-y-1">
               <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${
                 selectedReceipt.status === "confirmed" ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-800"
               }`}>
                 {selectedReceipt.status === "confirmed" ? "Confirmed Pass" : "Cancelled"}
               </span>
-              <h3 className="text-base font-black text-speecat-navy">{selectedReceipt.venueName}</h3>
+              <h3 className="text-base font-black text-[#F5F5F2]">{selectedReceipt.venueName}</h3>
               <p className="text-xs text-slate-400 font-mono">{selectedReceipt.referenceCode}</p>
             </div>
 
             <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center space-y-2">
-              <QrCode className="w-24 h-24 mx-auto text-speecat-navy" />
+              <QrCode className="w-24 h-24 mx-auto text-[#F5F5F2]" />
               <p className="text-[10px] text-slate-500 font-medium">
                 Official Check-In Pass • Present at venue reception
               </p>
@@ -344,19 +344,19 @@ function PlayerDashboardContent() {
             <div className="space-y-1.5 text-xs">
               <div className="flex justify-between text-slate-600">
                 <span>Date & Time:</span>
-                <span className="font-bold text-speecat-navy">{selectedReceipt.date} • {selectedReceipt.timeSlot}</span>
+                <span className="font-bold text-[#F5F5F2]">{selectedReceipt.date} • {selectedReceipt.timeSlot}</span>
               </div>
               <div className="flex justify-between text-slate-600">
                 <span>Court:</span>
-                <span className="font-bold text-speecat-navy">{selectedReceipt.courtName}</span>
+                <span className="font-bold text-[#F5F5F2]">{selectedReceipt.courtName}</span>
               </div>
               <div className="flex justify-between text-slate-600">
                 <span>Player:</span>
-                <span className="font-bold text-speecat-navy">{selectedReceipt.playerName}</span>
+                <span className="font-bold text-[#F5F5F2]">{selectedReceipt.playerName}</span>
               </div>
               <div className="flex justify-between text-slate-600 pt-2 border-t border-slate-200">
                 <span className="font-bold">Total Price:</span>
-                <span className="font-black text-speecat-green text-sm">₹{selectedReceipt.totalPrice}</span>
+                <span className="font-black text-[#B7F34A] text-sm">₹{selectedReceipt.totalPrice}</span>
               </div>
             </div>
 

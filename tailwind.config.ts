@@ -1,60 +1,95 @@
 import type { Config } from "tailwindcss";
 
 const athletiqColors = {
-  deep: "#0B1020",      // Main background
-  card: "#1F2937",      // Cards and surfaces
-  blue: {
-    DEFAULT: "#2563EB", // Primary actions
-    50: "#EFF6FF",
-    100: "#DBEAFE",
-    200: "#BFDBFE",
-    300: "#93C5FD",
-    400: "#60A5FA",
-    500: "#3B82F6",
-    600: "#2563EB",
-    700: "#1D4ED8",
-    800: "#1E40AF",
-    900: "#1E3A8A",
+  // Official Athletiq Palette
+  graphite: {
+    DEFAULT: "#17191C",
+    deep: "#121416",
+    surface: "#292D32",
+    border: "#373C42",
   },
-  orange: {
-    DEFAULT: "#FF7139", // Secondary highlights / booking CTAs
-    50: "#FFF7ED",
-    100: "#FFEDD5",
-    200: "#FED7AA",
-    300: "#FDBA74",
-    400: "#FB923C",
-    500: "#FF7139",
-    600: "#EA580C",
-    700: "#C2410C",
-    accent: "#FF7139",
+  lime: {
+    DEFAULT: "#B7F34A",
+    hover: "#A3E435",
+    light: "#C7F66D",
+    muted: "rgba(183, 243, 74, 0.15)",
   },
-  text: "#F8FAFC",      // Primary text
-  muted: "#A7B0C0",     // Secondary text
+  mint: {
+    DEFAULT: "#E7F2D0",
+    soft: "#E7F2D0",
+  },
+  offwhite: {
+    DEFAULT: "#F5F5F2",
+  },
+  card: {
+    DEFAULT: "#292D32",
+    hover: "#32373D",
+    border: "#373C42",
+  },
+  secondary: {
+    DEFAULT: "#AEB4B0",
+  },
+  muted: "#AEB4B0",
+  text: {
+    DEFAULT: "#F5F5F2",
+    secondary: "#AEB4B0",
+  },
+
+  // Central mapping for existing legacy classes to cleanly inherit the new palette:
+  deep: "#17191C",
   navy: {
-    DEFAULT: "#0B1020",
-    50: "#F8FAFC",
-    100: "#F1F5F9",
-    200: "#E2E8F0",
-    300: "#CBD5E1",
-    400: "#A7B0C0",
+    DEFAULT: "#17191C",
+    surface: "#292D32",
+    card: "#292D32",
+    950: "#121416",
+    900: "#17191C",
+    800: "#292D32",
+    700: "#373C42",
+    600: "#4B525A",
     500: "#6B7280",
-    600: "#4B5563",
-    700: "#374151",
-    800: "#1F2937",
-    900: "#0B1020",
-    950: "#060A14",
+    400: "#AEB4B0",
+    300: "#CBD5E1",
+    200: "#E2E8F0",
+    100: "#F1F5F9",
+    50: "#F5F5F2",
+  },
+  blue: {
+    DEFAULT: "#B7F34A",
+    hover: "#A3E435",
+    50: "#F5FCE8",
+    100: "#E7F2D0",
+    200: "#D3F79C",
+    300: "#C7F66D",
+    400: "#B7F34A",
+    500: "#B7F34A",
+    600: "#A3E435",
+    700: "#8AC427",
   },
   green: {
-    DEFAULT: "#2563EB", // Maps legacy classes to Electric Blue
-    accent: "#FF7139",  // Maps legacy accent to Orange
-    50: "#EFF6FF",
-    100: "#DBEAFE",
-    200: "#BFDBFE",
-    300: "#93C5FD",
-    400: "#60A5FA",
-    500: "#2563EB",
-    600: "#1D4ED8",
-    700: "#1E40AF",
+    DEFAULT: "#B7F34A",
+    hover: "#A3E435",
+    accent: "#B7F34A",
+    50: "#F5FCE8",
+    100: "#E7F2D0",
+    200: "#D3F79C",
+    300: "#C7F66D",
+    400: "#B7F34A",
+    500: "#B7F34A",
+    600: "#A3E435",
+    700: "#8AC427",
+  },
+  orange: {
+    DEFAULT: "#B7F34A",
+    hover: "#A3E435",
+    accent: "#B7F34A",
+    50: "#F5FCE8",
+    100: "#E7F2D0",
+    200: "#D3F79C",
+    300: "#C7F66D",
+    400: "#B7F34A",
+    500: "#B7F34A",
+    600: "#A3E435",
+    700: "#8AC427",
   },
 };
 
@@ -68,7 +103,7 @@ const config: Config = {
     extend: {
       colors: {
         athletiq: athletiqColors,
-        speedcat: athletiqColors, // Backwards compatibility for existing markup
+        speedcat: athletiqColors, // Legacy backwards compatibility
         speecat: athletiqColors,
       },
       fontFamily: {

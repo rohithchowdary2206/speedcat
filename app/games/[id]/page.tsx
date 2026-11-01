@@ -149,11 +149,11 @@ export default function GameDetailPage() {
   if (!game) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-speecat-navy">Game Not Found</h2>
+        <h2 className="text-2xl font-bold text-[#F5F5F2]">Game Not Found</h2>
         <p className="text-slate-500 text-xs">
           The requested community game match could not be found or has been removed.
         </p>
-        <Link href="/games" className="bg-speecat-green text-speecat-navy font-bold px-4 py-2 rounded-xl text-xs">
+        <Link href="/games" className="bg-[#B7F34A] text-[#F5F5F2] font-bold px-4 py-2 rounded-xl text-xs">
           Back to Find Games
         </Link>
       </div>
@@ -284,14 +284,14 @@ export default function GameDetailPage() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
+    <div className="bg-[#17191C] min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Breadcrumb */}
         <div className="flex items-center justify-between">
           <Link
             href="/games"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-speecat-green bg-white px-3 py-1.5 rounded-xl border border-slate-200 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-[#B7F34A] bg-white px-3 py-1.5 rounded-xl border border-slate-200 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Hyderabad Games</span>
@@ -313,7 +313,7 @@ export default function GameDetailPage() {
         </div>
 
         {/* Main Game Header Card */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-6 sm:p-8 shadow-sm space-y-6">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             
             <div className="space-y-3">
@@ -338,24 +338,24 @@ export default function GameDetailPage() {
                 )}
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-black text-speecat-navy">
+              <h1 className="text-2xl sm:text-3xl font-black text-[#F5F5F2]">
                 {game.title}
               </h1>
 
               {/* Venue & Time Bar */}
               <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-600">
                 <div className="flex items-center gap-1.5 font-medium">
-                  <MapPin className="w-4 h-4 text-speecat-green shrink-0" />
+                  <MapPin className="w-4 h-4 text-[#B7F34A] shrink-0" />
                   <span>{game.venueName} • {game.locality}, Hyderabad</span>
                 </div>
                 <span>•</span>
-                <div className="flex items-center gap-1.5 font-semibold text-speecat-navy">
-                  <Calendar className="w-4 h-4 text-speecat-green shrink-0" />
+                <div className="flex items-center gap-1.5 font-semibold text-[#F5F5F2]">
+                  <Calendar className="w-4 h-4 text-[#B7F34A] shrink-0" />
                   <span>{game.date}</span>
                 </div>
                 <span>•</span>
                 <div className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-speecat-green shrink-0" />
+                  <Clock className="w-4 h-4 text-[#B7F34A] shrink-0" />
                   <span>{game.startTime} to {game.endTime} ({game.durationHours} hrs)</span>
                 </div>
               </div>
@@ -365,7 +365,7 @@ export default function GameDetailPage() {
             <div className="flex flex-col items-start lg:items-end justify-between border-t lg:border-t-0 pt-4 lg:pt-0 border-slate-100 shrink-0 space-y-2">
               <div className="text-left lg:text-right">
                 <div className="text-[10px] uppercase font-bold text-slate-400">Approx Cost / Player</div>
-                <div className="text-2xl font-black text-speecat-green">
+                <div className="text-2xl font-black text-[#B7F34A]">
                   {game.costPerPlayer ? `₹${game.costPerPlayer}` : "Free to play"}
                 </div>
               </div>
@@ -394,7 +394,7 @@ export default function GameDetailPage() {
               ) : isParticipant ? (
                 <div className="flex flex-wrap items-center gap-2">
                   <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-speecat-green" />
+                    <CheckCircle2 className="w-4 h-4 text-[#B7F34A]" />
                     <span>Confirmed Player</span>
                   </div>
                   {game.status !== "Completed" && game.status !== "Cancelled" && (
@@ -418,7 +418,7 @@ export default function GameDetailPage() {
               ) : (
                 <button
                   onClick={() => setShowJoinModal(true)}
-                  className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-black text-sm px-6 py-3 rounded-xl shadow-md transition-all hover:scale-105 flex items-center gap-2"
+                  className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] font-black text-sm px-6 py-3 rounded-xl shadow-md transition-all hover:scale-105 flex items-center gap-2"
                 >
                   <PlusCircle className="w-4 h-4 fill-current" />
                   <span>Request to Join Match</span>
@@ -436,26 +436,26 @@ export default function GameDetailPage() {
           <div className="lg:col-span-2 space-y-6">
             
             {/* Description & Equipment */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-3">
-              <h2 className="text-base font-bold text-speecat-navy">Match Description & Rules</h2>
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 shadow-sm space-y-3">
+              <h2 className="text-base font-bold text-[#F5F5F2]">Match Description & Rules</h2>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 {game.description}
               </p>
 
               {game.equipmentNotes && (
                 <div className="mt-2 bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs">
-                  <span className="font-bold text-speecat-navy">Equipment Notes: </span>
+                  <span className="font-bold text-[#F5F5F2]">Equipment Notes: </span>
                   <span className="text-slate-600">{game.equipmentNotes}</span>
                 </div>
               )}
 
               {game.rules && game.rules.length > 0 && (
                 <div className="pt-2">
-                  <span className="font-bold text-xs text-speecat-navy block mb-1.5">Game Rules:</span>
+                  <span className="font-bold text-xs text-[#F5F5F2] block mb-1.5">Game Rules:</span>
                   <ul className="space-y-1 text-xs text-slate-600">
                     {game.rules.map((rule, idx) => (
                       <li key={idx} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-speecat-green" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#B7F34A]" />
                         <span>{rule}</span>
                       </li>
                     ))}
@@ -465,11 +465,11 @@ export default function GameDetailPage() {
             </div>
 
             {/* Confirmed Players Card */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 shadow-sm space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-base font-bold text-speecat-navy flex items-center gap-2">
-                    <Users className="w-4 h-4 text-speecat-green" />
+                  <h2 className="text-base font-bold text-[#F5F5F2] flex items-center gap-2">
+                    <Users className="w-4 h-4 text-[#B7F34A]" />
                     <span>Confirmed Players ({game.participants.length}/{game.maxGroupSize})</span>
                   </h2>
                   <p className="text-xs text-slate-400 mt-0.5">
@@ -518,7 +518,7 @@ export default function GameDetailPage() {
                         </div>
                         <div>
                           <div className="flex items-center gap-1.5">
-                            <span className="font-bold text-xs text-speecat-navy">
+                            <span className="font-bold text-xs text-[#F5F5F2]">
                               {participant.name}
                             </span>
                             {isHostP && (
@@ -533,7 +533,7 @@ export default function GameDetailPage() {
                             )}
                           </div>
                           <div className="text-[11px] text-slate-500 font-medium">
-                            {game.sport} Skill: <span className="text-speecat-navy font-bold">{participant.sportSkill}</span>
+                            {game.sport} Skill: <span className="text-[#F5F5F2] font-bold">{participant.sportSkill}</span>
                           </div>
                         </div>
                       </div>
@@ -545,7 +545,7 @@ export default function GameDetailPage() {
                             setPlayerToRateId(participant.playerId);
                             setShowRatingModal(true);
                           }}
-                          className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-black text-[11px] px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1 shadow-xs shrink-0"
+                          className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] font-black text-[11px] px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1 shadow-xs shrink-0"
                         >
                           <Star className="w-3 h-3 fill-current" />
                           <span>Rate</span>
@@ -595,9 +595,9 @@ export default function GameDetailPage() {
                             className="w-10 h-10 rounded-xl object-cover"
                           />
                           <div>
-                            <div className="font-bold text-xs text-speecat-navy">{req.name}</div>
+                            <div className="font-bold text-xs text-[#F5F5F2]">{req.name}</div>
                             <div className="text-[11px] text-slate-500">
-                              {game.sport} Skill: <span className="font-bold text-speecat-navy">{req.sportSkill}</span>
+                              {game.sport} Skill: <span className="font-bold text-[#F5F5F2]">{req.sportSkill}</span>
                             </div>
                             {req.note && (
                               <p className="text-[11px] text-slate-600 mt-1 italic">
@@ -616,7 +616,7 @@ export default function GameDetailPage() {
                           </button>
                           <button
                             onClick={() => handleRespondRequest(req.playerId, true)}
-                            className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy text-xs font-black px-4 py-1.5 rounded-xl transition-colors shadow-xs"
+                            className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] text-xs font-black px-4 py-1.5 rounded-xl transition-colors shadow-xs"
                           >
                             Accept Player
                           </button>
@@ -632,13 +632,13 @@ export default function GameDetailPage() {
           {/* Right Column (1 Col): Group Chat */}
           <div className="lg:col-span-1 space-y-4">
             
-            <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm flex flex-col h-[520px]">
+            <div className="bg-[#292D32] rounded-3xl border border-[#373C42] overflow-hidden shadow-sm flex flex-col h-[520px]">
               
               {/* Chat Header */}
               <div className="p-4 bg-speecat-navy text-white flex items-center justify-between">
                 <div>
                   <h3 className="font-black text-xs uppercase tracking-wider flex items-center gap-1.5">
-                    <MessageSquare className="w-4 h-4 text-speecat-green" />
+                    <MessageSquare className="w-4 h-4 text-[#B7F34A]" />
                     <span>Game Group Chat</span>
                   </h3>
                   <p className="text-[10px] text-slate-400">
@@ -646,7 +646,7 @@ export default function GameDetailPage() {
                   </p>
                 </div>
 
-                <span className="text-[10px] bg-slate-800 text-speecat-green font-bold px-2 py-0.5 rounded-full">
+                <span className="text-[10px] bg-slate-800 text-[#B7F34A] font-bold px-2 py-0.5 rounded-full">
                   {game.participants.length} Members
                 </span>
               </div>
@@ -704,7 +704,7 @@ export default function GameDetailPage() {
                   <div className="h-full flex flex-col items-center justify-center p-6 text-center space-y-3 text-slate-400">
                     <Lock className="w-8 h-8 text-slate-300" />
                     <div className="space-y-1">
-                      <p className="font-bold text-xs text-speecat-navy">Private Game Chat</p>
+                      <p className="font-bold text-xs text-[#F5F5F2]">Private Game Chat</p>
                       <p className="text-[11px] leading-relaxed">
                         Only confirmed participants can view or send messages in this group. Request to join to participate!
                       </p>
@@ -721,11 +721,11 @@ export default function GameDetailPage() {
                     placeholder="Type a message to the group..."
                     value={newMsg}
                     onChange={(e) => setNewMsg(e.target.value)}
-                    className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                    className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
                   />
                   <button
                     type="submit"
-                    className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy p-2 rounded-xl transition-colors shrink-0"
+                    className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] p-2 rounded-xl transition-colors shrink-0"
                     title="Send"
                   >
                     <Send className="w-4 h-4" />
@@ -744,9 +744,9 @@ export default function GameDetailPage() {
       {/* JOIN REQUEST MODAL */}
       {showJoinModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-md w-full p-6 space-y-4 shadow-2xl">
+          <div className="bg-[#292D32] rounded-3xl border border-[#373C42] max-w-md w-full p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-              <h3 className="font-black text-base text-speecat-navy">
+              <h3 className="font-black text-base text-[#F5F5F2]">
                 Request to Join Match
               </h3>
               <button onClick={() => setShowJoinModal(false)} className="text-slate-400 hover:text-slate-600">
@@ -756,17 +756,17 @@ export default function GameDetailPage() {
 
             <div className="space-y-2 text-xs">
               <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1">
-                <div className="font-bold text-speecat-navy">{game.title}</div>
+                <div className="font-bold text-[#F5F5F2]">{game.title}</div>
                 <div className="text-slate-500">
                   {game.sport} • {game.date} • {game.startTime}
                 </div>
-                <div className="text-speecat-green font-bold">
+                <div className="text-[#B7F34A] font-bold">
                   Required Skill: {game.skillRequirement.displayText}
                 </div>
               </div>
 
               <div>
-                <label className="block font-bold text-speecat-navy mb-1">
+                <label className="block font-bold text-[#F5F5F2] mb-1">
                   Note to Host (Optional)
                 </label>
                 <textarea
@@ -774,7 +774,7 @@ export default function GameDetailPage() {
                   placeholder="e.g. Hi Rahul! I play regular badminton in Gachibowli, ready to play doubles!"
                   value={joinNote}
                   onChange={(e) => setJoinNote(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
                 />
               </div>
             </div>
@@ -790,7 +790,7 @@ export default function GameDetailPage() {
               <button
                 type="button"
                 onClick={handleRequestJoin}
-                className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy text-xs font-black px-5 py-2.5 rounded-xl shadow-xs"
+                className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] text-xs font-black px-5 py-2.5 rounded-xl shadow-xs"
               >
                 Send Join Request
               </button>
@@ -802,11 +802,11 @@ export default function GameDetailPage() {
       {/* ATTENDANCE CONFIRMATION & COMPLETION MODAL */}
       {showCompletionModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-lg w-full p-6 space-y-5 shadow-2xl">
+          <div className="bg-[#292D32] rounded-3xl border border-[#373C42] max-w-lg w-full p-6 space-y-5 shadow-2xl">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <UserCheck className="w-5 h-5 text-blue-600" />
-                <h3 className="font-black text-base text-speecat-navy">
+                <h3 className="font-black text-base text-[#F5F5F2]">
                   Confirm Attendance & Complete Game
                 </h3>
               </div>
@@ -843,11 +843,11 @@ export default function GameDetailPage() {
                               setSelectedAttendees([...selectedAttendees, p.playerId]);
                             }
                           }}
-                          className="w-4 h-4 text-speecat-green rounded accent-speecat-green"
+                          className="w-4 h-4 text-[#B7F34A] rounded accent-speecat-green"
                         />
                         <img src={p.avatar} alt={p.name} className="w-8 h-8 rounded-full object-cover" />
                         <div>
-                          <div className="font-bold text-speecat-navy">{p.name}</div>
+                          <div className="font-bold text-[#F5F5F2]">{p.name}</div>
                           <div className="text-[11px] text-slate-400">{p.role}</div>
                         </div>
                       </div>
@@ -888,11 +888,11 @@ export default function GameDetailPage() {
       {/* POST-GAME RATING MODAL */}
       {showRatingModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-md w-full p-6 space-y-5 shadow-2xl">
+          <div className="bg-[#292D32] rounded-3xl border border-[#373C42] max-w-md w-full p-6 space-y-5 shadow-2xl">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
-                <h3 className="font-black text-base text-speecat-navy">
+                <h3 className="font-black text-base text-[#F5F5F2]">
                   Rate Player Skill & Sportsmanship
                 </h3>
               </div>
@@ -903,8 +903,8 @@ export default function GameDetailPage() {
 
             {submittedRatingSuccess ? (
               <div className="bg-emerald-50 border border-emerald-200 p-6 rounded-2xl text-center space-y-2">
-                <CheckCircle2 className="w-10 h-10 text-speecat-green mx-auto" />
-                <h4 className="font-bold text-sm text-speecat-navy">Rating Submitted!</h4>
+                <CheckCircle2 className="w-10 h-10 text-[#B7F34A] mx-auto" />
+                <h4 className="font-bold text-sm text-[#F5F5F2]">Rating Submitted!</h4>
                 <p className="text-xs text-slate-600">
                   Your feedback has been anonymously added to this player's {game.sport} rating distribution.
                 </p>
@@ -917,13 +917,13 @@ export default function GameDetailPage() {
 
                 {/* Sport Skill Rating */}
                 <div className="space-y-1.5">
-                  <label className="block font-bold text-speecat-navy">
+                  <label className="block font-bold text-[#F5F5F2]">
                     Observed {game.sport} Skill Level
                   </label>
                   <select
                     value={ratedSkillLevel}
                     onChange={(e) => setRatedSkillLevel(e.target.value as SkillLevel)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy font-bold"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2] font-bold"
                   >
                     {ALL_SKILL_LEVELS.map((lvl) => (
                       <option key={lvl} value={lvl}>
@@ -935,7 +935,7 @@ export default function GameDetailPage() {
 
                 {/* Sportsmanship Reputation */}
                 <div className="space-y-3 pt-2 border-t border-slate-100">
-                  <label className="block font-bold text-speecat-navy">
+                  <label className="block font-bold text-[#F5F5F2]">
                     Sportsmanship & Reliability
                   </label>
 
@@ -988,7 +988,7 @@ export default function GameDetailPage() {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-speecat-navy mb-1">
+                  <label className="block font-bold text-[#F5F5F2] mb-1">
                     Structured Feedback (Optional)
                   </label>
                   <input
@@ -996,7 +996,7 @@ export default function GameDetailPage() {
                     placeholder="e.g. Great rallies, very punctual, and positive attitude!"
                     value={ratingComment}
                     onChange={(e) => setRatingComment(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2]"
                   />
                 </div>
 
@@ -1010,7 +1010,7 @@ export default function GameDetailPage() {
                   </button>
                   <button
                     type="submit"
-                    className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy text-xs font-black px-5 py-2.5 rounded-xl shadow-xs"
+                    className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] text-xs font-black px-5 py-2.5 rounded-xl shadow-xs"
                   >
                     Submit Anonymous Rating
                   </button>
@@ -1024,7 +1024,7 @@ export default function GameDetailPage() {
       {/* CANCEL GAME MODAL */}
       {showCancelModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-md w-full p-6 space-y-4 shadow-2xl">
+          <div className="bg-[#292D32] rounded-3xl border border-[#373C42] max-w-md w-full p-6 space-y-4 shadow-2xl">
             <h3 className="font-black text-base text-rose-600">Cancel Game Match</h3>
             <p className="text-xs text-slate-600">
               Please state a reason so confirmed players are notified. Cancelled games will not generate friendship connections or ratings.
@@ -1034,7 +1034,7 @@ export default function GameDetailPage() {
               placeholder="e.g. Sudden rain or court unavailable..."
               value={cancelReason}
               onChange={(e) => setCancelReason(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-speecat-navy"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-[#F5F5F2]"
             />
             <div className="flex justify-end gap-3 pt-2">
               <button

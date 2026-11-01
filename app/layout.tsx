@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     "Pickleball Hyderabad",
     "Playo Hyderabad alternative",
   ],
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col bg-[#0B1020] text-[#F8FAFC] antialiased selection:bg-[#2563EB] selection:text-white">
+      <body className="min-h-screen flex flex-col bg-[#17191C] text-[#F5F5F2] antialiased selection:bg-[#B7F34A] selection:text-[#17191C]">
         <Providers>
           <PreviewBanner />
           <Navbar />

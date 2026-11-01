@@ -99,13 +99,13 @@ export default function VenueDetailPage() {
   if (!venue) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-speecat-navy">Venue Not Found</h2>
+        <h2 className="text-2xl font-bold text-[#F5F5F2]">Venue Not Found</h2>
         <p className="text-slate-500 text-sm max-w-md">
           The requested Hyderabad sports listing could not be found in the current directory.
         </p>
         <Link
           href="/explore"
-          className="bg-speecat-green text-white font-bold px-5 py-2.5 rounded-xl text-sm"
+          className="bg-[#B7F34A] text-white font-bold px-5 py-2.5 rounded-xl text-sm"
         >
           Back to Explore
         </Link>
@@ -186,14 +186,14 @@ export default function VenueDetailPage() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
+    <div className="bg-[#17191C] min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Navigation Breadcrumb */}
         <div className="flex items-center justify-between gap-4">
           <Link
             href="/explore"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-speecat-green transition-colors bg-white px-3 py-1.5 rounded-lg border border-slate-200"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-[#B7F34A] transition-colors bg-white px-3 py-1.5 rounded-lg border border-slate-200"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Hyderabad Venues</span>
@@ -223,7 +223,7 @@ export default function VenueDetailPage() {
         </div>
 
         {/* Top Header Card */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 shadow-sm">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-2">
@@ -238,7 +238,7 @@ export default function VenueDetailPage() {
                       : "bg-amber-50 text-amber-900 border border-amber-200"
                   }`}
                 >
-                  <ShieldCheck className="w-3.5 h-3.5 text-speecat-green" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#B7F34A]" />
                   {venue.verificationBadge}
                 </span>
 
@@ -247,14 +247,14 @@ export default function VenueDetailPage() {
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-speecat-navy">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#F5F5F2]">
                 {venue.name}
               </h1>
 
               {/* Locality & Address */}
               <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-600">
                 <div className="flex items-center gap-1.5 font-medium">
-                  <MapPin className="w-4 h-4 text-speecat-green shrink-0" />
+                  <MapPin className="w-4 h-4 text-[#B7F34A] shrink-0" />
                   <span>{venue.address}</span>
                 </div>
 
@@ -262,7 +262,7 @@ export default function VenueDetailPage() {
                   href={venue.mapLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-speecat-green font-bold hover:underline"
+                  className="inline-flex items-center gap-1 text-[#B7F34A] font-bold hover:underline"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>Open in Google Maps</span>
@@ -282,7 +282,7 @@ export default function VenueDetailPage() {
 
               <div className="text-right mt-2">
                 <div className="text-[10px] uppercase font-bold text-slate-400">Hourly Rate</div>
-                <div className="text-xl sm:text-2xl font-black text-speecat-green">
+                <div className="text-xl sm:text-2xl font-black text-[#B7F34A]">
                   {venue.pricePerHour ? (
                     `₹${venue.pricePerHour.toLocaleString("en-IN")}/hr`
                   ) : (
@@ -303,7 +303,7 @@ export default function VenueDetailPage() {
           <div className="lg:col-span-2 space-y-6">
             
             {/* Photo Gallery */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-3">
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4 shadow-sm space-y-3">
               <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden bg-slate-900">
                 <img
                   src={venue.images[selectedImageIndex] || venue.featuredImage}
@@ -324,7 +324,7 @@ export default function VenueDetailPage() {
                       onClick={() => setSelectedImageIndex(idx)}
                       className={`relative w-20 h-16 rounded-lg overflow-hidden shrink-0 border-2 transition-all ${
                         selectedImageIndex === idx
-                          ? "border-speecat-green ring-2 ring-speecat-green/30"
+                          ? "border-[#B7F34A] ring-2 ring-speecat-green/30"
                           : "border-transparent opacity-70 hover:opacity-100"
                       }`}
                     >
@@ -336,8 +336,8 @@ export default function VenueDetailPage() {
             </div>
 
             {/* About & Description */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-3">
-              <h2 className="text-base sm:text-lg font-bold text-speecat-navy">
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 shadow-sm space-y-3">
+              <h2 className="text-base sm:text-lg font-bold text-[#F5F5F2]">
                 About this Hyderabad Facility
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -345,16 +345,16 @@ export default function VenueDetailPage() {
               </p>
               {venue.priceNote && (
                 <div className="mt-2 text-xs text-slate-500 bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
-                  <span className="font-bold text-speecat-navy">Pricing note: </span>
+                  <span className="font-bold text-[#F5F5F2]">Pricing note: </span>
                   {venue.priceNote}
                 </div>
               )}
             </div>
 
             {/* Courts / Pitch Options */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 shadow-sm space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-base sm:text-lg font-bold text-speecat-navy">
+                <h2 className="text-base sm:text-lg font-bold text-[#F5F5F2]">
                   Available Courts & Surfaces ({venue.courtsCount})
                 </h2>
                 <span className="text-xs text-slate-400 font-medium">Click to select for demo booking</span>
@@ -369,16 +369,16 @@ export default function VenueDetailPage() {
                       onClick={() => setSelectedCourt(court)}
                       className={`p-3.5 rounded-xl border-2 transition-all cursor-pointer ${
                         isSelected
-                          ? "border-speecat-green bg-emerald-50/40 shadow-sm"
+                          ? "border-[#B7F34A] bg-emerald-50/40 shadow-sm"
                           : "border-slate-200 hover:border-slate-300 bg-slate-50/50"
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="font-bold text-sm text-speecat-navy">{court.name}</span>
-                        {isSelected && <CheckCircle2 className="w-4 h-4 text-speecat-green" />}
+                        <span className="font-bold text-sm text-[#F5F5F2]">{court.name}</span>
+                        {isSelected && <CheckCircle2 className="w-4 h-4 text-[#B7F34A]" />}
                       </div>
                       <div className="text-xs text-slate-500 mt-1">Surface: {court.surface}</div>
-                      <div className="text-xs font-extrabold text-speecat-green mt-2">
+                      <div className="text-xs font-extrabold text-[#B7F34A] mt-2">
                         {court.pricePerHour ? `₹${court.pricePerHour}/hr` : "Price to be confirmed"}
                       </div>
                     </div>
@@ -388,8 +388,8 @@ export default function VenueDetailPage() {
             </div>
 
             {/* Amenities Grid */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
-              <h2 className="text-base sm:text-lg font-bold text-speecat-navy">
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 shadow-sm space-y-4">
+              <h2 className="text-base sm:text-lg font-bold text-[#F5F5F2]">
                 Amenities & Facilities
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -398,7 +398,7 @@ export default function VenueDetailPage() {
                     key={idx}
                     className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-semibold text-slate-700"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-speecat-green shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#B7F34A] shrink-0" />
                     <span>{amenity}</span>
                   </div>
                 ))}
@@ -406,20 +406,20 @@ export default function VenueDetailPage() {
             </div>
 
             {/* Timings & House Rules */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
-              <h2 className="text-base sm:text-lg font-bold text-speecat-navy">
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 shadow-sm space-y-4">
+              <h2 className="text-base sm:text-lg font-bold text-[#F5F5F2]">
                 Opening Hours & Venue Rules
               </h2>
               
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-speecat-navy bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <Clock className="w-4 h-4 text-speecat-green shrink-0" />
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#F5F5F2] bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <Clock className="w-4 h-4 text-[#B7F34A] shrink-0" />
                 <span>Operating Schedule: {venue.openingHours}</span>
               </div>
 
               <ul className="space-y-2 text-xs text-slate-600">
                 {venue.rules.map((rule, idx) => (
                   <li key={idx} className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-speecat-green mt-1.5 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#B7F34A] mt-1.5 shrink-0" />
                     <span>{rule}</span>
                   </li>
                 ))}
@@ -432,13 +432,13 @@ export default function VenueDetailPage() {
           <div className="lg:col-span-1 space-y-4 sticky top-24">
             
             {/* Booking Card */}
-            <div className="bg-white rounded-2xl border-2 border-speecat-green/30 p-5 shadow-lg shadow-emerald-500/5 space-y-5">
+            <div className="bg-white rounded-2xl border-2 border-[#B7F34A]/30 p-5 shadow-lg shadow-emerald-500/5 space-y-5">
               
               {/* Mandatory Demo Notice */}
               {/* Real-time Availability Banner */}
               <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-900 space-y-1">
                 <div className="font-extrabold flex items-center gap-1.5 text-emerald-800">
-                  <Sparkles className="w-4 h-4 text-speecat-green shrink-0" />
+                  <Sparkles className="w-4 h-4 text-[#B7F34A] shrink-0" />
                   <span>Real-Time Court Booking</span>
                 </div>
                 <p className="text-[11px] leading-relaxed text-emerald-800/90 font-medium">
@@ -450,10 +450,10 @@ export default function VenueDetailPage() {
                 
                 {/* Selected Court Display */}
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-speecat-navy">Selected Court / Pitch</label>
-                  <div className="bg-slate-50 border border-slate-200 p-2.5 rounded-xl text-xs font-bold text-speecat-navy flex items-center justify-between">
+                  <label className="text-xs font-bold text-[#F5F5F2]">Selected Court / Pitch</label>
+                  <div className="bg-slate-50 border border-slate-200 p-2.5 rounded-xl text-xs font-bold text-[#F5F5F2] flex items-center justify-between">
                     <span>{selectedCourt?.name || venue.courts[0]?.name || "Standard Court"}</span>
-                    <span className="text-speecat-green">
+                    <span className="text-[#B7F34A]">
                       ₹{hourlyRate}/hr
                     </span>
                   </div>
@@ -461,8 +461,8 @@ export default function VenueDetailPage() {
 
                 {/* Date Picker */}
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-speecat-navy flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-speecat-green" />
+                  <label className="text-xs font-bold text-[#F5F5F2] flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-[#B7F34A]" />
                     <span>Select Date</span>
                   </label>
                   <input
@@ -470,15 +470,15 @@ export default function VenueDetailPage() {
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
                     min={new Date().toISOString().split("T")[0]}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
                   />
                 </div>
 
                 {/* Duration */}
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-speecat-navy flex items-center justify-between">
+                  <label className="text-xs font-bold text-[#F5F5F2] flex items-center justify-between">
                     <span>Duration</span>
-                    <span className="text-speecat-green font-bold">{durationHours} Hour{durationHours > 1 ? "s" : ""}</span>
+                    <span className="text-[#B7F34A] font-bold">{durationHours} Hour{durationHours > 1 ? "s" : ""}</span>
                   </label>
                   <div className="grid grid-cols-3 gap-2">
                     {[1, 2, 3].map((hrs) => (
@@ -500,7 +500,7 @@ export default function VenueDetailPage() {
 
                 {/* Time Slots */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-speecat-navy flex items-center justify-between">
+                  <label className="text-xs font-bold text-[#F5F5F2] flex items-center justify-between">
                     <span>Time Slots</span>
                     <span className="text-[10px] text-slate-400 font-normal">
                       {occupiedSlots.size > 0 ? `${occupiedSlots.size} booked today` : "All slots available"}
@@ -522,12 +522,12 @@ export default function VenueDetailPage() {
                             isOccupied
                               ? "bg-rose-50/60 border-rose-200 text-slate-400 cursor-not-allowed opacity-75"
                               : isSelected
-                              ? "bg-emerald-50 border-speecat-green text-speecat-navy shadow-xs"
+                              ? "bg-emerald-50 border-[#B7F34A] text-[#F5F5F2] shadow-xs"
                               : "bg-slate-50/70 border-slate-200 text-slate-700 hover:bg-slate-100"
                           }`}
                         >
                           <span className="flex items-center gap-1.5">
-                            <Clock className={`w-3.5 h-3.5 ${isOccupied ? "text-rose-400" : "text-speecat-green"}`} />
+                            <Clock className={`w-3.5 h-3.5 ${isOccupied ? "text-rose-400" : "text-[#B7F34A]"}`} />
                             <span className={isOccupied ? "line-through text-slate-400" : ""}>{slot.time}</span>
                           </span>
                           {isOccupied ? (
@@ -557,7 +557,7 @@ export default function VenueDetailPage() {
                       value={playerName}
                       onChange={(e) => setPlayerName(e.target.value)}
                       required
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-speecat-navy"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-[#F5F5F2]"
                     />
                   </div>
                   <div>
@@ -567,7 +567,7 @@ export default function VenueDetailPage() {
                       value={playerPhone}
                       onChange={(e) => setPlayerPhone(e.target.value)}
                       required
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-speecat-navy"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-[#F5F5F2]"
                     />
                   </div>
                 </div>
@@ -576,7 +576,7 @@ export default function VenueDetailPage() {
                 <div className="pt-3 border-t border-slate-100 space-y-1.5 text-xs">
                   <div className="flex justify-between text-slate-600">
                     <span>Court Fee ({durationHours} hr x ₹{hourlyRate})</span>
-                    <span className="font-semibold text-speecat-navy">₹{courtTotal}</span>
+                    <span className="font-semibold text-[#F5F5F2]">₹{courtTotal}</span>
                   </div>
                   <div className="flex justify-between text-slate-600">
                     <span>ATHLETIQ Platform Fee</span>
@@ -586,9 +586,9 @@ export default function VenueDetailPage() {
                     <span>Taxes & GST</span>
                     <span className="text-emerald-700 font-semibold">Included</span>
                   </div>
-                  <div className="pt-2 border-t border-slate-200 flex justify-between text-sm font-black text-speecat-navy">
+                  <div className="pt-2 border-t border-slate-200 flex justify-between text-sm font-black text-[#F5F5F2]">
                     <span>Total Amount (INR)</span>
-                    <span className="text-base text-speecat-green">₹{grandTotal.toLocaleString("en-IN")}</span>
+                    <span className="text-base text-[#B7F34A]">₹{grandTotal.toLocaleString("en-IN")}</span>
                   </div>
                 </div>
 
@@ -604,7 +604,7 @@ export default function VenueDetailPage() {
                 <button
                   type="submit"
                   disabled={bookingBusy || occupiedSlots.has(selectedSlot)}
-                  className="w-full bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-black text-sm py-3.5 rounded-xl shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] font-black text-sm py-3.5 rounded-xl shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Sparkles className="w-4 h-4 fill-current" />
                   <span>
@@ -630,7 +630,7 @@ export default function VenueDetailPage() {
         {similarVenues.length > 0 && (
           <div className="pt-10 border-t border-slate-200 space-y-5">
             <div>
-              <h3 className="text-xl font-black text-speecat-navy">
+              <h3 className="text-xl font-black text-[#F5F5F2]">
                 Similar Venues in Hyderabad
               </h3>
               <p className="text-xs text-slate-500">
@@ -651,7 +651,7 @@ export default function VenueDetailPage() {
       {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-lg w-full overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
+          <div className="bg-[#292D32] rounded-3xl border border-[#373C42] max-w-lg w-full overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
             
             {/* Modal Header */}
             <div className="bg-speecat-navy text-white p-6 relative">
@@ -662,8 +662,8 @@ export default function VenueDetailPage() {
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="inline-flex items-center gap-1.5 bg-speecat-green/20 text-speecat-green px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-                <CheckCircle2 className="w-4 h-4 text-speecat-green" />
+              <div className="inline-flex items-center gap-1.5 bg-[#B7F34A]/20 text-[#B7F34A] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+                <CheckCircle2 className="w-4 h-4 text-[#B7F34A]" />
                 <span>Confirmed Reservation</span>
               </div>
 
@@ -671,7 +671,7 @@ export default function VenueDetailPage() {
                 Court Booked Successfully!
               </h3>
               <p className="text-xs text-slate-300 mt-1">
-                Booking Reference ID: <span className="font-mono text-speecat-green font-bold">{demoBookingRef}</span>
+                Booking Reference ID: <span className="font-mono text-[#B7F34A] font-bold">{demoBookingRef}</span>
               </p>
             </div>
 
@@ -686,30 +686,30 @@ export default function VenueDetailPage() {
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between py-1.5 border-b border-slate-100">
                   <span className="text-slate-500">Venue:</span>
-                  <span className="font-bold text-speecat-navy text-right">{venue.name}</span>
+                  <span className="font-bold text-[#F5F5F2] text-right">{venue.name}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-100">
                   <span className="text-slate-500">Court / Surface:</span>
-                  <span className="font-semibold text-speecat-navy">{selectedCourt?.name}</span>
+                  <span className="font-semibold text-[#F5F5F2]">{selectedCourt?.name}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-100">
                   <span className="text-slate-500">Date & Slot:</span>
-                  <span className="font-semibold text-speecat-navy">{selectedDate} • {selectedSlot} ({durationHours} hr)</span>
+                  <span className="font-semibold text-[#F5F5F2]">{selectedDate} • {selectedSlot} ({durationHours} hr)</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-100">
                   <span className="text-slate-500">Player:</span>
-                  <span className="font-semibold text-speecat-navy">{playerName} ({playerPhone})</span>
+                  <span className="font-semibold text-[#F5F5F2]">{playerName} ({playerPhone})</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-100">
                   <span className="text-slate-500">Total Price:</span>
-                  <span className="font-black text-speecat-green text-sm">₹{grandTotal.toLocaleString("en-IN")}</span>
+                  <span className="font-black text-[#B7F34A] text-sm">₹{grandTotal.toLocaleString("en-IN")}</span>
                 </div>
               </div>
 
               {/* QR Code Entry Pass */}
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center space-y-2">
                 <div className="w-20 h-20 bg-white border border-slate-300 rounded-xl mx-auto flex items-center justify-center p-2 shadow-xs">
-                  <QrCode className="w-16 h-16 text-speecat-navy" />
+                  <QrCode className="w-16 h-16 text-[#F5F5F2]" />
                 </div>
                 <p className="text-[10px] text-slate-500 font-medium">
                   Entry Pass: Show this at reception upon arrival

@@ -4,16 +4,16 @@ import { Zap, ShieldCheck, MapPin, Sparkles, Trophy, Users, Heart } from "lucide
 
 export default function AboutPage() {
   return (
-    <div className="bg-slate-50 min-h-screen py-12">
+    <div className="bg-[#17191C] min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-            <Zap className="w-3.5 h-3.5 text-speedcat-green" />
+            <Zap className="w-3.5 h-3.5 text-[#B7F34A]" />
             <span>About ATHLETIQ</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-speedcat-navy">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#F5F5F2]">
             Find Your Game. Book Your Court.
           </h1>
           <p className="text-sm text-slate-500 max-w-xl mx-auto">
@@ -22,8 +22,8 @@ export default function AboutPage() {
         </div>
 
         {/* Mission Card */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm space-y-4">
-          <h2 className="text-xl font-bold text-speedcat-navy">Our Vision for Hyderabad Sports</h2>
+        <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-8 shadow-sm space-y-4">
+          <h2 className="text-xl font-bold text-[#F5F5F2]">Our Vision for Hyderabad Sports</h2>
           <p className="text-sm text-slate-600 leading-relaxed">
             Finding high quality sports venues in Hyderabad—whether it is a badminton court near Gachibowli, a 5-a-side football turf in Madhapur, or an evening box cricket match in Kukatpally—has historically required calling multiple arenas, dealing with opaque pricing, and risking full bookings upon arrival.
           </p>
@@ -34,25 +34,25 @@ export default function AboutPage() {
 
         {/* Core Pillars */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-2">
-            <Trophy className="w-8 h-8 text-speedcat-green" />
-            <h3 className="font-bold text-base text-speedcat-navy">Quality Verification</h3>
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 space-y-2">
+            <Trophy className="w-8 h-8 text-[#B7F34A]" />
+            <h3 className="font-bold text-base text-[#F5F5F2]">Quality Verification</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
               Transparent court surface specifications, amenities lists, and verified operating hours for every Hyderabad locality.
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-2">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 space-y-2">
             <Users className="w-8 h-8 text-blue-600" />
-            <h3 className="font-bold text-base text-speedcat-navy">Clubs & Community</h3>
+            <h3 className="font-bold text-base text-[#F5F5F2]">Clubs & Community</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
               Find running groups, badminton sessions, cycling tours, and fellow sports lovers matching your exact skill level.
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-2">
+          <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-6 space-y-2">
             <ShieldCheck className="w-8 h-8 text-purple-600" />
-            <h3 className="font-bold text-base text-speedcat-navy">Transparent Pricing</h3>
+            <h3 className="font-bold text-base text-[#F5F5F2]">Transparent Pricing</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
               Clear price breakdowns in INR (₹) with dynamic platform fee transparency for club organisers and athletes.
             </p>

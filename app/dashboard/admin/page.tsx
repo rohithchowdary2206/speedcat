@@ -245,7 +245,7 @@ function AdminDashboardContent() {
   const cancelledBookings = registrations.filter((r) => r.status === "cancelled").length;
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8 pb-20">
+    <div className="bg-[#17191C] min-h-screen py-8 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Banner */}
@@ -279,7 +279,7 @@ function AdminDashboardContent() {
 
             <Link
               href="/clubs"
-              className="bg-speedcat-green hover:bg-speedcat-green-light text-speedcat-navy text-xs font-bold px-3.5 py-2.5 rounded-xl transition shadow-xs"
+              className="bg-[#B7F34A] hover:bg-[#B7F34A]-light text-[#F5F5F2] text-xs font-bold px-3.5 py-2.5 rounded-xl transition shadow-xs"
             >
               Public Clubs
             </Link>
@@ -292,11 +292,11 @@ function AdminDashboardContent() {
             onClick={() => setActiveSection("clubs")}
             className={`pb-4 font-bold text-sm border-b-2 transition flex items-center gap-2 ${
               activeSection === "clubs"
-                ? "border-speedcat-navy text-speedcat-navy"
+                ? "border-speedcat-navy text-[#F5F5F2]"
                 : "border-transparent text-slate-500 hover:text-slate-800"
             }`}
           >
-            <Building className="w-4 h-4 text-speedcat-green" />
+            <Building className="w-4 h-4 text-[#B7F34A]" />
             Clubs & Events Moderation ({totalClubs} Clubs / {totalEvents} Events)
           </button>
 
@@ -304,11 +304,11 @@ function AdminDashboardContent() {
             onClick={() => setActiveSection("venues")}
             className={`pb-4 font-bold text-sm border-b-2 transition flex items-center gap-2 ${
               activeSection === "venues"
-                ? "border-speedcat-navy text-speedcat-navy"
+                ? "border-speedcat-navy text-[#F5F5F2]"
                 : "border-transparent text-slate-500 hover:text-slate-800"
             }`}
           >
-            <Layers className="w-4 h-4 text-speedcat-green" />
+            <Layers className="w-4 h-4 text-[#B7F34A]" />
             Venues Directory & CSV Import ({venues.length} Venues)
           </button>
         </div>
@@ -321,7 +321,7 @@ function AdminDashboardContent() {
               <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
                 <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Total Clubs</div>
                 <div className="text-2xl font-black text-slate-900 mt-1 flex items-center gap-2">
-                  <Users className="w-5 h-5 text-speedcat-green" />
+                  <Users className="w-5 h-5 text-[#B7F34A]" />
                   {totalClubs}
                 </div>
                 <div className="text-[11px] text-emerald-600 font-bold mt-1">
@@ -332,7 +332,7 @@ function AdminDashboardContent() {
               <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
                 <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Scheduled Events</div>
                 <div className="text-2xl font-black text-slate-900 mt-1 flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-speedcat-green" />
+                  <Calendar className="w-5 h-5 text-[#B7F34A]" />
                   {totalEvents}
                 </div>
                 <div className="text-[11px] text-slate-500 mt-1">
@@ -343,7 +343,7 @@ function AdminDashboardContent() {
               <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
                 <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Total Event Bookings</div>
                 <div className="text-2xl font-black text-slate-900 mt-1 flex items-center gap-2">
-                  <Activity className="w-5 h-5 text-speedcat-green" />
+                  <Activity className="w-5 h-5 text-[#B7F34A]" />
                   {totalBookings}
                 </div>
                 <div className="text-[11px] text-slate-500 mt-1">
@@ -364,7 +364,7 @@ function AdminDashboardContent() {
             </div>
 
             {/* Clubs Moderation Table */}
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] shadow-sm p-6 space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h3 className="text-base font-bold text-slate-900">
@@ -470,7 +470,7 @@ function AdminDashboardContent() {
             </div>
 
             {/* Events Moderation Table */}
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] shadow-sm p-6 space-y-4">
               <div>
                 <h3 className="text-base font-bold text-slate-900">
                   Moderate Club Events & Activities
@@ -572,7 +572,7 @@ function AdminDashboardContent() {
                   onClick={() => setShowAddModal(true)}
                   className="bg-speedcat-navy hover:bg-slate-800 text-white text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5"
                 >
-                  <Plus className="w-3.5 h-3.5 text-speedcat-green" />
+                  <Plus className="w-3.5 h-3.5 text-[#B7F34A]" />
                   Add Venue
                 </button>
 
@@ -614,7 +614,7 @@ function AdminDashboardContent() {
             </div>
 
             {/* Venues Table */}
-            <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+            <div className="bg-[#292D32] rounded-2xl border border-[#373C42] overflow-hidden shadow-xs">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">

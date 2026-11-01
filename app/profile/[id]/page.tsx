@@ -40,8 +40,8 @@ export default function PublicPlayerProfilePage() {
   if (!player) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center space-y-4">
-        <h2 className="text-xl font-bold text-speecat-navy">Player Profile Not Found</h2>
-        <Link href="/friends" className="bg-speecat-green text-speecat-navy font-bold text-xs px-4 py-2 rounded-xl">
+        <h2 className="text-xl font-bold text-[#F5F5F2]">Player Profile Not Found</h2>
+        <Link href="/friends" className="bg-[#B7F34A] text-[#F5F5F2] font-bold text-xs px-4 py-2 rounded-xl">
           Back to Friends
         </Link>
       </div>
@@ -67,14 +67,14 @@ export default function PublicPlayerProfilePage() {
   );
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
+    <div className="bg-[#17191C] min-h-screen py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Back Link */}
         <div>
           <Link
             href="/friends"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-speecat-green bg-white px-3 py-1.5 rounded-xl border border-slate-200 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-[#B7F34A] bg-white px-3 py-1.5 rounded-xl border border-slate-200 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Community</span>
@@ -82,7 +82,7 @@ export default function PublicPlayerProfilePage() {
         </div>
 
         {/* Profile Card */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-6 sm:p-8 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex flex-col sm:flex-row sm:items-center gap-5">
               <img
@@ -93,7 +93,7 @@ export default function PublicPlayerProfilePage() {
 
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-2xl sm:text-3xl font-black text-speecat-navy">
+                  <h1 className="text-2xl sm:text-3xl font-black text-[#F5F5F2]">
                     {player.name}
                   </h1>
                   {isMe && (
@@ -104,7 +104,7 @@ export default function PublicPlayerProfilePage() {
                 </div>
 
                 <div className="flex items-center gap-2 text-xs text-slate-500">
-                  <MapPin className="w-3.5 h-3.5 text-speecat-green" />
+                  <MapPin className="w-3.5 h-3.5 text-[#B7F34A]" />
                   <span>{player.locality}, Hyderabad</span>
                 </div>
 
@@ -119,7 +119,7 @@ export default function PublicPlayerProfilePage() {
                 href="/friends"
                 className="bg-speecat-navy hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors flex items-center gap-1.5 shadow-xs"
               >
-                <PlusCircle className="w-4 h-4 text-speecat-green" />
+                <PlusCircle className="w-4 h-4 text-[#B7F34A]" />
                 <span>Invite to Game</span>
               </Link>
             </div>
@@ -128,12 +128,12 @@ export default function PublicPlayerProfilePage() {
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-100 text-center">
             <div className="bg-slate-50 p-3 rounded-2xl border border-slate-100">
-              <div className="text-2xl font-black text-speecat-navy">{player.gamesPlayed}</div>
+              <div className="text-2xl font-black text-[#F5F5F2]">{player.gamesPlayed}</div>
               <div className="text-[11px] font-semibold text-slate-400 mt-0.5">Games Played</div>
             </div>
 
             <div className="bg-slate-50 p-3 rounded-2xl border border-slate-100">
-              <div className="text-2xl font-black text-speecat-green">{player.gamesHosted}</div>
+              <div className="text-2xl font-black text-[#B7F34A]">{player.gamesHosted}</div>
               <div className="text-[11px] font-semibold text-slate-400 mt-0.5">Games Hosted</div>
             </div>
 
@@ -157,10 +157,10 @@ export default function PublicPlayerProfilePage() {
           <div className="lg:col-span-2 space-y-6">
             
             {/* Skill Ratings Per Sport */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-5">
+            <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-6 shadow-sm space-y-5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <h2 className="text-base font-black text-speecat-navy flex items-center gap-2">
-                  <Trophy className="w-5 h-5 text-speecat-green" />
+                <h2 className="text-base font-black text-[#F5F5F2] flex items-center gap-2">
+                  <Trophy className="w-5 h-5 text-[#B7F34A]" />
                   <span>Sport-Specific Skill Breakdown</span>
                 </h2>
 
@@ -184,7 +184,7 @@ export default function PublicPlayerProfilePage() {
               {/* Active Sport Skill */}
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-black text-speecat-navy">{selectedSportTab}</span>
+                  <span className="text-lg font-black text-[#F5F5F2]">{selectedSportTab}</span>
                   <div className="flex items-center gap-2">
                     <span className="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">
                       Self: {activeRating.selfAssessed}
@@ -207,7 +207,7 @@ export default function PublicPlayerProfilePage() {
                           <span className="font-bold">{count} votes</span>
                         </div>
                         <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-speecat-green rounded-full" style={{ width: `${pct}%` }} />
+                          <div className="h-full bg-[#B7F34A] rounded-full" style={{ width: `${pct}%` }} />
                         </div>
                       </div>
                     );
@@ -219,8 +219,8 @@ export default function PublicPlayerProfilePage() {
 
             {/* Shared Matches */}
             {sharedGames.length > 0 && (
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-3">
-                <h3 className="font-black text-sm text-speecat-navy uppercase tracking-wider">
+              <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-6 shadow-sm space-y-3">
+                <h3 className="font-black text-sm text-[#F5F5F2] uppercase tracking-wider">
                   Matches You Played Together ({sharedGames.length})
                 </h3>
                 <div className="space-y-2">
@@ -231,10 +231,10 @@ export default function PublicPlayerProfilePage() {
                       className="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center text-xs block"
                     >
                       <div>
-                        <div className="font-bold text-speecat-navy">{g.title}</div>
+                        <div className="font-bold text-[#F5F5F2]">{g.title}</div>
                         <div className="text-slate-500 text-[11px]">{g.sport} • {g.date}</div>
                       </div>
-                      <span className="text-speecat-green font-bold">View Match →</span>
+                      <span className="text-[#B7F34A] font-bold">View Match →</span>
                     </Link>
                   ))}
                 </div>
@@ -245,9 +245,9 @@ export default function PublicPlayerProfilePage() {
 
           {/* Right Column */}
           <div className="lg:col-span-1 space-y-6">
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-3">
-              <h3 className="font-black text-sm text-speecat-navy uppercase tracking-wider flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-speecat-green" />
+            <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-6 shadow-sm space-y-3">
+              <h3 className="font-black text-sm text-[#F5F5F2] uppercase tracking-wider flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-[#B7F34A]" />
                 <span>Sportsmanship</span>
               </h3>
 
@@ -267,19 +267,19 @@ export default function PublicPlayerProfilePage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-3">
-              <h3 className="font-black text-sm text-speecat-navy uppercase tracking-wider flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-speecat-green" />
+            <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-6 shadow-sm space-y-3">
+              <h3 className="font-black text-sm text-[#F5F5F2] uppercase tracking-wider flex items-center gap-1.5">
+                <Clock className="w-4 h-4 text-[#B7F34A]" />
                 <span>Availability</span>
               </h3>
               <div className="space-y-2 text-xs">
                 <div>
                   <span className="text-slate-400 block text-[11px]">Weekdays</span>
-                  <span className="font-bold text-speecat-navy">{player.availability.weekdays.join(", ")}</span>
+                  <span className="font-bold text-[#F5F5F2]">{player.availability.weekdays.join(", ")}</span>
                 </div>
                 <div>
                   <span className="text-slate-400 block text-[11px]">Weekends</span>
-                  <span className="font-bold text-speecat-navy">{player.availability.weekends.join(", ")}</span>
+                  <span className="font-bold text-[#F5F5F2]">{player.availability.weekends.join(", ")}</span>
                 </div>
               </div>
             </div>

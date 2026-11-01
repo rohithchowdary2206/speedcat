@@ -45,15 +45,15 @@ export default function HyderabadMap({ venues, onSelectVenue }: HyderabadMapProp
       {/* Map Header */}
       <div className="p-4 bg-slate-950/80 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-speecat-green animate-pulse" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#B7F34A] animate-pulse" />
           <span className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-            <Compass className="w-4 h-4 text-speecat-green" />
+            <Compass className="w-4 h-4 text-[#B7F34A]" />
             Interactive Hyderabad Sports Map Preview
           </span>
         </div>
 
         <div className="flex items-center gap-2 text-xs text-slate-400">
-          <span className="bg-slate-800 px-2.5 py-1 rounded-full text-speecat-green font-semibold">
+          <span className="bg-slate-800 px-2.5 py-1 rounded-full text-[#B7F34A] font-semibold">
             {venues.length} Venues Plotted
           </span>
           <span className="text-[11px] text-slate-500 hidden sm:inline">
@@ -115,8 +115,8 @@ export default function HyderabadMap({ venues, onSelectVenue }: HyderabadMapProp
               <div
                 className={`relative flex items-center justify-center p-2 rounded-full transition-all shadow-lg ${
                   isSelected
-                    ? "bg-speecat-green text-speecat-navy ring-4 ring-emerald-400/40"
-                    : "bg-slate-800 text-white hover:bg-speecat-green hover:text-speecat-navy border border-slate-700"
+                    ? "bg-[#B7F34A] text-[#F5F5F2] ring-4 ring-emerald-400/40"
+                    : "bg-slate-800 text-white hover:bg-[#B7F34A] hover:text-[#F5F5F2] border border-slate-700"
                 }`}
               >
                 <MapPin className="w-4 h-4 fill-current" />
@@ -129,7 +129,7 @@ export default function HyderabadMap({ venues, onSelectVenue }: HyderabadMapProp
                 }`}
               >
                 <span>{venue.name.split(" ")[0]}</span>
-                <span className="text-speecat-green ml-1">
+                <span className="text-[#B7F34A] ml-1">
                   {venue.pricePerHour ? `₹${venue.pricePerHour}` : ""}
                 </span>
               </div>
@@ -148,7 +148,7 @@ export default function HyderabadMap({ venues, onSelectVenue }: HyderabadMapProp
               />
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-1">
-                  <span className="text-[10px] font-bold text-speecat-green uppercase">
+                  <span className="text-[10px] font-bold text-[#B7F34A] uppercase">
                     {selectedVenue.sport}
                   </span>
                   <div className="flex items-center gap-1 text-[11px] text-amber-400 font-bold">
@@ -162,7 +162,7 @@ export default function HyderabadMap({ venues, onSelectVenue }: HyderabadMapProp
                 </h4>
 
                 <p className="text-[11px] text-slate-400 truncate flex items-center gap-1 mt-0.5">
-                  <MapPin className="w-3 h-3 text-speecat-green shrink-0" />
+                  <MapPin className="w-3 h-3 text-[#B7F34A] shrink-0" />
                   {selectedVenue.locality}, Hyderabad
                 </p>
               </div>
@@ -171,7 +171,7 @@ export default function HyderabadMap({ venues, onSelectVenue }: HyderabadMapProp
             <div className="mt-3 pt-2.5 border-t border-slate-800 flex items-center justify-between text-xs">
               <div>
                 <span className="text-[10px] text-slate-400 uppercase font-semibold">Rate: </span>
-                <span className="font-bold text-speecat-green">
+                <span className="font-bold text-[#B7F34A]">
                   {selectedVenue.pricePerHour ? `₹${selectedVenue.pricePerHour}/hr` : "TBC"}
                 </span>
               </div>
@@ -190,7 +190,7 @@ export default function HyderabadMap({ venues, onSelectVenue }: HyderabadMapProp
 
                 <Link
                   href={`/venue/${selectedVenue.slug}`}
-                  className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-bold text-[11px] px-2.5 py-1 rounded-lg flex items-center gap-1 transition-colors"
+                  className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] font-bold text-[11px] px-2.5 py-1 rounded-lg flex items-center gap-1 transition-colors"
                 >
                   <span>Book Demo</span>
                   <ArrowRight className="w-3 h-3" />

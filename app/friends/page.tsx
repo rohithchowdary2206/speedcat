@@ -208,7 +208,7 @@ export default function FriendsPage() {
   }
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
+    <div className="bg-[#17191C] min-h-screen py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           
           {/* Banner */}
@@ -233,7 +233,7 @@ export default function FriendsPage() {
 
               <div className="flex items-center gap-3 shrink-0">
                 <div className="bg-slate-900/80 border border-slate-700/80 p-4 rounded-2xl text-center min-w-[110px]">
-                  <div className="text-3xl font-black text-speecat-green">{friendsList.length}</div>
+                  <div className="text-3xl font-black text-[#B7F34A]">{friendsList.length}</div>
                   <div className="text-xs font-semibold text-slate-300 mt-0.5">Friends</div>
                 </div>
                 {pendingRequests.length > 0 && (
@@ -279,9 +279,9 @@ export default function FriendsPage() {
                           className="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0"
                         />
                         <div className="min-w-0">
-                          <div className="font-extrabold text-sm text-speecat-navy truncate">{name}</div>
+                          <div className="font-extrabold text-sm text-[#F5F5F2] truncate">{name}</div>
                           <div className="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
-                            <MapPin className="w-3 h-3 text-speecat-green shrink-0" />
+                            <MapPin className="w-3 h-3 text-[#B7F34A] shrink-0" />
                             <span className="truncate">{locality}</span>
                           </div>
                           {requester?.sportsmanship && (
@@ -302,7 +302,7 @@ export default function FriendsPage() {
                         </button>
                         <button
                           onClick={() => handleRespond(req.id, true)}
-                          className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-black text-xs px-3.5 py-2 rounded-xl transition-colors shadow-xs flex items-center gap-1"
+                          className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] font-black text-xs px-3.5 py-2 rounded-xl transition-colors shadow-xs flex items-center gap-1"
                         >
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           <span>Accept</span>
@@ -335,7 +335,7 @@ export default function FriendsPage() {
                   : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
               }`}
             >
-              <UserPlus className="w-4 h-4 text-speecat-green" />
+              <UserPlus className="w-4 h-4 text-[#B7F34A]" />
               <span>Discover Players ({discoverablePlayers.length})</span>
             </button>
           </div>
@@ -343,7 +343,7 @@ export default function FriendsPage() {
           {activeTab === "friends" ? (
             <>
               {/* Filters Header */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4 sm:p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="relative w-full sm:w-80">
                   <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
@@ -351,7 +351,7 @@ export default function FriendsPage() {
                     placeholder="Search friends by name or locality..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-xs sm:text-sm text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-xs sm:text-sm text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
                   />
                 </div>
 
@@ -360,7 +360,7 @@ export default function FriendsPage() {
                   <select
                     value={selectedSport}
                     onChange={(e) => setSelectedSport(e.target.value)}
-                    className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-speecat-navy"
+                    className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-[#F5F5F2]"
                   >
                     <option value="All">All Sports</option>
                     <option value="Badminton">Badminton</option>
@@ -383,7 +383,7 @@ export default function FriendsPage() {
                     return (
                       <div
                         key={friend.id}
-                        className="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4"
+                        className="bg-[#292D32] rounded-3xl border border-[#373C42] p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4"
                       >
                         <div className="space-y-3">
                           {/* Top Row: Avatar & Bio */}
@@ -395,12 +395,12 @@ export default function FriendsPage() {
                             />
                             <div className="min-w-0 flex-1">
                               <Link href={`/profile/${friend.id}`}>
-                                <h3 className="font-extrabold text-base text-speecat-navy hover:text-speecat-green transition-colors truncate">
+                                <h3 className="font-extrabold text-base text-[#F5F5F2] hover:text-[#B7F34A] transition-colors truncate">
                                   {friend.name}
                                 </h3>
                               </Link>
                               <div className="flex items-center gap-1 text-xs text-slate-500 mt-0.5">
-                                <MapPin className="w-3.5 h-3.5 text-speecat-green shrink-0" />
+                                <MapPin className="w-3.5 h-3.5 text-[#B7F34A] shrink-0" />
                                 <span className="truncate">{friend.locality}, Hyderabad</span>
                               </div>
                               <div className="text-[11px] text-emerald-700 font-bold mt-1">
@@ -442,11 +442,11 @@ export default function FriendsPage() {
                           <div className="bg-slate-50 rounded-2xl p-3 border border-slate-100 text-[11px] text-slate-600 space-y-1">
                             <div className="flex justify-between">
                               <span>Games Played Together:</span>
-                              <span className="font-bold text-speecat-navy">{relationship.gamesPlayedTogether} matches</span>
+                              <span className="font-bold text-[#F5F5F2]">{relationship.gamesPlayedTogether} matches</span>
                             </div>
                             <div className="flex justify-between">
                               <span>Last Game Played:</span>
-                              <span className="font-semibold text-speecat-navy">{relationship.lastGameDate || "Recent"}</span>
+                              <span className="font-semibold text-[#F5F5F2]">{relationship.lastGameDate || "Recent"}</span>
                             </div>
                           </div>
                         </div>
@@ -457,7 +457,7 @@ export default function FriendsPage() {
                             onClick={() => setInviteModalFriend(friend)}
                             className="flex-1 bg-speecat-navy hover:bg-slate-800 text-white font-bold text-xs py-2 rounded-xl transition-colors flex items-center justify-center gap-1.5 shadow-xs"
                           >
-                            <PlusCircle className="w-3.5 h-3.5 text-speecat-green" />
+                            <PlusCircle className="w-3.5 h-3.5 text-[#B7F34A]" />
                             <span>Invite to Game</span>
                           </button>
 
@@ -483,17 +483,17 @@ export default function FriendsPage() {
                   })}
                 </div>
               ) : (
-                <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center space-y-4 shadow-sm">
+                <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-12 text-center space-y-4 shadow-sm">
                   <Users className="w-12 h-12 text-slate-300 mx-auto" />
                   <div className="space-y-1">
-                    <h3 className="text-lg font-bold text-speecat-navy">No friends connected yet</h3>
+                    <h3 className="text-lg font-bold text-[#F5F5F2]">No friends connected yet</h3>
                     <p className="text-xs text-slate-500 max-w-md mx-auto">
                       Discover local players in the tab above, or participate in confirmed community games to automatically connect with players!
                     </p>
                   </div>
                   <button
                     onClick={() => setActiveTab("discover")}
-                    className="inline-flex items-center gap-2 bg-speecat-green text-speecat-navy font-black text-xs px-5 py-2.5 rounded-xl shadow-xs"
+                    className="inline-flex items-center gap-2 bg-[#B7F34A] text-[#F5F5F2] font-black text-xs px-5 py-2.5 rounded-xl shadow-xs"
                   >
                     <span>Discover Hyderabad Players</span>
                     <ArrowRight className="w-4 h-4" />
@@ -505,7 +505,7 @@ export default function FriendsPage() {
             <>
               {/* Discover Players Tab */}
               <div className="space-y-6">
-                <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm">
+                <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4 sm:p-5 shadow-sm">
                   <div className="relative w-full max-w-md">
                     <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
@@ -513,7 +513,7 @@ export default function FriendsPage() {
                       placeholder="Search community players by name or locality..."
                       value={discoverSearch}
                       onChange={(e) => setDiscoverSearch(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-xs sm:text-sm text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-xs sm:text-sm text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
                     />
                   </div>
                 </div>
@@ -524,7 +524,7 @@ export default function FriendsPage() {
                     return (
                       <div
                         key={player.id}
-                        className="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4"
+                        className="bg-[#292D32] rounded-3xl border border-[#373C42] p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4"
                       >
                         <div className="space-y-3">
                           <div className="flex items-start gap-3.5">
@@ -535,12 +535,12 @@ export default function FriendsPage() {
                             />
                             <div className="min-w-0 flex-1">
                               <Link href={`/profile/${player.id}`}>
-                                <h3 className="font-extrabold text-base text-speecat-navy hover:text-speecat-green transition-colors truncate">
+                                <h3 className="font-extrabold text-base text-[#F5F5F2] hover:text-[#B7F34A] transition-colors truncate">
                                   {player.name}
                                 </h3>
                               </Link>
                               <div className="flex items-center gap-1 text-xs text-slate-500 mt-0.5">
-                                <MapPin className="w-3.5 h-3.5 text-speecat-green shrink-0" />
+                                <MapPin className="w-3.5 h-3.5 text-[#B7F34A] shrink-0" />
                                 <span className="truncate">{player.locality}, Hyderabad</span>
                               </div>
                               <div className="text-[11px] text-emerald-700 font-bold mt-1">
@@ -574,7 +574,7 @@ export default function FriendsPage() {
                           <button
                             onClick={() => handleSendRequest(player.id)}
                             disabled={status === "sending" || status === "sent"}
-                            className="flex-1 bg-speecat-green hover:bg-speecat-green-600 disabled:opacity-75 text-speecat-navy font-black text-xs py-2 rounded-xl transition-all shadow-xs flex items-center justify-center gap-1.5"
+                            className="flex-1 bg-[#B7F34A] hover:bg-[#B7F34A]-600 disabled:opacity-75 text-[#F5F5F2] font-black text-xs py-2 rounded-xl transition-all shadow-xs flex items-center justify-center gap-1.5"
                           >
                             <UserPlus className="w-3.5 h-3.5" />
                             <span>
@@ -606,9 +606,9 @@ export default function FriendsPage() {
         {/* INVITE FRIEND TO GAME MODAL */}
         {inviteModalFriend && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-            <div className="bg-white rounded-3xl border border-slate-200 max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div className="bg-[#292D32] rounded-3xl border border-[#373C42] max-w-md w-full p-6 space-y-4 shadow-2xl">
               <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                <h3 className="font-black text-base text-speecat-navy">
+                <h3 className="font-black text-base text-[#F5F5F2]">
                   Invite {inviteModalFriend.name} to a Game
                 </h3>
                 <button onClick={() => setInviteModalFriend(null)} className="text-slate-400 hover:text-slate-600">
@@ -618,8 +618,8 @@ export default function FriendsPage() {
 
               {inviteSent ? (
                 <div className="bg-emerald-50 border border-emerald-200 p-6 rounded-2xl text-center space-y-2">
-                  <CheckCircle2 className="w-10 h-10 text-speecat-green mx-auto" />
-                  <h4 className="font-bold text-sm text-speecat-navy">Invitation Sent!</h4>
+                  <CheckCircle2 className="w-10 h-10 text-[#B7F34A] mx-auto" />
+                  <h4 className="font-bold text-sm text-[#F5F5F2]">Invitation Sent!</h4>
                   <p className="text-xs text-slate-600">
                     {inviteModalFriend.name} has been notified and can confirm their spot!
                   </p>
@@ -628,7 +628,7 @@ export default function FriendsPage() {
                 <form onSubmit={handleSendInvite} className="space-y-4 text-xs">
                   {hostedGames.length > 0 ? (
                     <div className="space-y-2">
-                      <label className="block font-bold text-speecat-navy">
+                      <label className="block font-bold text-[#F5F5F2]">
                         Choose an open game you are hosting:
                       </label>
                       <div className="space-y-2">
@@ -637,7 +637,7 @@ export default function FriendsPage() {
                             key={g.id}
                             className={`flex items-start gap-2.5 p-3 rounded-xl border cursor-pointer transition-all ${
                               selectedGameIdToInvite === g.id
-                                ? "border-speecat-green bg-emerald-50/50 shadow-xs"
+                                ? "border-[#B7F34A] bg-emerald-50/50 shadow-xs"
                                 : "border-slate-200 hover:bg-slate-50"
                             }`}
                           >
@@ -647,10 +647,10 @@ export default function FriendsPage() {
                               value={g.id}
                               checked={selectedGameIdToInvite === g.id}
                               onChange={(e) => setSelectedGameIdToInvite(e.target.value)}
-                              className="mt-0.5 text-speecat-green accent-speecat-green"
+                              className="mt-0.5 text-[#B7F34A] accent-speecat-green"
                             />
                             <div>
-                              <div className="font-bold text-speecat-navy">{g.title}</div>
+                              <div className="font-bold text-[#F5F5F2]">{g.title}</div>
                               <div className="text-[11px] text-slate-500">
                                 {g.sport} • {g.date} • {g.startTime} • {g.venueName}
                               </div>
@@ -683,7 +683,7 @@ export default function FriendsPage() {
                       <button
                         type="submit"
                         disabled={!selectedGameIdToInvite}
-                        className="bg-speecat-green hover:bg-speecat-green-600 disabled:opacity-50 text-speecat-navy text-xs font-black px-5 py-2 rounded-xl shadow-xs"
+                        className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 disabled:opacity-50 text-[#F5F5F2] text-xs font-black px-5 py-2 rounded-xl shadow-xs"
                       >
                         Send Friend Invitation
                       </button>

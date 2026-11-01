@@ -177,16 +177,16 @@ function HostGameContent() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen py-10">
+    <div className="bg-[#17191C] min-h-screen py-10">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Header */}
         <div className="space-y-2 text-center">
           <div className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-            <PlusCircle className="w-4 h-4 text-speecat-green" />
+            <PlusCircle className="w-4 h-4 text-[#B7F34A]" />
             <span>Host a Game</span>
           </div>
-          <h1 className="text-3xl font-black text-speecat-navy">
+          <h1 className="text-3xl font-black text-[#F5F5F2]">
             Organize a Match in Hyderabad
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto">
@@ -195,7 +195,7 @@ function HostGameContent() {
         </div>
 
         {/* Step Progress Tracker */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+        <div className="bg-[#292D32] rounded-2xl border border-[#373C42] p-4 shadow-sm">
           <div className="flex items-center justify-between text-xs font-bold text-slate-400">
             {["Sport", "Venue", "Schedule", "Skill Level", "Details", "Publish"].map((label, idx) => {
               const stepNum = idx + 1;
@@ -208,9 +208,9 @@ function HostGameContent() {
                   onClick={() => setCurrentStep(stepNum)}
                   className={`flex items-center gap-1.5 transition-colors ${
                     isActive
-                      ? "text-speecat-navy font-black"
+                      ? "text-[#F5F5F2] font-black"
                       : isPast
-                      ? "text-speecat-green font-bold"
+                      ? "text-[#B7F34A] font-bold"
                       : "text-slate-400"
                   }`}
                 >
@@ -219,7 +219,7 @@ function HostGameContent() {
                       isActive
                         ? "bg-speecat-navy text-white"
                         : isPast
-                        ? "bg-speecat-green text-speecat-navy"
+                        ? "bg-[#B7F34A] text-[#F5F5F2]"
                         : "bg-slate-100 text-slate-400"
                     }`}
                   >
@@ -233,13 +233,13 @@ function HostGameContent() {
         </div>
 
         {/* Step Body */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="bg-[#292D32] rounded-3xl border border-[#373C42] p-6 sm:p-8 shadow-sm space-y-6">
           
           {/* STEP 1: Select Sport */}
           {currentStep === 1 && (
             <div className="space-y-5 animate-in fade-in">
               <div>
-                <h2 className="text-xl font-black text-speecat-navy">Step 1: Choose the Sport</h2>
+                <h2 className="text-xl font-black text-[#F5F5F2]">Step 1: Choose the Sport</h2>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Select the game you wish to play in Hyderabad
                 </p>
@@ -256,14 +256,14 @@ function HostGameContent() {
                     }}
                     className={`p-4 rounded-2xl border-2 text-center transition-all flex flex-col items-center gap-2 ${
                       sport === sp
-                        ? "border-speecat-green bg-emerald-50/50 shadow-sm"
+                        ? "border-[#B7F34A] bg-emerald-50/50 shadow-sm"
                         : "border-slate-200 hover:border-slate-300 bg-slate-50/50"
                     }`}
                   >
                     <span className="text-3xl">
                       {sp === "Badminton" ? "🏸" : sp === "Football" ? "⚽" : sp === "Cricket" ? "🏏" : sp === "Tennis" ? "🎾" : sp === "Pickleball" ? "🏓" : sp === "Basketball" ? "🏀" : sp === "Table Tennis" ? "🏓" : sp === "Swimming" ? "🏊" : "🏟️"}
                     </span>
-                    <span className="font-bold text-xs sm:text-sm text-speecat-navy">{sp}</span>
+                    <span className="font-bold text-xs sm:text-sm text-[#F5F5F2]">{sp}</span>
                   </button>
                 ))}
               </div>
@@ -274,7 +274,7 @@ function HostGameContent() {
           {currentStep === 2 && (
             <div className="space-y-5 animate-in fade-in">
               <div>
-                <h2 className="text-xl font-black text-speecat-navy">Step 2: Choose Playing Venue</h2>
+                <h2 className="text-xl font-black text-[#F5F5F2]">Step 2: Choose Playing Venue</h2>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Pick from verified Hyderabad sports facilities or enter your community location
                 </p>
@@ -286,7 +286,7 @@ function HostGameContent() {
                   type="button"
                   onClick={() => setVenueChoiceType("directory")}
                   className={`py-2 text-xs font-bold rounded-lg transition-all ${
-                    venueChoiceType === "directory" ? "bg-white text-speecat-navy shadow-xs" : "text-slate-500"
+                    venueChoiceType === "directory" ? "bg-white text-[#F5F5F2] shadow-xs" : "text-slate-500"
                   }`}
                 >
                   Select from ATHLETIQ Directory
@@ -295,7 +295,7 @@ function HostGameContent() {
                   type="button"
                   onClick={() => setVenueChoiceType("custom")}
                   className={`py-2 text-xs font-bold rounded-lg transition-all ${
-                    venueChoiceType === "custom" ? "bg-white text-speecat-navy shadow-xs" : "text-slate-500"
+                    venueChoiceType === "custom" ? "bg-white text-[#F5F5F2] shadow-xs" : "text-slate-500"
                   }`}
                 >
                   Custom Ground / Gated Community
@@ -304,13 +304,13 @@ function HostGameContent() {
 
               {venueChoiceType === "directory" ? (
                 <div className="space-y-3">
-                  <label className="text-xs font-bold text-speecat-navy">
+                  <label className="text-xs font-bold text-[#F5F5F2]">
                     Select Hyderabad Arena ({sport})
                   </label>
                   <select
                     value={selectedVenueId}
                     onChange={(e) => setSelectedVenueId(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-semibold text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-semibold text-[#F5F5F2] focus:outline-none focus:ring-2 focus:ring-speecat-green"
                   >
                     {allVenues.map((v) => (
                       <option key={v.id} value={v.id}>
@@ -321,12 +321,12 @@ function HostGameContent() {
 
                   {selectedVenue && (
                     <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs space-y-1.5">
-                      <div className="font-bold text-speecat-navy">{selectedVenue.name}</div>
+                      <div className="font-bold text-[#F5F5F2]">{selectedVenue.name}</div>
                       <div className="text-slate-500 flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5 text-speecat-green" />
+                        <MapPin className="w-3.5 h-3.5 text-[#B7F34A]" />
                         <span>{selectedVenue.address}</span>
                       </div>
-                      <div className="text-speecat-green font-bold">
+                      <div className="text-[#B7F34A] font-bold">
                         Hourly Rate: {selectedVenue.pricePerHour ? `₹${selectedVenue.pricePerHour}/hr` : "To be confirmed"}
                       </div>
                     </div>
@@ -335,23 +335,23 @@ function HostGameContent() {
               ) : (
                 <div className="space-y-3 text-xs">
                   <div>
-                    <label className="block font-bold text-speecat-navy mb-1">Venue / Ground Name</label>
+                    <label className="block font-bold text-[#F5F5F2] mb-1">Venue / Ground Name</label>
                     <input
                       type="text"
                       placeholder="e.g. My Home Bhooja Badminton Court or Kondapur Community Turf"
                       value={customVenueName}
                       onChange={(e) => setCustomVenueName(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2]"
                     />
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block font-bold text-speecat-navy mb-1">Locality</label>
+                      <label className="block font-bold text-[#F5F5F2] mb-1">Locality</label>
                       <select
                         value={customLocality}
                         onChange={(e) => setCustomLocality(e.target.value as any)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2]"
                       >
                         {HYDERABAD_LOCALITIES.map((loc) => (
                           <option key={loc} value={loc}>
@@ -362,13 +362,13 @@ function HostGameContent() {
                     </div>
 
                     <div>
-                      <label className="block font-bold text-speecat-navy mb-1">Address / Landmark</label>
+                      <label className="block font-bold text-[#F5F5F2] mb-1">Address / Landmark</label>
                       <input
                         type="text"
                         placeholder="e.g. Near Botanical Garden"
                         value={customAddress}
                         onChange={(e) => setCustomAddress(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2]"
                       />
                     </div>
                   </div>
@@ -389,7 +389,7 @@ function HostGameContent() {
           {currentStep === 3 && (
             <div className="space-y-5 animate-in fade-in">
               <div>
-                <h2 className="text-xl font-black text-speecat-navy">Step 3: Schedule & Group Size</h2>
+                <h2 className="text-xl font-black text-[#F5F5F2]">Step 3: Schedule & Group Size</h2>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Set the match timing and maximum number of players
                 </p>
@@ -397,8 +397,8 @@ function HostGameContent() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div>
-                  <label className="block font-bold text-speecat-navy mb-1 flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-speecat-green" />
+                  <label className="block font-bold text-[#F5F5F2] mb-1 flex items-center gap-1">
+                    <Calendar className="w-3.5 h-3.5 text-[#B7F34A]" />
                     <span>Match Date</span>
                   </label>
                   <input
@@ -406,19 +406,19 @@ function HostGameContent() {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     min={new Date().toISOString().split("T")[0]}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2]"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-speecat-navy mb-1 flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-speecat-green" />
+                  <label className="block font-bold text-[#F5F5F2] mb-1 flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5 text-[#B7F34A]" />
                     <span>Start Time</span>
                   </label>
                   <select
                     value={startTime}
                     onChange={(e) => setStartTime(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2]"
                   >
                     <option value="06:00 AM">06:00 AM</option>
                     <option value="06:30 AM">06:30 AM</option>
@@ -435,7 +435,7 @@ function HostGameContent() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div>
-                  <label className="block font-bold text-speecat-navy mb-1">
+                  <label className="block font-bold text-[#F5F5F2] mb-1">
                     Duration (Hours)
                   </label>
                   <div className="grid grid-cols-3 gap-2">
@@ -457,7 +457,7 @@ function HostGameContent() {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-speecat-navy mb-1">
+                  <label className="block font-bold text-[#F5F5F2] mb-1">
                     Total Players (Including You)
                   </label>
                   <input
@@ -466,7 +466,7 @@ function HostGameContent() {
                     max="22"
                     value={maxGroupSize}
                     onChange={(e) => setMaxGroupSize(Math.max(2, Number(e.target.value)))}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy font-bold text-sm"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2] font-bold text-sm"
                   />
                   <span className="text-[10px] text-slate-400 mt-1 block">
                     e.g. 4 for Badminton Doubles, 10 for 5v5 Football, 12 for Box Cricket
@@ -480,7 +480,7 @@ function HostGameContent() {
           {currentStep === 4 && (
             <div className="space-y-5 animate-in fade-in">
               <div>
-                <h2 className="text-xl font-black text-speecat-navy">
+                <h2 className="text-xl font-black text-[#F5F5F2]">
                   Step 4: Set Skill Level for {sport}
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
@@ -495,7 +495,7 @@ function HostGameContent() {
                   onClick={() => setSkillType("range")}
                   className={`p-3 rounded-2xl border-2 text-center text-xs font-bold transition-all ${
                     skillType === "range"
-                      ? "border-speecat-green bg-emerald-50 text-speecat-navy"
+                      ? "border-[#B7F34A] bg-emerald-50 text-[#F5F5F2]"
                       : "border-slate-200 text-slate-600 hover:border-slate-300"
                   }`}
                 >
@@ -507,7 +507,7 @@ function HostGameContent() {
                   onClick={() => setSkillType("single")}
                   className={`p-3 rounded-2xl border-2 text-center text-xs font-bold transition-all ${
                     skillType === "single"
-                      ? "border-speecat-green bg-emerald-50 text-speecat-navy"
+                      ? "border-[#B7F34A] bg-emerald-50 text-[#F5F5F2]"
                       : "border-slate-200 text-slate-600 hover:border-slate-300"
                   }`}
                 >
@@ -519,7 +519,7 @@ function HostGameContent() {
                   onClick={() => setSkillType("open")}
                   className={`p-3 rounded-2xl border-2 text-center text-xs font-bold transition-all ${
                     skillType === "open"
-                      ? "border-speecat-green bg-emerald-50 text-speecat-navy"
+                      ? "border-[#B7F34A] bg-emerald-50 text-[#F5F5F2]"
                       : "border-slate-200 text-slate-600 hover:border-slate-300"
                   }`}
                 >
@@ -531,13 +531,13 @@ function HostGameContent() {
                 <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4 text-xs">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block font-bold text-speecat-navy mb-1">
+                      <label className="block font-bold text-[#F5F5F2] mb-1">
                         Minimum Skill Level
                       </label>
                       <select
                         value={minSkill}
                         onChange={(e) => setMinSkill(e.target.value as SkillLevel)}
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy font-bold"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2] font-bold"
                       >
                         {ALL_SKILL_LEVELS.map((lvl) => (
                           <option key={lvl} value={lvl}>
@@ -548,13 +548,13 @@ function HostGameContent() {
                     </div>
 
                     <div>
-                      <label className="block font-bold text-speecat-navy mb-1">
+                      <label className="block font-bold text-[#F5F5F2] mb-1">
                         Maximum Skill Level
                       </label>
                       <select
                         value={maxSkill}
                         onChange={(e) => setMaxSkill(e.target.value as SkillLevel)}
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy font-bold"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2] font-bold"
                       >
                         {ALL_SKILL_LEVELS.map((lvl) => (
                           <option key={lvl} value={lvl}>
@@ -567,7 +567,7 @@ function HostGameContent() {
 
                   <div className="text-center bg-white p-3 rounded-xl border border-slate-200">
                     <span className="text-slate-400 font-semibold">Game will be marked: </span>
-                    <span className="font-extrabold text-speecat-navy ml-1">
+                    <span className="font-extrabold text-[#F5F5F2] ml-1">
                       "{minSkill} to {maxSkill}"
                     </span>
                   </div>
@@ -576,7 +576,7 @@ function HostGameContent() {
 
               {skillType === "single" && (
                 <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3 text-xs">
-                  <label className="block font-bold text-speecat-navy">
+                  <label className="block font-bold text-[#F5F5F2]">
                     Select Required Level
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
@@ -610,29 +610,29 @@ function HostGameContent() {
           {currentStep === 5 && (
             <div className="space-y-4 animate-in fade-in text-xs">
               <div>
-                <h2 className="text-xl font-black text-speecat-navy">Step 5: Match Details</h2>
+                <h2 className="text-xl font-black text-[#F5F5F2]">Step 5: Match Details</h2>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Give your game a clear title, format, and cost breakdown
                 </p>
               </div>
 
               <div>
-                <label className="block font-bold text-speecat-navy mb-1">Game Title</label>
+                <label className="block font-bold text-[#F5F5F2] mb-1">Game Title</label>
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy font-bold text-sm"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2] font-bold text-sm"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-speecat-navy mb-1">Match Format</label>
+                  <label className="block font-bold text-[#F5F5F2] mb-1">Match Format</label>
                   <select
                     value={matchFormat}
                     onChange={(e) => setMatchFormat(e.target.value as any)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy font-medium"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2] font-medium"
                   >
                     <option value="Doubles">Doubles</option>
                     <option value="Singles">Singles</option>
@@ -642,7 +642,7 @@ function HostGameContent() {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-speecat-navy mb-1">
+                  <label className="block font-bold text-[#F5F5F2] mb-1">
                     Approx Cost / Player (₹ INR)
                   </label>
                   <input
@@ -650,40 +650,40 @@ function HostGameContent() {
                     placeholder="e.g. 250"
                     value={costPerPlayer}
                     onChange={(e) => setCostPerPlayer(e.target.value === "" ? "" : Number(e.target.value))}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy font-bold"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2] font-bold"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-bold text-speecat-navy mb-1">Description</label>
+                <label className="block font-bold text-[#F5F5F2] mb-1">Description</label>
                 <textarea
                   rows={3}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-speecat-navy"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-[#F5F5F2]"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-speecat-navy mb-1">Equipment Notes</label>
+                <label className="block font-bold text-[#F5F5F2] mb-1">Equipment Notes</label>
                 <input
                   type="text"
                   value={equipmentNotes}
                   onChange={(e) => setEquipmentNotes(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-speecat-navy"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-[#F5F5F2]"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-speecat-navy mb-1">
+                <label className="block font-bold text-[#F5F5F2] mb-1">
                   Joining Rules (One per line)
                 </label>
                 <textarea
                   rows={3}
                   value={ruleInput}
                   onChange={(e) => setRuleInput(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-speecat-navy"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-[#F5F5F2]"
                 />
               </div>
             </div>
@@ -693,7 +693,7 @@ function HostGameContent() {
           {currentStep === 6 && (
             <div className="space-y-5 animate-in fade-in">
               <div>
-                <h2 className="text-xl font-black text-speecat-navy">Step 6: Review & Publish</h2>
+                <h2 className="text-xl font-black text-[#F5F5F2]">Step 6: Review & Publish</h2>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Confirm your match summary before sharing with the Hyderabad community
                 </p>
@@ -704,48 +704,48 @@ function HostGameContent() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">🏸</span>
-                    <span className="font-black text-sm uppercase text-speecat-navy">{sport}</span>
+                    <span className="font-black text-sm uppercase text-[#F5F5F2]">{sport}</span>
                   </div>
                   <span className="bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full text-xs">
                     {skillRequirement.displayText}
                   </span>
                 </div>
 
-                <h3 className="text-lg font-black text-speecat-navy">{title}</h3>
+                <h3 className="text-lg font-black text-[#F5F5F2]">{title}</h3>
 
                 <div className="grid grid-cols-2 gap-3 text-slate-600">
                   <div>
                     <span className="text-slate-400 block text-[11px]">Venue</span>
-                    <span className="font-bold text-speecat-navy">
+                    <span className="font-bold text-[#F5F5F2]">
                       {venueChoiceType === "directory" && selectedVenue ? selectedVenue.name : customVenueName || "Hyderabad"}
                     </span>
                   </div>
                   <div>
                     <span className="text-slate-400 block text-[11px]">Date & Time</span>
-                    <span className="font-bold text-speecat-navy">{date} • {startTime}</span>
+                    <span className="font-bold text-[#F5F5F2]">{date} • {startTime}</span>
                   </div>
                   <div>
                     <span className="text-slate-400 block text-[11px]">Spots</span>
-                    <span className="font-bold text-speecat-navy">
+                    <span className="font-bold text-[#F5F5F2]">
                       {maxGroupSize - 1} open spots ({maxGroupSize} total)
                     </span>
                   </div>
                   <div>
                     <span className="text-slate-400 block text-[11px]">Price</span>
-                    <span className="font-bold text-speecat-green">
+                    <span className="font-bold text-[#B7F34A]">
                       {costPerPlayer ? `₹${costPerPlayer} / player` : "Free"}
                     </span>
                   </div>
                 </div>
 
                 <div className="pt-2 border-t border-slate-200 text-slate-500">
-                  <span className="font-semibold text-speecat-navy">Host: </span>
+                  <span className="font-semibold text-[#F5F5F2]">Host: </span>
                   {currentUser?.name} ({currentUser?.locality})
                 </div>
               </div>
 
               <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-900 flex items-start gap-2">
-                <Sparkles className="w-4 h-4 text-speecat-green shrink-0 mt-0.5" />
+                <Sparkles className="w-4 h-4 text-[#B7F34A] shrink-0 mt-0.5" />
                 <span>
                   After publishing, your game will appear in **Find Games**. You can accept players and communicate in the private game group chat!
                 </span>
@@ -787,7 +787,7 @@ function HostGameContent() {
                 type="button"
                 onClick={handlePublish}
                 disabled={isSubmitting}
-                className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy text-xs font-black px-7 py-3 rounded-xl shadow-md transition-all hover:scale-105 flex items-center gap-1.5 disabled:opacity-60"
+                className="bg-[#B7F34A] hover:bg-[#B7F34A]-600 text-[#F5F5F2] text-xs font-black px-7 py-3 rounded-xl shadow-md transition-all hover:scale-105 flex items-center gap-1.5 disabled:opacity-60"
               >
                 <Sparkles className="w-4 h-4 fill-current" />
                 <span>{isSubmitting ? "Publishing to Supabase..." : "Publish Game to Community"}</span>
