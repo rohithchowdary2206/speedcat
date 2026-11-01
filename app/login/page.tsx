@@ -36,6 +36,8 @@ function LoginForm() {
   const [selectedRole, setSelectedRole] = useState<"player" | "host" | "admin">("player");
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
+  const message = info;
+  const setMessage = setInfo;
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {

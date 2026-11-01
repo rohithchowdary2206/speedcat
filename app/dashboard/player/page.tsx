@@ -84,7 +84,7 @@ function PlayerDashboardContent() {
     }
   };
 
-  const activeBookings = bookings.filter((b) => b.status === "confirmed");
+  const activeBookings = bookings.filter((b) => b.status === "confirmed" || b.status === "Confirmed");
   const totalSpent = activeBookings.reduce((acc, b) => acc + (b.totalPrice || 0), 0);
 
   const initials = profile?.name
@@ -218,7 +218,7 @@ function PlayerDashboardContent() {
           ) : bookings.length > 0 ? (
             <div className="space-y-3">
               {bookings.map((booking) => {
-                const isConfirmed = booking.status === "confirmed";
+                const isConfirmed = booking.status === "confirmed" || booking.status === "Confirmed";
                 return (
                   <div
                     key={booking.id}

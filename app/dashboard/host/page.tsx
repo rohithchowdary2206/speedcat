@@ -66,7 +66,7 @@ function HostDashboardContent() {
   };
 
   const courts = selectedVenue?.courts || [];
-  const confirmedBookings = venueBookings.filter((b) => b.status === "confirmed");
+  const confirmedBookings = venueBookings.filter((b) => b.status === "confirmed" || b.status === "Confirmed");
   const venueRevenue = confirmedBookings.reduce((acc, b) => acc + (b.totalPrice || 0), 0);
 
   return (

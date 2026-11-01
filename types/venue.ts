@@ -30,6 +30,7 @@ export interface VenueCourt {
   type: string; // e.g. "Synthetic Court", "Wooden Flooring", "AstroTurf 5v5", "Clay Court"
   surface: string;
   pricePerHour: number | null; // null means "Price/details to be confirmed"
+  isActive?: boolean;
 }
 
 export interface Venue {
@@ -108,7 +109,8 @@ export interface CourtBooking {
   playerName: string;
   playerEmail: string;
   playerPhone: string;
-  status: "Confirmed" | "Cancelled";
+  status: "Confirmed" | "Cancelled" | "confirmed" | "cancelled";
   createdAt: string;
   userId: string;
+  referenceCode?: string;
 }

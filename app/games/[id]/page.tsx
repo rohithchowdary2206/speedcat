@@ -93,8 +93,9 @@ export default function GameDetailPage() {
         sportsmanship: { overallScore: 5.0, punctuality: 5.0, teamwork: 5.0, fairPlay: 5.0, communication: 5.0, reliability: 5.0, totalReviews: 0 },
         gamesHosted: 0,
         gamesPlayed: 0,
-        reliableRatingPercentage: 100,
-        contactPrivacy: "hidden",
+        friendsCount: 0,
+        availability: { weekdays: [], weekends: [] },
+        contactPrivacy: "friends_only",
         isPublic: true,
         createdAt: ""
       };
