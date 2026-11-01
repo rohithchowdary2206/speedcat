@@ -34,22 +34,27 @@ import {
   addChatMessage, 
   markGameCompleted, 
   cancelGame,
+  leaveGame,
   submitPlayerRating,
   getAllRatings
 } from "@/lib/community";
-import { CommunityGame, ChatMessage, SkillLevel, ALL_SKILL_LEVELS, SKILL_LEVEL_BADGE_COLORS } from "@/types/community";
+import { subscribeGamePresence } from "@/lib/realtime";
+import { useAuth } from "@/components/AuthProvider";
+import { CommunityGame, ChatMessage, SkillLevel, ALL_SKILL_LEVELS, SKILL_LEVEL_BADGE_COLORS, PlayerProfile } from "@/types/community";
 
 export default function GameDetailPage() {
   const params = useParams();
   const router = useRouter();
   const gameId = params?.id as string;
+  const { user, profile } = useAuth();
 
   const [game, setGame] = useState<CommunityGame | null>(null);
-  const [currentUser, setCurrentUser] = useState(getCurrentUser());
+  const [onlineUsers, setOnlineUsers] = useState<{ id: string; name: string }[]>([]);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [newMsg, setNewMsg] = useState("");
   const [joinNote, setJoinNote] = useState("");
   const [showJoinModal, setShowJoinModal] = useState(false);
+  const [isLeaving, setIsLeaving] = useState(false);
 
   // Completion modal state
   const [showCompletionModal, setShowCompletionModal] = useState(false);
@@ -69,10 +74,37 @@ export default function GameDetailPage() {
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [cancelReason, setCancelReason] = useState("");
 
+  const currentUser: PlayerProfile | null = useMemo(() => {
+    if (profile) return profile;
+    if (user) {
+      const meta = user.user_metadata || {};
+      const fullName = meta.full_name || user.email?.split("@")[0] || "Speedcat Player";
+      return {
+        id: user.id,
+        name: fullName,
+        email: user.email || "",
+        avatar: meta.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=0f172a&color=10b981`,
+        role: meta.role || "player",
+        locality: meta.locality || "Hyderabad",
+        city: "Hyderabad",
+        bio: "",
+        favoriteSports: ["Badminton"],
+        sportSkills: {},
+        sportsmanship: { overallScore: 5.0, punctuality: 5.0, teamwork: 5.0, fairPlay: 5.0, communication: 5.0, reliability: 5.0, totalReviews: 0 },
+        gamesHosted: 0,
+        gamesPlayed: 0,
+        reliableRatingPercentage: 100,
+        contactPrivacy: "hidden",
+        isPublic: true,
+        createdAt: ""
+      };
+    }
+    return getCurrentUser();
+  }, [user, profile]);
+
   const loadData = () => {
     const g = getGameById(gameId);
     setGame(g ? { ...g } : null);
-    setCurrentUser(getCurrentUser());
     if (g) {
       setChatMessages(getChatMessages(g.id));
       setSelectedAttendees(g.participants.map((p) => p.playerId));
@@ -96,6 +128,22 @@ export default function GameDetailPage() {
       window.removeEventListener("speecat_games_changed", loadData);
     };
   }, [gameId]);
+
+  useEffect(() => {
+    if (!gameId || !currentUser) return;
+    const unsub = subscribeGamePresence(
+      gameId,
+      {
+        id: currentUser.id,
+        name: currentUser.name,
+        avatar: currentUser.avatar,
+      },
+      (online) => {
+        setOnlineUsers(online);
+      }
+    );
+    return () => unsub();
+  }, [gameId, currentUser]);
 
   if (!game) {
     return (
@@ -122,77 +170,93 @@ export default function GameDetailPage() {
     .filter((r) => r.gameId === game.id && r.raterPlayerId === currentUser?.id)
     .map((r) => r.ratedPlayerId);
 
-  const handleRequestJoin = (e: React.FormEvent) => {
+  const handleRequestJoin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!currentUser) {
-      alert("Please log in with a demo profile to join this game.");
+      alert("Please log in to join this game.");
       router.push("/login");
       return;
     }
 
     try {
-      requestToJoinGame(game.id, currentUser.id, joinNote);
+      await requestToJoinGame(game.id, currentUser.id, joinNote);
       setShowJoinModal(false);
       setJoinNote("");
       loadData();
     } catch (err: any) {
-      alert(err.message);
+      alert(err.message || "Failed to submit join request");
     }
   };
 
-  const handleRespondRequest = (playerId: string, accept: boolean) => {
+  const handleRespondRequest = async (playerId: string, accept: boolean) => {
     try {
-      respondToJoinRequest(game.id, playerId, accept);
+      await respondToJoinRequest(game.id, playerId, accept);
       loadData();
     } catch (err: any) {
-      alert(err.message);
+      alert(err.message || "Failed to respond to request");
     }
   };
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleLeaveGame = async () => {
+    if (!confirm("Are you sure you want to leave this game? Your slot will open for other players.")) return;
+    try {
+      setIsLeaving(true);
+      await leaveGame(game.id);
+      loadData();
+    } catch (err: any) {
+      alert(err.message || "Could not leave game");
+    } finally {
+      setIsLeaving(false);
+    }
+  };
+
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newMsg.trim() || !currentUser) return;
 
-    addChatMessage(game.id, {
-      senderId: currentUser.id,
-      senderName: currentUser.name,
-      senderAvatar: currentUser.avatar,
-      content: newMsg.trim(),
-    });
-
-    setNewMsg("");
-    setChatMessages(getChatMessages(game.id));
+    try {
+      await addChatMessage(game.id, {
+        senderId: currentUser.id,
+        senderName: currentUser.name,
+        senderAvatar: currentUser.avatar,
+        content: newMsg.trim(),
+      });
+      setNewMsg("");
+      setChatMessages(getChatMessages(game.id));
+    } catch (err: any) {
+      alert(err.message || "Failed to send message");
+    }
   };
 
-  const handleConfirmCompletion = () => {
+  const handleConfirmCompletion = async () => {
     if (!currentUser) return;
     try {
-      markGameCompleted(game.id, currentUser.id, selectedAttendees);
+      await markGameCompleted(game.id, currentUser.id, selectedAttendees);
       setShowCompletionModal(false);
       loadData();
       alert("Game finalized! Confirmed participants are now automatically added to your Speedcat Friends list!");
     } catch (err: any) {
-      alert(err.message);
+      alert(err.message || "Failed to complete game");
     }
   };
 
-  const handleCancelGame = () => {
+  const handleCancelGame = async () => {
     if (!cancelReason.trim()) return;
     try {
-      cancelGame(game.id, cancelReason);
+      await cancelGame(game.id, cancelReason);
       setShowCancelModal(false);
       loadData();
     } catch (err: any) {
-      alert(err.message);
+      alert(err.message || "Failed to cancel game");
     }
   };
 
-  const handleSubmitRating = (e: React.FormEvent) => {
+  const handleSubmitRating = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!currentUser || !playerToRateId) return;
 
     try {
-      submitPlayerRating({
+      await submitPlayerRating({
         gameId: game.id,
         sport: game.sport,
         raterPlayerId: currentUser.id,
@@ -214,7 +278,7 @@ export default function GameDetailPage() {
         loadData();
       }, 1500);
     } catch (err: any) {
-      alert(err.message);
+      alert(err.message || "Failed to submit rating");
     }
   };
 
@@ -327,9 +391,20 @@ export default function GameDetailPage() {
                   )}
                 </div>
               ) : isParticipant ? (
-                <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-speecat-green" />
-                  <span>You are a Confirmed Player</span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-speecat-green" />
+                    <span>Confirmed Player</span>
+                  </div>
+                  {game.status !== "Completed" && game.status !== "Cancelled" && (
+                    <button
+                      onClick={handleLeaveGame}
+                      disabled={isLeaving}
+                      className="bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-600 font-bold text-xs px-3 py-2 rounded-xl border border-slate-200 transition-colors"
+                    >
+                      {isLeaving ? "Leaving..." : "Leave Match"}
+                    </button>
+                  )}
                 </div>
               ) : isPending ? (
                 <div className="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold px-4 py-2 rounded-xl">
@@ -419,17 +494,27 @@ export default function GameDetailPage() {
                     participant.playerId !== currentUser?.id &&
                     !alreadyRated;
 
+                  const isOnline = onlineUsers.some((u) => u.id === participant.playerId);
+
                   return (
                     <div
                       key={participant.playerId}
                       className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex items-center justify-between gap-3"
                     >
                       <div className="flex items-center gap-3">
-                        <img
-                          src={participant.avatar}
-                          alt={participant.name}
-                          className="w-10 h-10 rounded-xl object-cover border border-slate-200"
-                        />
+                        <div className="relative shrink-0">
+                          <img
+                            src={participant.avatar}
+                            alt={participant.name}
+                            className="w-10 h-10 rounded-xl object-cover border border-slate-200"
+                          />
+                          {isOnline && (
+                            <span
+                              className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full flex items-center justify-center animate-pulse"
+                              title="Online in lobby"
+                            />
+                          )}
+                        </div>
                         <div>
                           <div className="flex items-center gap-1.5">
                             <span className="font-bold text-xs text-speecat-navy">
@@ -438,6 +523,11 @@ export default function GameDetailPage() {
                             {isHostP && (
                               <span className="text-[9px] bg-purple-100 text-purple-800 font-bold px-1.5 py-0.2 rounded">
                                 Host
+                              </span>
+                            )}
+                            {isOnline && (
+                              <span className="text-[9px] bg-emerald-50 text-emerald-700 font-bold px-1 py-0.2 rounded border border-emerald-200">
+                                Live
                               </span>
                             )}
                           </div>

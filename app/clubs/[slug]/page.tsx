@@ -24,7 +24,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { getClubBySlug, getEventsForClub, isPlayerInClub, joinClub, leaveClub } from "@/lib/clubs";
-import { getCurrentUser } from "@/lib/community";
+import { useAuth } from "@/components/AuthProvider";
 import { Club, ClubEvent } from "@/types/club";
 import ClubEventCard from "@/components/ClubEventCard";
 
@@ -32,6 +32,7 @@ export default function ClubDetailPage() {
   const params = useParams();
   const router = useRouter();
   const slug = params?.slug as string;
+  const { user, profile } = useAuth();
 
   const [club, setClub] = useState<Club | null>(null);
   const [events, setEvents] = useState<ClubEvent[]>([]);
@@ -40,13 +41,9 @@ export default function ClubDetailPage() {
   const [shareCopied, setShareCopied] = useState(false);
   const [actionNotice, setActionNotice] = useState<string | null>(null);
 
-  const currentUser = useMemo(() => {
-    return getCurrentUser();
-  }, []);
-
-  const currentUserId = currentUser?.id || "player-rohith";
-  const currentUserName = currentUser?.name || "Rohith Player";
-  const currentUserAvatar = currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80";
+  const currentUserId = profile?.id || user?.id || "";
+  const currentUserName = profile?.name || user?.email?.split("@")[0] || "Speedcat Member";
+  const currentUserAvatar = profile?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80";
 
   const loadClubData = () => {
     if (!slug) return;
@@ -76,6 +73,10 @@ export default function ClubDetailPage() {
 
   const handleToggleJoin = () => {
     if (!club) return;
+    if (!user) {
+      router.push(`/login?next=/clubs/${slug}`);
+      return;
+    }
 
     if (isJoined) {
       if (club.organizerId === currentUserId) {

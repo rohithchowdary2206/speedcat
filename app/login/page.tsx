@@ -1,47 +1,103 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { 
-  Zap, 
-  User, 
-  Building2, 
-  ShieldCheck, 
-  Lock, 
-  Mail, 
-  ArrowRight, 
-  Sparkles,
-  Info
+import {
+  Zap,
+  User,
+  Building2,
+  ShieldCheck,
+  Lock,
+  Mail,
+  ArrowRight,
 } from "lucide-react";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { useAuth } from "@/components/AuthProvider";
 
-export default function LoginPage() {
+function roleHome(role?: string | null) {
+  if (role === "admin") return "/dashboard/admin";
+  if (role === "host") return "/dashboard/host";
+  return "/dashboard/player";
+}
+
+function LoginForm() {
   const router = useRouter();
-  const [tab, setTab] = useState<"login" | "register">("login");
-  const [email, setEmail] = useState("player.hyderabad@speecat.demo");
-  const [password, setPassword] = useState("demo12345");
-  const [selectedRole, setSelectedRole] = useState<"player" | "host" | "admin">("player");
+  const searchParams = useSearchParams();
+  const { user, profile, loading: authLoading } = useAuth();
+  const nextPath = searchParams.get("next");
+  const initialTab = searchParams.get("tab") === "register" ? "register" : "login";
 
-  const handleQuickLogin = (role: "player" | "host" | "admin") => {
-    if (role === "player") {
-      router.push("/dashboard/player");
-    } else if (role === "host") {
-      router.push("/dashboard/host");
-    } else {
-      router.push("/dashboard/admin");
+  const [tab, setTab] = useState<"login" | "register">(initialTab);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [selectedRole, setSelectedRole] = useState<"player" | "host" | "admin">("player");
+  const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (!authLoading && user) {
+      router.replace(nextPath || roleHome(profile?.role));
+    }
+  }, [authLoading, user, profile, nextPath, router]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setInfo(null);
+
+    if (!isSupabaseConfigured()) {
+      setError("Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.");
+      return;
+    }
+
+    setSubmitting(true);
+    const supabase = createClient();
+
+    try {
+      if (tab === "register") {
+        const { data, error: signUpError } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: fullName || email.split("@")[0],
+              role: selectedRole,
+            },
+          },
+        });
+        if (signUpError) throw signUpError;
+        if (!data.session) {
+          setInfo("Account created. Check your email to confirm, then sign in.");
+          setTab("login");
+          return;
+        }
+        router.replace(nextPath || roleHome(selectedRole));
+      } else {
+        const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+        if (signInError) throw signInError;
+        router.replace(nextPath || "/dashboard/player");
+      }
+    } catch (err: any) {
+      setError(err.message || "Authentication failed");
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleQuickLogin(selectedRole);
-  };
+  if (authLoading || user) {
+    return (
+      <div className="min-h-[70vh] flex items-center justify-center text-sm font-semibold text-slate-500">
+        {user ? "Taking you into Speedcat..." : "Loading account..."}
+      </div>
+    );
+  }
 
   return (
     <div className="bg-slate-50 min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-6">
-        
-        {/* Brand Header */}
         <div className="text-center space-y-2">
           <Link href="/" className="inline-flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-xl bg-speecat-navy flex items-center justify-center text-speecat-green shadow-md">
@@ -52,60 +108,14 @@ export default function LoginPage() {
             </span>
           </Link>
           <h2 className="text-xl font-black text-speedcat-navy">
-            {tab === "login" ? "Demo Account Access" : "Join Speedcat Hyderabad"}
+            {tab === "login" ? "Sign in to Speedcat" : "Create your Speedcat account"}
           </h2>
           <p className="text-xs text-slate-500">
-            Preview player bookings, venue management, and administrative directory tools
+            Book courts, host games, and join the Hyderabad sports community
           </p>
         </div>
 
-        {/* Quick Demo Persona Switcher Banner */}
-        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 space-y-2.5">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-900">
-            <Sparkles className="w-4 h-4 text-speecat-green" />
-            <span>1-Click Demo Persona Access</span>
-          </div>
-          <p className="text-[11px] text-emerald-800 leading-snug">
-            Choose an account role to immediately explore the corresponding dashboard:
-          </p>
-
-          <div className="grid grid-cols-3 gap-2 pt-1">
-            <button
-              type="button"
-              onClick={() => handleQuickLogin("player")}
-              className="bg-white hover:bg-emerald-100/60 border border-emerald-300 rounded-xl p-2.5 text-center transition-all group shadow-xs"
-            >
-              <User className="w-4 h-4 text-speecat-green mx-auto mb-1 group-hover:scale-110 transition-transform" />
-              <div className="text-[11px] font-bold text-speecat-navy">Player</div>
-              <div className="text-[9px] text-slate-500">Bookings</div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleQuickLogin("host")}
-              className="bg-white hover:bg-blue-50 border border-blue-200 rounded-xl p-2.5 text-center transition-all group shadow-xs"
-            >
-              <Building2 className="w-4 h-4 text-blue-600 mx-auto mb-1 group-hover:scale-110 transition-transform" />
-              <div className="text-[11px] font-bold text-speecat-navy">Venue Host</div>
-              <div className="text-[9px] text-slate-500">Courts</div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleQuickLogin("admin")}
-              className="bg-white hover:bg-purple-50 border border-purple-200 rounded-xl p-2.5 text-center transition-all group shadow-xs"
-            >
-              <ShieldCheck className="w-4 h-4 text-purple-600 mx-auto mb-1 group-hover:scale-110 transition-transform" />
-              <div className="text-[11px] font-bold text-speecat-navy">Admin</div>
-              <div className="text-[9px] text-slate-500">CSV Import</div>
-            </button>
-          </div>
-        </div>
-
-        {/* Login Card */}
         <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-5">
-          
-          {/* Tabs */}
           <div className="flex border-b border-slate-200 pb-2">
             <button
               onClick={() => setTab("login")}
@@ -115,7 +125,7 @@ export default function LoginPage() {
                   : "border-transparent text-slate-400 hover:text-slate-600"
               }`}
             >
-              Sign In (Demo)
+              Sign In
             </button>
             <button
               onClick={() => setTab("register")}
@@ -125,19 +135,19 @@ export default function LoginPage() {
                   : "border-transparent text-slate-400 hover:text-slate-600"
               }`}
             >
-              Register (Demo)
+              Register
             </button>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {tab === "register" && (
               <div>
-                <label className="block text-xs font-bold text-speecat-navy mb-1">
-                  Full Name
-                </label>
+                <label className="block text-xs font-bold text-speecat-navy mb-1">Full Name</label>
                 <input
                   type="text"
-                  defaultValue="Karthik Hyderabad"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  required
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-speecat-navy"
                 />
               </div>
@@ -167,43 +177,68 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                minLength={6}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
               />
             </div>
 
-            <div>
-              <label className="block text-xs font-bold text-speecat-navy mb-1">
-                Account Target Role
-              </label>
-              <select
-                value={selectedRole}
-                onChange={(e) => setSelectedRole(e.target.value as any)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-speecat-navy"
-              >
-                <option value="player">Player (Demo Bookings)</option>
-                <option value="host">Venue Host (Court Management)</option>
-                <option value="admin">Admin (Manage Listings & CSV)</option>
-              </select>
-            </div>
+            {tab === "register" && (
+              <div>
+                <label className="block text-xs font-bold text-speecat-navy mb-1">Account Role</label>
+                <select
+                  value={selectedRole}
+                  onChange={(e) => setSelectedRole(e.target.value as "player" | "host" | "admin")}
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-speecat-navy"
+                >
+                  <option value="player">Player</option>
+                  <option value="host">Venue Host</option>
+                  <option value="admin">Admin</option>
+                </select>
+                <div className="grid grid-cols-3 gap-2 pt-2">
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-2 text-center">
+                    <User className="w-4 h-4 text-speecat-green mx-auto mb-1" />
+                    <div className="text-[10px] font-bold text-speecat-navy">Book & join</div>
+                  </div>
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-2 text-center">
+                    <Building2 className="w-4 h-4 text-blue-600 mx-auto mb-1" />
+                    <div className="text-[10px] font-bold text-speecat-navy">Manage courts</div>
+                  </div>
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-2 text-center">
+                    <ShieldCheck className="w-4 h-4 text-purple-600 mx-auto mb-1" />
+                    <div className="text-[10px] font-bold text-speecat-navy">Directory</div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {error && (
+              <div className="bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl px-3 py-2">{error}</div>
+            )}
+            {info && (
+              <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-xl px-3 py-2">
+                {info}
+              </div>
+            )}
 
             <button
               type="submit"
-              className="w-full bg-speecat-navy hover:bg-slate-800 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm"
+              disabled={submitting}
+              className="w-full bg-speecat-navy hover:bg-slate-800 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-60"
             >
-              <span>{tab === "login" ? "Enter Demo Dashboard" : "Create Demo Profile"}</span>
+              <span>{submitting ? "Please wait..." : tab === "login" ? "Sign In" : "Create Account"}</span>
               <ArrowRight className="w-4 h-4 text-speecat-green" />
             </button>
           </form>
-
-          <div className="pt-2 text-center">
-            <span className="text-[11px] text-slate-400">
-              Prototype mode — no actual database accounts are stored.
-            </span>
-          </div>
-
         </div>
-
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <React.Suspense fallback={<div className="min-h-[70vh] flex items-center justify-center text-sm">Loading...</div>}>
+      <LoginForm />
+    </React.Suspense>
   );
 }

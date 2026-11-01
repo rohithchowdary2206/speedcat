@@ -50,7 +50,9 @@ const SAMPLE_CSV = `name,sport,locality,price,address,hours,amenities
 "Cyber Turfs 7v7","Football","Madhapur",1200,"Near Durgam Cheruvu Cable Bridge, Madhapur, Hyderabad","06:00 AM - 12:00 AM","Floodlights; Bibs Provided; Parking"
 "Kukatpally Box Cricket Zone","Cricket","Kukatpally",850,"Phase 4, KPHB Colony, Kukatpally, Hyderabad","24 Hours","Floodlights; Bats Included; Parking"`;
 
-export default function AdminDashboard() {
+import RequireAuth from "@/components/RequireAuth";
+
+function AdminDashboardContent() {
   const [activeSection, setActiveSection] = useState<"clubs" | "venues">("clubs");
 
   // Venue state
@@ -805,5 +807,13 @@ export default function AdminDashboard() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function AdminDashboard() {
+  return (
+    <RequireAuth roles={["admin"]}>
+      <AdminDashboardContent />
+    </RequireAuth>
   );
 }

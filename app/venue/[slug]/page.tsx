@@ -22,13 +22,17 @@ import {
   QrCode,
   X
 } from "lucide-react";
-import { getVenueBySlug, getVenues, BOOKINGS_STORAGE_KEY } from "@/lib/venues";
-import { Venue, VenueCourt, BookingDemo } from "@/types/venue";
+import { getVenueBySlug, getVenues } from "@/lib/venues";
+import { VenueCourt } from "@/types/venue";
 import VenueCard from "@/components/VenueCard";
+import { useAuth } from "@/components/AuthProvider";
+import { bookCourt, fetchOccupiedSlots } from "@/lib/bookings";
+import { COURT_TIME_SLOTS } from "@/lib/slots";
 
 export default function VenueDetailPage() {
   const params = useParams();
   const router = useRouter();
+  const { user, profile, loading: authLoading } = useAuth();
   const slug = params?.slug as string;
 
   const venue = useMemo(() => getVenueBySlug(slug), [slug]);
@@ -43,10 +47,13 @@ export default function VenueDetailPage() {
   });
   const [selectedSlot, setSelectedSlot] = useState<string>("07:00 PM - 08:00 PM");
   const [durationHours, setDurationHours] = useState<number>(1);
-  const [playerName, setPlayerName] = useState("Rohith Player (Demo)");
-  const [playerPhone, setPlayerPhone] = useState("+91 98765 43210");
+  const [playerName, setPlayerName] = useState("");
+  const [playerPhone, setPlayerPhone] = useState("");
   const [isFavorite, setIsFavorite] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [occupiedSlots, setOccupiedSlots] = useState<Set<string>>(new Set());
+  const [bookingError, setBookingError] = useState<string | null>(null);
+  const [bookingBusy, setBookingBusy] = useState(false);
 
   // Modal State
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -58,6 +65,36 @@ export default function VenueDetailPage() {
       setSelectedCourt(venue.courts[0]);
     }
   }, [venue, selectedCourt]);
+
+  React.useEffect(() => {
+    if (profile) {
+      setPlayerName(profile.name);
+      setPlayerPhone(profile.phone || "");
+    }
+  }, [profile]);
+
+  const loadOccupied = React.useCallback(async () => {
+    if (!selectedCourt) return;
+    try {
+      const occupied = await fetchOccupiedSlots(selectedCourt.id, selectedDate);
+      setOccupiedSlots(occupied);
+      if (occupied.has(selectedSlot)) {
+        const nextOpen = COURT_TIME_SLOTS.find((slot) => !occupied.has(slot.time));
+        if (nextOpen) setSelectedSlot(nextOpen.time);
+      }
+    } catch {
+      setOccupiedSlots(new Set());
+    }
+  }, [selectedCourt, selectedDate, selectedSlot]);
+
+  React.useEffect(() => {
+    void loadOccupied();
+    const onChange = () => {
+      void loadOccupied();
+    };
+    window.addEventListener("speedcat_bookings_changed", onChange);
+    return () => window.removeEventListener("speedcat_bookings_changed", onChange);
+  }, [loadOccupied]);
 
   if (!venue) {
     return (
@@ -81,17 +118,10 @@ export default function VenueDetailPage() {
     .filter((v) => v.id !== venue.id && (v.sport === venue.sport || v.locality === venue.locality))
     .slice(0, 3);
 
-  // Time Slots for Demo Preview
-  const sampleTimeSlots = [
-    { time: "06:00 AM - 07:00 AM", category: "Early Bird", discount: "₹50 off" },
-    { time: "07:00 AM - 08:00 AM", category: "Morning", discount: null },
-    { time: "08:00 AM - 09:00 AM", category: "Morning", discount: null },
-    { time: "05:00 PM - 06:00 PM", category: "Evening", discount: null },
-    { time: "06:00 PM - 07:00 PM", category: "Prime Time", discount: "Popular" },
-    { time: "07:00 PM - 08:00 PM", category: "Prime Time", discount: "Popular" },
-    { time: "08:00 PM - 09:00 PM", category: "Night Match", discount: null },
-    { time: "09:00 PM - 10:00 PM", category: "Night Match", discount: null },
-  ];
+  const sampleTimeSlots = COURT_TIME_SLOTS.map((slot) => ({
+    ...slot,
+    discount: slot.category === "Prime Time" ? "Popular" : null,
+  }));
 
   // Pricing calculations
   const hourlyRate = selectedCourt?.pricePerHour ?? venue.pricePerHour ?? 500;
@@ -108,45 +138,51 @@ export default function VenueDetailPage() {
     }
   };
 
-  const handlePreviewBooking = (e: React.FormEvent) => {
+  const handleConfirmBooking = async (e: React.FormEvent) => {
     e.preventDefault();
-    const refCode = `SPC-HYD-${Math.floor(100000 + Math.random() * 900000)}`;
-    setDemoBookingRef(refCode);
+    setBookingError(null);
 
-    // Save demo booking to localStorage
-    if (typeof window !== "undefined") {
-      try {
-        const existing = localStorage.getItem(BOOKINGS_STORAGE_KEY);
-        const bookingsList: BookingDemo[] = existing ? JSON.parse(existing) : [];
-        const newBooking: BookingDemo = {
-          id: refCode,
-          venueId: venue.id,
-          venueName: venue.name,
-          sport: venue.sport,
-          locality: venue.locality,
-          courtName: selectedCourt?.name || "Standard Court",
-          date: selectedDate,
-          timeSlot: selectedSlot,
-          durationHours,
-          courtPrice: hourlyRate,
-          platformFee: 0,
-          taxes: 0,
-          totalPrice: grandTotal,
-          playerName,
-          playerEmail: "player.demo@speecat.hyd",
-          playerPhone,
-          status: "Confirmed (Demo)",
-          createdAt: new Date().toISOString(),
-          isDemoNotice: "Demo booking — not a real reservation.",
-        };
-        bookingsList.unshift(newBooking);
-        localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(bookingsList));
-      } catch (err) {
-        console.error("Failed to save demo booking", err);
-      }
+    if (!user) {
+      router.push(`/login?next=${encodeURIComponent(window.location.pathname)}`);
+      return;
     }
 
-    setShowConfirmModal(true);
+    if (!selectedCourt) {
+      setBookingError("Please select a court first.");
+      return;
+    }
+
+    if (occupiedSlots.has(selectedSlot)) {
+      setBookingError("This time slot is already booked by another player. Please select an available slot.");
+      return;
+    }
+
+    setBookingBusy(true);
+    try {
+      const res = await bookCourt({
+        courtId: selectedCourt.id,
+        venueId: venue.id,
+        venueName: venue.name,
+        sport: venue.sport,
+        locality: venue.locality,
+        courtName: selectedCourt.name,
+        date: selectedDate,
+        startSlot: selectedSlot,
+        durationHours,
+        courtPrice: hourlyRate,
+        playerName: playerName || profile?.name || "Speedcat Player",
+        playerPhone: playerPhone || profile?.phone || "",
+        playerEmail: user.email || "",
+      });
+
+      setDemoBookingRef(res.reference_code);
+      setShowConfirmModal(true);
+      void loadOccupied();
+    } catch (err: any) {
+      setBookingError(err.message || "Failed to book court. Please try another slot.");
+    } finally {
+      setBookingBusy(false);
+    }
   };
 
   return (
@@ -399,17 +435,18 @@ export default function VenueDetailPage() {
             <div className="bg-white rounded-2xl border-2 border-speecat-green/30 p-5 shadow-lg shadow-emerald-500/5 space-y-5">
               
               {/* Mandatory Demo Notice */}
-              <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-900 space-y-1">
-                <div className="font-extrabold flex items-center gap-1.5 text-amber-800">
-                  <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-                  <span>Demo booking — not a real reservation</span>
+              {/* Real-time Availability Banner */}
+              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-900 space-y-1">
+                <div className="font-extrabold flex items-center gap-1.5 text-emerald-800">
+                  <Sparkles className="w-4 h-4 text-speecat-green shrink-0" />
+                  <span>Real-Time Court Booking</span>
                 </div>
-                <p className="text-[11px] leading-relaxed text-amber-800/90 font-medium">
-                  This prototype preview lets you test court selection and receipt generation. No payment will be collected and no venue is contacted.
+                <p className="text-[11px] leading-relaxed text-emerald-800/90 font-medium">
+                  Live availability powered by Supabase Realtime. Pick an open slot and confirm immediately.
                 </p>
               </div>
 
-              <form onSubmit={handlePreviewBooking} className="space-y-4">
+              <form onSubmit={handleConfirmBooking} className="space-y-4">
                 
                 {/* Selected Court Display */}
                 <div className="space-y-1">
@@ -464,42 +501,54 @@ export default function VenueDetailPage() {
                 {/* Time Slots */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-speecat-navy flex items-center justify-between">
-                    <span>Demo Time Slots</span>
-                    <span className="text-[10px] text-slate-400 font-normal">Sample preview</span>
+                    <span>Time Slots</span>
+                    <span className="text-[10px] text-slate-400 font-normal">
+                      {occupiedSlots.size > 0 ? `${occupiedSlots.size} booked today` : "All slots available"}
+                    </span>
                   </label>
                   <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
                     {sampleTimeSlots.map((slot) => {
+                      const isOccupied = occupiedSlots.has(slot.time);
                       const isSelected = selectedSlot === slot.time;
                       return (
                         <button
                           key={slot.time}
                           type="button"
-                          onClick={() => setSelectedSlot(slot.time)}
+                          disabled={isOccupied}
+                          onClick={() => {
+                            if (!isOccupied) setSelectedSlot(slot.time);
+                          }}
                           className={`w-full flex items-center justify-between p-2 rounded-xl text-xs font-semibold border transition-all text-left ${
-                            isSelected
+                            isOccupied
+                              ? "bg-rose-50/60 border-rose-200 text-slate-400 cursor-not-allowed opacity-75"
+                              : isSelected
                               ? "bg-emerald-50 border-speecat-green text-speecat-navy shadow-xs"
                               : "bg-slate-50/70 border-slate-200 text-slate-700 hover:bg-slate-100"
                           }`}
                         >
                           <span className="flex items-center gap-1.5">
-                            <Clock className="w-3.5 h-3.5 text-speecat-green" />
-                            {slot.time}
+                            <Clock className={`w-3.5 h-3.5 ${isOccupied ? "text-rose-400" : "text-speecat-green"}`} />
+                            <span className={isOccupied ? "line-through text-slate-400" : ""}>{slot.time}</span>
                           </span>
-                          {slot.discount && (
+                          {isOccupied ? (
+                            <span className="text-[10px] bg-rose-100 text-rose-700 font-bold px-1.5 py-0.5 rounded">
+                              Booked
+                            </span>
+                          ) : slot.discount ? (
                             <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">
                               {slot.discount}
                             </span>
-                          )}
+                          ) : null}
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Player Info Quick Form */}
+                {/* Player Info Form */}
                 <div className="space-y-2 pt-2 border-t border-slate-100">
-                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                    Demo Player Details
+                  <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    Player Contact Details
                   </div>
                   <div>
                     <input
@@ -514,7 +563,7 @@ export default function VenueDetailPage() {
                   <div>
                     <input
                       type="tel"
-                      placeholder="Mobile Number"
+                      placeholder="Mobile Number (e.g. +91 98765 43210)"
                       value={playerPhone}
                       onChange={(e) => setPlayerPhone(e.target.value)}
                       required
@@ -531,11 +580,11 @@ export default function VenueDetailPage() {
                   </div>
                   <div className="flex justify-between text-slate-600">
                     <span>Speedcat Platform Fee</span>
-                    <span className="text-emerald-700 font-semibold">FREE (Demo)</span>
+                    <span className="text-emerald-700 font-semibold">FREE</span>
                   </div>
                   <div className="flex justify-between text-slate-600">
-                    <span>GST (18%)</span>
-                    <span className="text-emerald-700 font-semibold">₹0 (Demo)</span>
+                    <span>Taxes & GST</span>
+                    <span className="text-emerald-700 font-semibold">Included</span>
                   </div>
                   <div className="pt-2 border-t border-slate-200 flex justify-between text-sm font-black text-speecat-navy">
                     <span>Total Amount (INR)</span>
@@ -543,17 +592,32 @@ export default function VenueDetailPage() {
                   </div>
                 </div>
 
+                {/* Error Banner */}
+                {bookingError && (
+                  <div className="bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl p-3 flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                    <span>{bookingError}</span>
+                  </div>
+                )}
+
                 {/* Submit Action */}
                 <button
                   type="submit"
-                  className="w-full bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-black text-sm py-3.5 rounded-xl shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+                  disabled={bookingBusy || occupiedSlots.has(selectedSlot)}
+                  className="w-full bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-black text-sm py-3.5 rounded-xl shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Sparkles className="w-4 h-4 fill-current" />
-                  <span>Preview Booking</span>
+                  <span>
+                    {bookingBusy
+                      ? "Confirming Court Booking..."
+                      : occupiedSlots.has(selectedSlot)
+                      ? "Selected Slot is Already Booked"
+                      : "Book Court Now"}
+                  </span>
                 </button>
 
                 <p className="text-[10px] text-center text-slate-400">
-                  Clicking will open the preview confirmation modal without charging any card.
+                  Instant live reservation saved to your Speedcat account.
                 </p>
               </form>
             </div>
@@ -599,22 +663,22 @@ export default function VenueDetailPage() {
               </button>
 
               <div className="inline-flex items-center gap-1.5 bg-speecat-green/20 text-speecat-green px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-                <ShieldCheck className="w-4 h-4" />
-                <span>Demo Preview Only</span>
+                <CheckCircle2 className="w-4 h-4 text-speecat-green" />
+                <span>Confirmed Reservation</span>
               </div>
 
               <h3 className="text-xl font-black text-white">
-                Booking Preview Confirmed!
+                Court Booked Successfully!
               </h3>
               <p className="text-xs text-slate-300 mt-1">
-                Demo Reference ID: <span className="font-mono text-speecat-green font-bold">{demoBookingRef}</span>
+                Booking Reference ID: <span className="font-mono text-speecat-green font-bold">{demoBookingRef}</span>
               </p>
             </div>
 
-            {/* Crucial Disclaimer Warning Banner */}
-            <div className="bg-amber-100 border-y border-amber-200 px-5 py-3 text-xs text-amber-900 font-bold flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 text-amber-700 shrink-0" />
-              <span>Demo only — no booking has been made.</span>
+            {/* Confirmed Banner */}
+            <div className="bg-emerald-50 border-y border-emerald-200 px-5 py-3 text-xs text-emerald-900 font-bold flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>Real-time booking confirmed in Supabase database.</span>
             </div>
 
             {/* Booking Details Body */}
@@ -630,7 +694,7 @@ export default function VenueDetailPage() {
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-100">
                   <span className="text-slate-500">Date & Slot:</span>
-                  <span className="font-semibold text-speecat-navy">{selectedDate} • {selectedSlot}</span>
+                  <span className="font-semibold text-speecat-navy">{selectedDate} • {selectedSlot} ({durationHours} hr)</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-100">
                   <span className="text-slate-500">Player:</span>
@@ -642,13 +706,13 @@ export default function VenueDetailPage() {
                 </div>
               </div>
 
-              {/* QR Code Demo Simulation */}
+              {/* QR Code Entry Pass */}
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center space-y-2">
                 <div className="w-20 h-20 bg-white border border-slate-300 rounded-xl mx-auto flex items-center justify-center p-2 shadow-xs">
                   <QrCode className="w-16 h-16 text-speecat-navy" />
                 </div>
                 <p className="text-[10px] text-slate-500 font-medium">
-                  Sample QR check-in code for demo turnstile entry
+                  Entry Pass: Show this at reception upon arrival
                 </p>
               </div>
 
@@ -670,7 +734,7 @@ export default function VenueDetailPage() {
                   onClick={() => setShowConfirmModal(false)}
                   className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-3 rounded-xl transition-colors"
                 >
-                  Close Preview
+                  Close
                 </button>
               </div>
 

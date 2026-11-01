@@ -45,9 +45,12 @@ import { HYDERABAD_LOCALITIES } from "@/lib/venues";
 import { HyderabadLocality } from "@/types/venue";
 import { ALL_CLUB_CATEGORIES, Club, ClubCategory, ClubEvent, EventRegistration } from "@/types/club";
 
-export default function OrganizerDashboardPage() {
-  const currentUser = useMemo(() => getCurrentUser(), []);
-  const currentUserId = currentUser?.id || "player-rohith";
+import { useAuth } from "@/components/AuthProvider";
+import RequireAuth from "@/components/RequireAuth";
+
+function OrganizerDashboardContent() {
+  const { profile: currentUser } = useAuth();
+  const currentUserId = currentUser?.id || "";
   const [clubs, setClubs] = useState<Club[]>([]);
   const [selectedClubId, setSelectedClubId] = useState<string>("");
   const [events, setEvents] = useState<ClubEvent[]>([]);
@@ -1030,5 +1033,13 @@ export default function OrganizerDashboardPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function OrganizerDashboardPage() {
+  return (
+    <RequireAuth roles={["host", "admin"]}>
+      <OrganizerDashboardContent />
+    </RequireAuth>
   );
 }

@@ -68,6 +68,9 @@ export interface PlayerProfile {
   isPublic: boolean;
   contactPrivacy: "private" | "friends_only" | "public";
   createdAt: string;
+  email?: string;
+  phone?: string;
+  role?: "player" | "host" | "admin";
 }
 
 export type GameStatus =
@@ -163,6 +166,9 @@ export interface Friendship {
   connectedViaGameId: string;
   gamesPlayedTogether: number;
   lastGameDate: string;
+  status?: "pending" | "accepted" | "declined";
+  requesterId?: string;
+  addresseeId?: string;
 }
 
 export interface PostGameRatingSubmission {
@@ -193,7 +199,11 @@ export interface SpeecatNotification {
     | "game_cancelled"
     | "rate_players"
     | "friend_added"
-    | "friend_invite";
+    | "friend_invite"
+    | "booking_confirmed"
+    | "booking_cancelled"
+    | "player_joined"
+    | "player_left";
   link: string;
   read: boolean;
   createdAt: string;

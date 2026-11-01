@@ -26,38 +26,33 @@ import {
   Flame
 } from "lucide-react";
 import { 
-  getCurrentUser, 
-  setCurrentUserId, 
-  getAllPlayers, 
   getNotificationsForPlayer, 
   markNotificationAsRead,
-  markAllNotificationsAsRead 
+  markAllNotificationsAsRead,
+  signOut
 } from "@/lib/community";
-import { PlayerProfile, SpeecatNotification } from "@/types/community";
+import { SpeecatNotification } from "@/types/community";
+import { useAuth } from "@/components/AuthProvider";
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const [currentUser, setCurrentUser] = useState<PlayerProfile | null>(null);
+  const { profile: currentUser, loading: authLoading } = useAuth();
   const [notifications, setNotifications] = useState<SpeecatNotification[]>([]);
   const [notifOpen, setNotifOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [allPlayers, setAllPlayers] = useState<PlayerProfile[]>([]);
 
   const notifRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
 
   const loadState = () => {
-    const user = getCurrentUser();
-    setCurrentUser(user);
-    if (user) {
-      setNotifications(getNotificationsForPlayer(user.id));
+    if (currentUser) {
+      setNotifications(getNotificationsForPlayer(currentUser.id));
     } else {
       setNotifications([]);
     }
-    setAllPlayers(getAllPlayers());
   };
 
   useEffect(() => {
@@ -65,8 +60,7 @@ export default function Navbar() {
 
     const handleAuthChange = () => loadState();
     const handleNotifChange = () => {
-      const user = getCurrentUser();
-      if (user) setNotifications(getNotificationsForPlayer(user.id));
+      if (currentUser) setNotifications(getNotificationsForPlayer(currentUser.id));
     };
 
     window.addEventListener("speecat_auth_changed", handleAuthChange);
@@ -78,7 +72,7 @@ export default function Navbar() {
       window.removeEventListener("speecat_notifications_changed", handleNotifChange);
       window.removeEventListener("speedcat_clubs_changed", handleNotifChange);
     };
-  }, []);
+  }, [currentUser]);
 
   // Close dropdowns on outside click
   useEffect(() => {
@@ -105,18 +99,18 @@ export default function Navbar() {
     }
   };
 
-  const handleSwitchUser = (playerId: string) => {
-    setCurrentUserId(playerId);
+  const handleLogout = async () => {
+    await signOut();
     setProfileMenuOpen(false);
-    loadState();
-  };
-
-  const handleLogout = () => {
-    setCurrentUserId(null);
-    setProfileMenuOpen(false);
-    loadState();
     router.push("/");
   };
+
+  const dashboardHref =
+    currentUser?.role === "admin"
+      ? "/dashboard/admin"
+      : currentUser?.role === "host"
+      ? "/dashboard/host"
+      : "/dashboard/player";
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all">
@@ -242,7 +236,9 @@ export default function Navbar() {
               <span>Browse Clubs</span>
             </NextLink>
 
-            {currentUser ? (
+            {authLoading ? (
+              <div className="w-24 h-9 rounded-xl bg-slate-100 animate-pulse" />
+            ) : currentUser ? (
               <div className="flex items-center gap-2.5">
                 
                 {/* Notifications Bell */}
@@ -379,39 +375,24 @@ export default function Navbar() {
                           <span>Organiser Hub & Revenue</span>
                         </NextLink>
 
-                        {/* ADMIN DASHBOARD SHORTCUT */}
                         <NextLink
-                          href="/dashboard/admin"
+                          href={dashboardHref}
                           onClick={() => setProfileMenuOpen(false)}
                           className="flex items-center gap-2.5 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-speecat-green"
                         >
                           <ShieldCheck className="w-4 h-4 text-purple-600" />
-                          <span>Speedcat Admin Dashboard</span>
+                          <span>My Dashboard</span>
                         </NextLink>
-                      </div>
-
-                      {/* Demo Quick Persona Switcher */}
-                      <div className="border-t border-slate-100 px-3 py-2">
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1">
-                          <Sparkles className="w-3 h-3 text-amber-500" />
-                          <span>Switch Demo Persona</span>
-                        </div>
-                        <div className="space-y-1">
-                          {allPlayers.slice(0, 4).map((p) => (
-                            <button
-                              key={p.id}
-                              onClick={() => handleSwitchUser(p.id)}
-                              className={`w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-[11px] font-medium text-left transition-colors ${
-                                p.id === currentUser.id
-                                  ? "bg-emerald-50 text-emerald-800 font-bold"
-                                  : "hover:bg-slate-100 text-slate-600"
-                              }`}
-                            >
-                              <span className="truncate">{p.name}</span>
-                              {p.id === currentUser.id && <Check className="w-3 h-3 text-speecat-green" />}
-                            </button>
-                          ))}
-                        </div>
+                        {currentUser.role === "admin" && (
+                          <NextLink
+                            href="/dashboard/admin"
+                            onClick={() => setProfileMenuOpen(false)}
+                            className="flex items-center gap-2.5 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-speecat-green"
+                          >
+                            <ShieldCheck className="w-4 h-4 text-purple-600" />
+                            <span>Speedcat Admin Dashboard</span>
+                          </NextLink>
+                        )}
                       </div>
 
                       <div className="border-t border-slate-100 pt-1">
@@ -420,7 +401,7 @@ export default function Navbar() {
                           className="w-full flex items-center gap-2 px-4 py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 transition-colors"
                         >
                           <LogOut className="w-4 h-4" />
-                          <span>Log Out (Demo)</span>
+                          <span>Log Out</span>
                         </button>
                       </div>
                     </div>

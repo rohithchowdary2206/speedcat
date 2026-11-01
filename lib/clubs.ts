@@ -103,9 +103,9 @@ const SEED_REGISTRATIONS: EventRegistration[] = [
     eventTitle: "Sunrise 10K & 5K Guided Trail Loop",
     clubId: "club-hyd-runners",
     clubName: "Hyderabad Runners Club",
-    playerId: "player-rohith",
-    playerName: "Rohith Player",
-    playerEmail: "rohith@speedcat.hyd",
+    playerId: "player-kavita",
+    playerName: "Kavita Rao",
+    playerEmail: "kavita.rao@speedcat.hyd",
     playerPhone: "+91 98765 43210",
     ticketPrice: 0,
     platformFeeRate: 0.05,
@@ -114,7 +114,7 @@ const SEED_REGISTRATIONS: EventRegistration[] = [
     netOrganizerEarnings: 0,
     status: "confirmed",
     registeredAt: "2026-10-25T08:00:00Z",
-    qrCode: "SPD-REG-105-ROHITH",
+    qrCode: "SPD-REG-105-KAVITA",
   },
   {
     id: "reg-spd-106",
@@ -122,9 +122,9 @@ const SEED_REGISTRATIONS: EventRegistration[] = [
     eventTitle: "Wednesday Evening Doubles League & Round Robin",
     clubId: "club-smashers-badminton",
     clubName: "Smashers Badminton Club",
-    playerId: "player-rohith",
-    playerName: "Rohith Player",
-    playerEmail: "rohith@speedcat.hyd",
+    playerId: "player-tarun",
+    playerName: "Tarun Varma",
+    playerEmail: "tarun.varma@speedcat.hyd",
     playerPhone: "+91 98765 43210",
     ticketPrice: 300,
     platformFeeRate: 0.05,
@@ -133,7 +133,7 @@ const SEED_REGISTRATIONS: EventRegistration[] = [
     netOrganizerEarnings: 285,
     status: "confirmed",
     registeredAt: "2026-10-25T11:00:00Z",
-    qrCode: "SPD-REG-106-ROHITH",
+    qrCode: "SPD-REG-106-TARUN",
   }
 ];
 

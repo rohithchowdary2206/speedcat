@@ -84,7 +84,31 @@ export interface BookingDemo {
   playerName: string;
   playerEmail: string;
   playerPhone: string;
-  status: "Confirmed (Demo)" | "Cancelled (Demo)";
+  status: "Confirmed (Demo)" | "Cancelled (Demo)" | "Confirmed" | "Cancelled";
   createdAt: string;
-  isDemoNotice: string;
+  isDemoNotice?: string;
+}
+
+export interface CourtBooking {
+  id: string;
+  groupId: string;
+  venueId: string;
+  venueName: string;
+  sport: SportType;
+  locality: string;
+  courtName: string;
+  courtId: string;
+  date: string;
+  timeSlot: string;
+  durationHours: number;
+  courtPrice: number;
+  platformFee: number;
+  taxes: number;
+  totalPrice: number;
+  playerName: string;
+  playerEmail: string;
+  playerPhone: string;
+  status: "Confirmed" | "Cancelled";
+  createdAt: string;
+  userId: string;
 }

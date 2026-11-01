@@ -38,10 +38,14 @@ const ALL_SPORTS: SportType[] = [
   "Multi-Sport",
 ];
 
-export default function HostGamePage() {
+import { useAuth } from "@/components/AuthProvider";
+import RequireAuth from "@/components/RequireAuth";
+
+function HostGameContent() {
   const router = useRouter();
-  const currentUser = getCurrentUser();
+  const { profile: currentUser } = useAuth();
   const allVenues = useMemo(() => getVenues(), []);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Multi-step State (1 to 6)
   const [currentStep, setCurrentStep] = useState(1);
@@ -111,10 +115,9 @@ export default function HostGamePage() {
     setCurrentStep((prev) => Math.max(1, prev - 1));
   };
 
-  const handlePublish = () => {
+  const handlePublish = async () => {
     if (!currentUser) {
-      alert("Please log in with a demo profile to host a game.");
-      router.push("/login");
+      router.push("/login?next=/host-game");
       return;
     }
 
@@ -135,35 +138,42 @@ export default function HostGamePage() {
       .map((r) => r.trim())
       .filter((r) => r.length > 0);
 
-    const newGame = createGame({
-      sport,
-      title: title || `${sport} Match in ${venueLocality}`,
-      description,
-      matchFormat,
-      venueId: venueChoiceType === "directory" ? selectedVenueId : undefined,
-      venueName,
-      locality: venueLocality,
-      venueAddress,
-      isVenueConfirmed,
-      date,
-      startTime,
-      endTime: "09:00 PM",
-      durationHours,
-      joiningDeadline: `${date}T18:00:00`,
-      playersNeeded: maxGroupSize,
-      maxGroupSize,
-      skillRequirement,
-      hostId: currentUser.id,
-      hostName: currentUser.name,
-      hostAvatar: currentUser.avatar,
-      costPerPlayer: costPerPlayer ? Number(costPerPlayer) : null,
-      isSplitCost,
-      equipmentNotes,
-      visibility,
-      rules,
-    });
+    setIsSubmitting(true);
+    try {
+      const newGame = await createGame({
+        sport,
+        title: title || `${sport} Match in ${venueLocality}`,
+        description,
+        matchFormat,
+        venueId: venueChoiceType === "directory" ? selectedVenueId : undefined,
+        venueName,
+        locality: venueLocality,
+        venueAddress,
+        isVenueConfirmed,
+        date,
+        startTime,
+        endTime: "09:00 PM",
+        durationHours,
+        joiningDeadline: `${date}T18:00:00`,
+        playersNeeded: maxGroupSize,
+        maxGroupSize,
+        skillRequirement,
+        hostId: currentUser.id,
+        hostName: currentUser.name,
+        hostAvatar: currentUser.avatar,
+        costPerPlayer: costPerPlayer ? Number(costPerPlayer) : null,
+        isSplitCost,
+        equipmentNotes,
+        visibility,
+        rules,
+      });
 
-    router.push(`/games/${newGame.id}`);
+      router.push(`/games/${newGame.id}`);
+    } catch (err: any) {
+      alert(err.message || "Failed to create game. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -776,10 +786,11 @@ export default function HostGamePage() {
               <button
                 type="button"
                 onClick={handlePublish}
-                className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy text-xs font-black px-7 py-3 rounded-xl shadow-md transition-all hover:scale-105 flex items-center gap-1.5"
+                disabled={isSubmitting}
+                className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy text-xs font-black px-7 py-3 rounded-xl shadow-md transition-all hover:scale-105 flex items-center gap-1.5 disabled:opacity-60"
               >
                 <Sparkles className="w-4 h-4 fill-current" />
-                <span>Publish Game to Community</span>
+                <span>{isSubmitting ? "Publishing to Supabase..." : "Publish Game to Community"}</span>
               </button>
             )}
           </div>
@@ -788,5 +799,13 @@ export default function HostGamePage() {
 
       </div>
     </div>
+  );
+}
+
+export default function HostGamePage() {
+  return (
+    <RequireAuth roles={["player", "host", "admin"]}>
+      <HostGameContent />
+    </RequireAuth>
   );
 }

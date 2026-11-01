@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PreviewBanner from "@/components/PreviewBanner";
+import Providers from "@/components/Providers";
 
 export const metadata: Metadata = {
   title: "Speedcat | Sports Booking, Clubs & Hyderabad Community — Find Your Game. Book Your Court.",
@@ -28,10 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-white text-speedcat-navy antialiased selection:bg-speedcat-green selection:text-white">
-        <PreviewBanner />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <Providers>
+          <PreviewBanner />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

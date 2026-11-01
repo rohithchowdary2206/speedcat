@@ -23,8 +23,11 @@ import {
   getCurrentUser, 
   updatePlayerProfile, 
   getAllGames, 
-  getAllFriendships 
+  getAllFriendships,
+  getFriendsForPlayer
 } from "@/lib/community";
+import { useAuth } from "@/components/AuthProvider";
+import RequireAuth from "@/components/RequireAuth";
 import { 
   PlayerProfile, 
   SkillLevel, 
@@ -45,8 +48,10 @@ const ALL_SPORTS: SportType[] = [
   "Multi-Sport",
 ];
 
-export default function MyProfilePage() {
-  const [currentUser, setCurrentUser] = useState<PlayerProfile | null>(null);
+function MyProfileContent() {
+  const { profile: authProfile, refreshProfile } = useAuth();
+  const [currentUser, setCurrentUser] = useState<PlayerProfile | null>(authProfile || getCurrentUser());
+  const [friends, setFriends] = useState<{ friend: PlayerProfile; relationship: any }[]>([]);
   const [selectedSportTab, setSelectedSportTab] = useState<SportType>("Badminton");
 
   // Edit/Onboarding Modal State
@@ -56,11 +61,12 @@ export default function MyProfilePage() {
   const [editLocality, setEditLocality] = useState("Gachibowli");
   const [editSports, setEditSports] = useState<SportType[]>([]);
   const [editSportSkillLevels, setEditSportSkillLevels] = useState<Partial<Record<SportType, SkillLevel>>>({});
+  const [isSaving, setIsSaving] = useState(false);
 
-  const loadUser = () => {
-    const user = getCurrentUser();
+  const loadUser = (user: PlayerProfile | null) => {
     setCurrentUser(user);
     if (user) {
+      setFriends(getFriendsForPlayer(user.id));
       if (user.favoriteSports.length > 0 && !user.favoriteSports.includes(selectedSportTab)) {
         setSelectedSportTab(user.favoriteSports[0]);
       }
@@ -78,12 +84,12 @@ export default function MyProfilePage() {
   };
 
   useEffect(() => {
-    loadUser();
+    loadUser(authProfile || getCurrentUser());
 
-    const handleAuth = () => loadUser();
+    const handleAuth = () => loadUser(authProfile || getCurrentUser());
     window.addEventListener("speecat_auth_changed", handleAuth);
     return () => window.removeEventListener("speecat_auth_changed", handleAuth);
-  }, []);
+  }, [authProfile]);
 
   if (!currentUser) {
     return (
@@ -115,37 +121,45 @@ export default function MyProfilePage() {
   const upcomingGames = playerGames.filter((g) => g.status === "Open" || g.status === "Full");
   const pastGames = playerGames.filter((g) => g.status === "Completed");
 
-  const handleSaveProfile = (e: React.FormEvent) => {
+  const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
-    const updatedSkills = { ...currentUser.sportSkills };
+    setIsSaving(true);
+    try {
+      const updatedSkills = { ...currentUser.sportSkills };
 
-    editSports.forEach((sp) => {
-      const chosenLevel = editSportSkillLevels[sp] || "Intermediate";
-      if (!updatedSkills[sp]) {
-        updatedSkills[sp] = {
-          selfAssessed: chosenLevel,
-          ratingsCount: 0,
-          distribution: { Beginner: 0, Amateur: 0, Intermediate: 0, Advanced: 0, Professional: 0 },
-        };
-      } else {
-        updatedSkills[sp] = {
-          ...updatedSkills[sp]!,
-          selfAssessed: chosenLevel,
-        };
-      }
-    });
+      editSports.forEach((sp) => {
+        const chosenLevel = editSportSkillLevels[sp] || "Intermediate";
+        if (!updatedSkills[sp]) {
+          updatedSkills[sp] = {
+            selfAssessed: chosenLevel,
+            ratingsCount: 0,
+            distribution: { Beginner: 0, Amateur: 0, Intermediate: 0, Advanced: 0, Professional: 0 },
+          };
+        } else {
+          updatedSkills[sp] = {
+            ...updatedSkills[sp]!,
+            selfAssessed: chosenLevel,
+          };
+        }
+      });
 
-    const updated = updatePlayerProfile({
-      id: currentUser.id,
-      name: editName,
-      bio: editBio,
-      locality: editLocality as any,
-      favoriteSports: editSports,
-      sportSkills: updatedSkills,
-    });
+      const updated = await updatePlayerProfile({
+        id: currentUser.id,
+        name: editName,
+        bio: editBio,
+        locality: editLocality as any,
+        favoriteSports: editSports,
+        sportSkills: updatedSkills,
+      });
 
-    setCurrentUser(updated);
-    setShowEditModal(false);
+      setCurrentUser(updated);
+      await refreshProfile();
+      setShowEditModal(false);
+    } catch (err: any) {
+      alert(err.message || "Failed to update profile.");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -486,6 +500,42 @@ export default function MyProfilePage() {
               </div>
             </div>
 
+            {/* Connected Sports Friends Card */}
+            <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="font-black text-sm text-speecat-navy uppercase tracking-wider flex items-center gap-1.5">
+                  <Users className="w-4 h-4 text-purple-600" />
+                  <span>My Sports Friends ({friends.length})</span>
+                </h3>
+                <Link href="/friends" className="text-xs text-speecat-green font-bold hover:underline">
+                  View All
+                </Link>
+              </div>
+
+              {friends.length > 0 ? (
+                <div className="space-y-3">
+                  {friends.slice(0, 4).map(({ friend, relationship }) => (
+                    <div key={friend.id} className="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <img src={friend.avatar} alt={friend.name} className="w-9 h-9 rounded-xl object-cover shrink-0 border border-slate-200" />
+                        <div className="min-w-0">
+                          <Link href={`/profile/${friend.id}`} className="text-xs font-bold text-speecat-navy hover:text-speecat-green truncate block">
+                            {friend.name}
+                          </Link>
+                          <span className="text-[10px] text-slate-400 block truncate">{friend.locality} • ★ {friend.sportsmanship.overallScore.toFixed(1)}</span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-bold text-slate-500 bg-white px-2 py-0.5 rounded-md border shrink-0">
+                        {relationship.gamesPlayedTogether} matches
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xs text-slate-400 italic">No sports friends yet. Play matches or send friend requests to connect!</p>
+              )}
+            </div>
+
           </div>
 
         </div>
@@ -611,5 +661,13 @@ export default function MyProfilePage() {
       )}
 
     </div>
+  );
+}
+
+export default function MyProfilePage() {
+  return (
+    <RequireAuth roles={["player", "host", "admin"]}>
+      <MyProfileContent />
+    </RequireAuth>
   );
 }
