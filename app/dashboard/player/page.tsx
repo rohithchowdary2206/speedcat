@@ -21,6 +21,7 @@ import {
 import { useAuth } from "@/components/AuthProvider";
 import RequireAuth from "@/components/RequireAuth";
 import { fetchMyBookings, cancelBookingGroup } from "@/lib/bookings";
+import { signOut } from "@/lib/community";
 import { CourtBooking } from "@/types/venue";
 
 function PlayerDashboardContent() {
@@ -30,6 +31,7 @@ function PlayerDashboardContent() {
   const [selectedReceipt, setSelectedReceipt] = useState<CourtBooking | null>(null);
   const [cancellingId, setCancellingId] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [loggingOut, setLoggingOut] = useState(false);
 
   const loadBookings = useCallback(async () => {
     if (!user) return;
@@ -42,6 +44,18 @@ function PlayerDashboardContent() {
       setLoadingBookings(false);
     }
   }, [user]);
+
+  const handleLogout = async () => {
+    try {
+      setLoggingOut(true);
+      await signOut();
+      window.location.replace("/login");
+    } catch (err) {
+      console.error("Logout error:", err);
+      alert("Something went wrong while logging out.");
+      setLoggingOut(false);
+    }
+  };
 
   useEffect(() => {
     void loadBookings();
@@ -116,7 +130,8 @@ function PlayerDashboardContent() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 self-start md:self-auto">
+         
+          <div className="flex items-center gap-3 self-start md:self-auto flex-wrap">
             <Link
               href="/explore"
               className="bg-speecat-green hover:bg-speecat-green-600 text-speecat-navy font-bold text-xs px-4 py-2.5 rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
@@ -130,6 +145,15 @@ function PlayerDashboardContent() {
             >
               <span>Host Game</span>
             </Link>
+
+            <button
+              onClick={handleLogout}
+              disabled={loggingOut}
+              className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors disabled:opacity-50"
+            >
+              {loggingOut ? "Logging out..." : "Log out"}
+            </button>
+          
           </div>
         </div>
 

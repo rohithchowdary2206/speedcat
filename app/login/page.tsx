@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -99,7 +100,7 @@ function LoginForm() {
     <div className="bg-slate-50 min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-6">
         <div className="text-center space-y-2">
-          <Link href="/" className="inline-flex items-center gap-2 group">
+          <Link href="/" className="inline-flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl bg-speecat-navy flex items-center justify-center text-speecat-green shadow-md">
               <Zap className="w-6 h-6 fill-speecat-green text-speecat-green" />
             </div>
@@ -107,9 +108,11 @@ function LoginForm() {
               SPEED<span className="text-speedcat-green">CAT</span>
             </span>
           </Link>
+
           <h2 className="text-xl font-black text-speedcat-navy">
             {tab === "login" ? "Sign in to Speedcat" : "Create your Speedcat account"}
           </h2>
+
           <p className="text-xs text-slate-500">
             Book courts, host games, and join the Hyderabad sports community
           </p>
@@ -118,26 +121,55 @@ function LoginForm() {
         <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-5">
           <div className="flex border-b border-slate-200 pb-2">
             <button
-              onClick={() => setTab("login")}
-              className={`flex-1 text-center pb-2 text-xs font-bold border-b-2 transition-all ${
+              type="button"
+              onClick={() => {
+                setTab("login");
+                setError("");
+                setMessage("");
+              }}
+              className={`flex-1 pb-3 text-xs font-bold border-b-2 ${
                 tab === "login"
-                  ? "border-speecat-green text-speecat-navy"
-                  : "border-transparent text-slate-400 hover:text-slate-600"
+                  ? "border-speecat-green text-speedcat-navy"
+                  : "border-transparent text-slate-400"
               }`}
             >
               Sign In
             </button>
+
             <button
-              onClick={() => setTab("register")}
-              className={`flex-1 text-center pb-2 text-xs font-bold border-b-2 transition-all ${
+              type="button"
+              onClick={() => {
+                setTab("register");
+                setError("");
+                setMessage("");
+              }}
+              className={`flex-1 pb-3 text-xs font-bold border-b-2 ${
                 tab === "register"
-                  ? "border-speecat-green text-speecat-navy"
-                  : "border-transparent text-slate-400 hover:text-slate-600"
+                  ? "border-speecat-green text-speedcat-navy"
+                  : "border-transparent text-slate-400"
               }`}
             >
               Register
             </button>
           </div>
+
+          {error && (
+            <div
+              role="alert"
+              className="rounded-xl bg-red-50 border border-red-200 p-3 text-xs text-red-700"
+            >
+              {error}
+            </div>
+          )}
+
+          {message && (
+            <div
+              role="status"
+              className="rounded-xl bg-emerald-50 border border-emerald-200 p-3 text-xs text-emerald-800"
+            >
+              {message}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {tab === "register" && (
@@ -154,22 +186,32 @@ function LoginForm() {
             )}
 
             <div>
-              <label className="block text-xs font-bold text-speecat-navy mb-1 flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-slate-400" />
+              <label
+                htmlFor="email"
+                className="block text-xs font-bold text-speecat-navy mb-1"
+              >
                 Email Address
               </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-speecat-navy focus:outline-none focus:ring-2 focus:ring-speecat-green"
-              />
+              <div className="relative">
+                <Mail className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                <input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-xs text-speedcat-navy"
+                  placeholder="you@example.com"
+                />
+              </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-speecat-navy mb-1 flex items-center gap-1.5">
-                <Lock className="w-3.5 h-3.5 text-slate-400" />
+              <label
+                htmlFor="password"
+                className="block text-xs font-bold text-speecat-navy mb-1"
+              >
                 Password
               </label>
               <input
